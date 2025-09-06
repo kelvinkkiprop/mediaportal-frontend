@@ -1,0 +1,3 @@
+ng new mediaportal-frontend --routing --style=scss
+cd mediaportal-frontend
+ng serve --port=4200
