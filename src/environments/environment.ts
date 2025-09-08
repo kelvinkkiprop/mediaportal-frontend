@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  base_url: 'https://api.test.anzaacademy.com/api'
+  base_url: 'https://api.cms.konza.go.ke/api'
 };
