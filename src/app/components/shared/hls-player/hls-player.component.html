@@ -1,0 +1,39 @@
+<!-- <div class="video-wrapper">
+  <video
+    #media
+    id="singleVideo"
+    preload="auto"
+    crossorigin
+    controls
+    class="w-100 rounded-3"
+    style="aspect-ratio: 16/9; border: none;"
+  ></video>
+
+  <div class="mt-2">
+    <label for="quality">Quality:</label>
+    <select id="quality" (change)="setQuality($event)">
+      <option [value]="-1">Auto</option>
+      <option *ngFor="let q of qualities; let i = index" [value]="i">{{ q }}</option>
+    </select>
+  </div>
+</div> -->
+
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="video-wrapper">
+      <video #media id="singleVideo" preload="auto" crossorigin controls class="w-100 rounded-3" style="aspect-ratio: 16/9; border: none;"></video>
+      <div class="mt-2">
+        <label for="quality">Quality:</label>
+        <select id="quality" (change)="setQuality($event)">
+          <option [value]="-1">Auto</option>
+          <option *ngFor="let mQuality of mQualities; let i = index" [value]="i">{{ mQuality }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+
+  </div>
+</div>
+

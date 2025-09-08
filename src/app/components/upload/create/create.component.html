@@ -1,0 +1,24 @@
+<div class="mb-3">
+  <div class="dropzone" [class.dragging]="isDragging">
+    <p *ngIf="!selectedFile">Drag & drop a video here, or click to select</p>
+    <p *ngIf="selectedFile">Selected: {{ selectedFile.name }}</p>
+    <input type="file" hidden (change)="onFileSelected($event)" accept="video/*" #fileInput>
+    <button (click)="fileInput.click()" class="btn btn-success btn-sm">Choose File</button>
+  </div>
+</div>
+
+<div class="mb-3">
+  <input type="text" [(ngModel)]="title" placeholder="Title" class="form-control">
+</div>
+<div class="mb-3">
+  <textarea [(ngModel)]="description" placeholder="Description" class="form-control"></textarea>
+</div>
+
+<button (click)="upload()" [disabled]="!selectedFile" class="btn btn-primary">Upload</button>
+
+<div *ngIf="progress > 0">
+  Progress: {{progress}}%
+  <div class="progress-bar">
+    <div class="progress-fill" [style.width.%]="progress"></div>
+  </div>
+</div>

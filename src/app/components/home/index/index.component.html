@@ -1,0 +1,59 @@
+<!-- <app-progress *ngIf="mProgress"/> -->
+
+
+<section>
+  <div class="app-content-header">
+    <div class="container-fluid">
+      <!-- <div class="row">
+        <div class="col-sm-6">
+          <h3 class="mb-0">Dashboard</h3>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+          </ol>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="app-content">
+    <div class="container-fluid">
+
+      <div class="row mb-2">
+        <div *ngIf="mMedia && mMedia.length>0; else noItemsTemplate" class="col-md-12">
+          <h5 class="fw-bold1">Featured</h5>
+          <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div *ngFor="let item of mMedia" class="col">
+              <a routerLink="/show/{{ item.id }}" class="btn btn-outline-dark btn-sm me-1" class="row text-decoration-none text-reset">
+                <div class="col-md-12">
+                  <!-- <app-video-card [data]="item"/> -->
+                  <!-- <app-hls-player/> -->
+                  <img [src]="item.thumbnail_url" width="100%" height="auto" alt="Video Thumbnail"/>
+                </div>
+                <div class="col-md-12">
+                  {{ item.title }}
+                </div>
+                <div class="col-md-6">
+                  <div class="fs-6 text-muted">
+                    {{ item.description }}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="fs-6 text-muted">
+                    {{ item.created_at|date }}
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <ng-template #noItemsTemplate>
+            <p class="p-5 text-center text-muted">No items</p>
+        </ng-template>
+      </div>
+
+    </div>
+  </div>
+</section>

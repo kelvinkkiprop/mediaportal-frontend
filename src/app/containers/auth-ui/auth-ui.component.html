@@ -1,0 +1,124 @@
+
+<app-progress *ngIf="mProgress"/>
+
+<!--===================================Nav===================================-->
+<nav class="navbar navbar-expand-md shadow bg-primary navbar-dark sticky-top">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand" routerLink="/">
+      <!-- <img src="images/logo.png" alt="Logo" width="30" height="24"> -->
+      <img src="images/logo_wide.png" alt="Logo" height="32">
+      <!-- <span>&nbsp;{{ mAppInfo.name }}</span> -->
+    </a>
+
+    <!-- Toggler Button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/']" fragment="about">About</a>
+        </li>
+      </ul>
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static">
+            <span class="theme-icon-active">
+              <i class="my-1"></i>
+            </span>
+            <span class="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text" style="--bs-dropdown-min-width: 8rem;">
+            <li>
+              <button Wtype="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="light" aria-pressed="false">
+                <i class="bi bi-sun-fill me-2"></i>Light
+                <i class="bi bi-check-lg ms-auto d-none"></i>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                <i class="bi bi-moon-fill me-2"></i> Dark
+                <i class="bi bi-check-lg ms-auto d-none"></i>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="true">
+                <i class="bi bi-circle-half me-2"></i> Auto
+                <i class="bi bi-check-lg ms-auto d-none"></i>
+              </button>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="!mCurrentUser" class="nav-link" routerLink="/auth/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="!mCurrentUser" class="nav-link" routerLink="/auth/register">Register</a>
+        </li>
+        <li *ngIf="mCurrentUser" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Welcome, {{ mCurrentUser?.first_name }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" routerLink="/dashboard">Dashboard</a></li>
+            <li><a class="dropdown-item" routerLink="#" (click)="onLogout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--===================================./Nav===================================-->
+
+<!--===================================Auth===================================-->
+<section id="auth" class="vh-1001 hold-transition1">
+  <main class="my-0">
+    <router-outlet/>
+  </main>
+</section>
+<!--===================================./Auth===================================-->
+
+<!--===================================Footer===================================-->
+<section id="footer">
+  <div class="bg-black">
+
+    <div class="py-1 bg-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <ul class="nav justify-content-center justify-content-md-start">
+              <li class="nav-item">
+                <span class="nav-link pr-1 pl-0 text-light">&copy;{{ mAppInfo.info.year }}&nbsp;{{ mAppInfo.info.name }}. All rights reserved</span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <ul class="nav justify-content-center justify-content-md-end">
+              <li class="nav-item">
+                <a class="nav-link pr-1 pl-1" routerLink="/privacy-policy" target="_blank">Privacy Policy</a>
+              </li>
+              <li class="nav-item">
+                  <span class="nav-link pr-1 pl-1 text-light">|</span>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link pr-0 pl-1" routerLink="/terms-of-service" target="_blank">Terms of Service</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--===================================./Footer===================================-->
+

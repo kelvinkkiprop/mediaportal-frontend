@@ -1,3 +1,273 @@
+=====================================================================================
+A. ANGULAR
+1. Installation
 ng new mediaportal-frontend --routing --style=scss
 cd mediaportal-frontend
 ng serve --port=4200
+
+2. Start server
+ng serve --open
+npm start
+ng build --watch
+
+3. Containers
+ng generate component containers/adminLTE
+ng generate component containers/adminLTE/inc/header
+ng generate component containers/adminLTE/inc/sidebar
+ng generate component containers/inc/progress
+
+ng generate component containers/authUI
+ng generate component containers/errorUI
+
+ng generate module components/home/home
+ng generate module components/home/homeRouting
+ng generate component components/home/index
+ng generate component components/home/show
+ng generate component components/home/privacy-policy
+ng generate component components/home/terms-of-service
+
+ng generate module components/auth/auth
+ng generate module components/auth/authRouting
+ng generate component components/auth/login
+ng generate component components/auth/register
+ng generate component components/auth/verify
+ng generate component components/auth/resetPassword
+ng generate component components/auth/recoverPassword
+ng generate component components/auth/profile
+
+4. Components
+ng generate component components/dashboard/index
+ng generate module components/dashboard/dashboard
+ng generate module components/dashboard/dashboardRouting
+ng generate component components/dashboard/inc/learner
+ng generate component components/dashboard/inc/admin
+
+ng generate component components/users/index
+ng generate component components/users/create
+ng generate component components/users/edit
+ng generate component components/users/show
+ng generate module components/users/user
+ng generate module components/users/userRouting
+
+ng generate component components/profiles/index
+ng generate component components/profiles/create
+ng generate component components/profiles/edit
+ng generate component components/profiles/show
+ng generate module components/profiles/profile
+ng generate module components/profiles/profileRouting
+
+ng generate component components/upload/index
+ng generate component components/upload/create
+ng generate component components/upload/edit
+ng generate component components/upload/show
+ng generate module components/upload/upload
+ng generate module components/upload/uploadRouting
+
+ng generate component components/courseModules/index
+ng generate component components/courseModules/create
+ng generate component components/courseModules/edit
+ng generate component components/courseModules/show
+ng generate module components/courseModules/courseModule
+ng generate module components/courseModules/topicRouting
+
+ng generate component components/interests/index
+ng generate component components/interests/create
+ng generate component components/interests/edit
+ng generate component components/interests/show
+ng generate module components/interests/interest
+ng generate module components/interests/interestRouting
+
+ng generate component components/payment-methods/index
+ng generate component components/payment-methods/create
+ng generate component components/payment-methods/edit
+ng generate component components/payment-methods/show
+ng generate module components/payment-methods/payment-method
+ng generate module components/payment-methods/payment-methodRouting
+
+ng generate component components/payments/index
+ng generate component components/payments/create
+ng generate component components/payments/edit
+ng generate component components/payments/show
+ng generate module components/payments/payment
+ng generate module components/payments/paymentRouting
+
+ng generate component components/terms/index
+ng generate module components/terms/terms
+ng generate module components/terms/termsRouting
+
+ng generate component components/about/index
+ng generate module components/about/about
+ng generate module components/about/aboutRouting
+
+ng generate component components/shared/progress
+ng generate component components/shared/videoCard
+ng generate component components/shared/hlsPlayer
+
+ng generate module components/shared/shared
+
+ng generate module components/errors/error
+ng generate module components/errors/errorRouting
+ng generate component components/errors/index
+ng generate component components/errors/notFound
+
+
+5. Modules
+ng generate module appRouting
+
+6. Class
+ng generate module app-routing
+ng generate class classes/has-role
+
+7. Environments
+ng generate environments
+
+6. Interceptors
+ng generate interceptor interceptors/auth
+ng generate interceptor interceptors/ServerErrors
+ng generate interceptor interceptors/RoleChange
+
+7. Services
+ng generate service services/auth
+ng generate service services/user
+ng generate service services/home
+ng generate service services/upload
+ng generate service services/profile
+ng generate service services/dashboard
+ng generate service services/theme
+ng generate service services/course
+ng generate service services/course-module
+ng generate service services/interest
+ng generate service services/payment-method
+ng generate service services/institution
+ng generate service services/payment
+
+7. Interfaces
+ng generate interface interfaces/user
+ng generate interface interfaces/role
+ng generate interface interfaces/course
+ng generate interface interfaces/courseModules
+ng generate interface interfaces/profile
+ng generate interface interfaces/interest
+ng generate interface interfaces/payment-method
+ng generate interface interfaces/institution
+ng generate interface interfaces/payment
+
+8. Guards
+ng generate guard guards/auth
+ng generate guard guards/verify
+ng generate guard guards/withProfile
+ng generate guard guards/adminsOnly
+ng generate guard guards/activeAccountsOnly
+ng generate guard guards/notInvestorOnly
+
+9. Build
+ng build --configuration production
+
+10. Core
+ng generate service core/app-info
+ng generate service core/app-context
+ng generate service core/toastr
+
+11. Environment
+a. Create Environment Files (Manually)
+src/environments/environment.ts
+src/environments/environment.development.ts
+
+c. Configure angular.json
+- Add the new environment under fileReplacements:
+"configurations": {
+  "production": {
+    ...
+  },
+  "development": {
+    "buildOptimizer": true,
+    "optimization": true,
+    "sourceMap": false,
+    "fileReplacements": [
+      {
+        "replace": "src/environments/environment.ts",
+        "with": "src/environments/environment.development.ts"
+      }
+    ]
+  }
+}
+
+d. Build or Serve with New Env
+ng serve --watch
+ng build --configuration=development
+# or
+ng serve --configuration=development
+=====================================================================================
+
+=====================================================================================
+B. Admin-LTE / Bootstrap
+1. Installation
+npm install admin-lte@4.0.0-rc3 --save
+npm install admin-lte@4.0.0-beta2 --save
+npm install admin-lte@4.0.0 --save
+npm install bootstrap@^5 --save
+
+2. Add your angular.json, add:
+"styles": [
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "node_modules/admin-lte/dist/css/adminlte.css",
+  "src/styles.css"
+],
+"scripts": [
+  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+  "node_modules/admin-lte/dist/js/adminlte.js"
+]
+
+10. Reference
+https://adminlte.io/themes/v4/
+https://adminlte.io/themes/v4/docs/introduction.html
+https://github.com/ColorlibHQ/AdminLTE
+=====================================================================================
+
+
+=====================================================================================
+C. BOOTSTRAP-ICONS
+1. Installation
+npm install bootstrap-icons --save
+
+2. Add to angular.json:
+"styles": [
+  "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+  "src/styles.css"
+]
+=====================================================================================
+
+
+=====================================================================================
+D. Deploy Angular App to Apache Server
+1. Install Apache2:
+-Install from here: http://httpd.apache.org/docs/current/install.htm
+
+2. Copy the dist/ folder in /var/www/ folder.
+
+3. Create Apache configuration file for angular app:
+$ sudo vim /etc/apache2/sites-available/angular_mediaportal.conf
+<VirtualHost *:80>
+  ServerName software-vendors-portal.oss.konza.go.ke
+  ServerAdmin kkiprop@konza.go.ke
+  DocumentRoot /var/www/html/mediaportal-frontend/dist/mediaportal-frontend
+  <Directory “/var/www/html/mediaportal-frontend/dist/mediaportal-frontend”>
+    AllowOverride All
+    Require all granted
+  </Directory>
+</VirtualHost>
+
+4. Enable angular.conf file using the following command:
+$ a2ensite angular_mediaportal.conf
+
+sudo chown -R username:groupname /path/to/angular/project
+
+4. Permissions
+chmod -R 755 /var/www/html/mediaportal-frontend
+
+5. Restart the apache service:
+sudo systemctl restart apache2
+sudo systemctl reload apache2
+
+6. Reference
+=====================================================================================
