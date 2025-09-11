@@ -18,15 +18,15 @@ export class UploadService {
 
   createItem(item: any): Observable<any>{
     const url =  `${environment.base_url}/upload`;
-    return this.http.post<any>(url, item, this.mAppContextService.getHttpOptions());
-    // return this.http.post<any>(url, item);
+    // return this.http.post<any>(url, item, this.mAppContextService.getHttpOptions());
+    return this.http.post<any>(url, item);
   }
 
 
 
   initUpload(filename: string, title: string) {
     const url =  `${environment.base_url}/upload/init`;
-    return this.http.post<{ uploadId: string }>(url, { filename, title }, this.mAppContextService.getHttpOptions());
+    return this.http.post<{ uploadId: string }>(url, { filename, title });
 
     // return this.http.post<any>(url, item, this.mAppContextService.getHttpOptions());
   }
@@ -37,10 +37,6 @@ export class UploadService {
     formData.append('chunkIndex', chunkIndex.toString());
     formData.append('file', chunk, `chunk_${chunkIndex}`);
     const url =  `${environment.base_url}/upload/chunk`;
-    // return this.http.post(url, formData, {
-    //   reportProgress: true,
-    //   observe: 'events'
-    // });
     return this.http.post(url, formData, {
       reportProgress: true,
       observe: 'events'
@@ -49,8 +45,9 @@ export class UploadService {
 
   completeUpload(uploadId: string, totalChunks: number, title: string, description?: string) {
     const url =  `${environment.base_url}/upload/complete`;
-    // return this.http.post(url, {uploadId, totalChunks, title, description});
-    return this.http.post(url, {uploadId, totalChunks, title, description}, this.mAppContextService.getHttpOptions());
+    return this.http.post(url, {
+      uploadId, totalChunks, title, description
+    });
   }
 
 }

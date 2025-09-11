@@ -42,13 +42,14 @@ export class HlsPlayerComponent {
         // this.mHls.loadSource('https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8');
         // this.mHls.loadSource('http://localhost:8000//storage/videos/processed/d050b5ce-dc6f-4646-a8bc-fddd6646a37f/master.m3u8');
         // this.mHls.loadSource(this.item.file);
-        this.mHls.loadSource('http://localhost:8000/videos/335376e7-4afe-4759-a262-af27101af25a/master.m3u8');
+        // this.mHls.loadSource('http://localhost:8000/videos/335376e7-4afe-4759-a262-af27101af25a/master.m3u8');
+        this.mHls.loadSource(this.item.full_hls_master);
         this.mHls.attachMedia(this.media.nativeElement);
         this.mHls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
           this.mQualities = data.levels.map((level: any) => level.height + 'p');
         });
       } else if (this.media.nativeElement.canPlayType('application/vnd.apple.mpegurl')) {
-        this.media.nativeElement.src = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+        this.media.nativeElement.src = this.item.full_hls_master;
         // this.media.nativeElement.src = this.item.file;
         // this.media.nativeElement.src ='http://localhost:8000/videos/335376e7-4afe-4759-a262-af27101af25a/master.m3u8';
         // this.media.nativeElement.src = 'http://localhost:8000//storage/videos/processed/d050b5ce-dc6f-4646-a8bc-fddd6646a37f/master.m3u8';
