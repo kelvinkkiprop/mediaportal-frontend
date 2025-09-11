@@ -48,31 +48,21 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./components/upload/upload.module').then((m) => m.UploadModule)
       },
-      // {
-      //   path: 'users',
-      //   loadChildren: () =>
-      //     import('./components/users/user.module').then((m) => m.UserModule)
-      // },
-      // {
-      //   path: 'courses',
-      //   loadChildren: () =>
-      //     import('./components/courses/course.module').then((m) => m.CourseModule)
-      // },
-      // {
-      //   path: 'course-modules',
-      //   loadChildren: () =>
-      //     import('./components/course-modules/course-module.module').then((m) => m.CourseModuleModule)
-      // },
-      // {
-      //   path: 'interests',
-      //   loadChildren: () =>
-      //     import('./components/interests/interest.module').then((m) => m.InterestModule)
-      // },
-      // {
-      //   path: 'institutions',
-      //   loadChildren: () =>
-      //     import('./components/institutions/institution.module').then((m) => m.InstitutionModule)
-      // },
+      {
+        path: 'users',
+        loadChildren: () =>
+          import('./components/users/user.module').then((m) => m.UserModule)
+      },
+      {
+        path: 'media-categories',
+        loadChildren: () =>
+          import('./components/mediaCategories/media-category.module').then((m) => m.MediaCategoryModule)
+      },
+      {
+        path: 'media-tags',
+        loadChildren: () =>
+          import('./components/mediaTags/media-tag.module').then((m) => m.MediaTagModule)
+      },
       // {
       //   path: 'payments',
       //   loadChildren: () =>

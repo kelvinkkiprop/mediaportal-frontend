@@ -8,16 +8,19 @@ import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 
 import { HlsPlayerComponent } from './hls-player/hls-player.component';
 import { VideoCardComponent } from './video-card/video-card.component';
+import { ProgressComponent } from './progress/progress.component';
 
 @NgModule({
   declarations: [
   ],
   imports: [
     // CommonModule,
+    ProgressComponent,
     HlsPlayerComponent,
     VideoCardComponent
   ],
   exports: [
+    ProgressComponent,
     HlsPlayerComponent,
     VideoCardComponent
   ],

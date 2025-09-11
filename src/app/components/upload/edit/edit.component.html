@@ -1,1 +1,62 @@
-<p>edit works!</p>
+<!-- <app-progress *ngIf="mProgress"/>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">
+      Upload Media
+    </div>
+    <div class="card-tools">
+    </div>
+  </div>
+  <div class="card-body">
+
+    <form>
+      <div class="row mb-3">
+
+        <div class="col-md-12">
+          <div class="mb-3">
+            <div class="dropzone" [class.dragging]="isDragging">
+              <p *ngIf="!mSelectedFile">Drag & drop a video here, or click to select</p>
+              <p *ngIf="mSelectedFile">Selected: {{ mSelectedFile.title }}</p>
+              <input type="file" hidden (change)="onFileSelected($event)" accept="video/*" #fileInput>
+              <button (click)="fileInput.click()" class="btn btn-light btn-sm">Choose File</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="mb-3">
+            <label for="title" class="form-label required">Title:</label>
+            <input type="text" formControlName="title" class="form-control"
+            [ngClass]="{ 'is-invalid': itemForm.get('title')?.invalid && (itemForm.get('title')?.dirty || itemForm.get('title')?.touched) }"/>
+            <div *ngIf="itemForm.get('title')?.invalid && (itemForm.get('title')?.dirty || itemForm.get('title')?.touched)" class="invalid-feedback d-block" role="alert">
+              <div *ngIf="itemForm.get('title')?.errors?.['required']">This field is required.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="mb-3">
+            <label for="description" class="form-label required">Description:</label>
+            <quill-editor formControlName="description" class="w-100" [styles]="{height: '150px'}" [ngClass]="{ 'is-invalid': itemForm.get('description')?.invalid && (itemForm.get('description')?.dirty || itemForm.get('description')?.touched) }"></quill-editor>
+            <div *ngIf="itemForm.get('description')?.invalid && (itemForm.get('description')?.dirty || itemForm.get('description')?.touched)" class="invalid-feedback d-block" role="alert">
+              <div *ngIf="itemForm.get('description')?.errors?.['required']">This field is required.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="mb-3">
+            <div *ngIf="progress > 0">
+              Progress: {{progress}}%
+              <div class="progress-bar">
+                <div class="progress-fill" [style.width.%]="progress"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-end">
+         <button (click)="upload()" [disabled]="!mSelectedFile && itemForm.invalid" class="btn btn-success">Upload</button>
+      </div>
+    </form>
+
+  </div>
+</div> -->

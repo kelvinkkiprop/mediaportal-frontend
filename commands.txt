@@ -63,19 +63,19 @@ ng generate component components/upload/show
 ng generate module components/upload/upload
 ng generate module components/upload/uploadRouting
 
-ng generate component components/courseModules/index
-ng generate component components/courseModules/create
-ng generate component components/courseModules/edit
-ng generate component components/courseModules/show
-ng generate module components/courseModules/courseModule
-ng generate module components/courseModules/topicRouting
+ng generate component components/mediaCategories/index
+ng generate component components/mediaCategories/create
+ng generate component components/mediaCategories/edit
+ng generate component components/mediaCategories/show
+ng generate module components/mediaCategories/mediaCategory
+ng generate module components/mediaCategories/mediaCategoryRouting
 
-ng generate component components/interests/index
-ng generate component components/interests/create
-ng generate component components/interests/edit
-ng generate component components/interests/show
-ng generate module components/interests/interest
-ng generate module components/interests/interestRouting
+ng generate component components/mediaTags/index
+ng generate component components/mediaTags/create
+ng generate component components/mediaTags/edit
+ng generate component components/mediaTags/show
+ng generate module components/mediaTags/mediaTag
+ng generate module components/mediaTags/mediaTagRouting
 
 ng generate component components/payment-methods/index
 ng generate component components/payment-methods/create
@@ -135,7 +135,8 @@ ng generate service services/profile
 ng generate service services/dashboard
 ng generate service services/theme
 ng generate service services/course
-ng generate service services/course-module
+ng generate service services/media-category
+ng generate service services/media-tag
 ng generate service services/interest
 ng generate service services/payment-method
 ng generate service services/institution
@@ -145,7 +146,8 @@ ng generate service services/payment
 ng generate interface interfaces/user
 ng generate interface interfaces/role
 ng generate interface interfaces/course
-ng generate interface interfaces/courseModules
+ng generate interface interfaces/media-category
+ng generate interface interfaces/media-tag
 ng generate interface interfaces/profile
 ng generate interface interfaces/interest
 ng generate interface interfaces/payment-method
@@ -356,3 +358,95 @@ sudo chown -R www-data:www-data /var/www/html/mediaportal-frontend-test
 6. Reference
 https://www.devdungeon.com/content/deploy-angular-apps-nginx
 =====================================================================================
+
+
+
+=====================================================================================
+E. Toastr
+1. Install
+npm install ngx-toastr @angular/animations
+
+2. Import
+// angular.json (if using)
+"styles": [
+  "node_modules/ngx-toastr/toastr.css",
+  "src/styles.scss"
+]
+
+3. Update your app.config.ts
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideToastr } from 'ngx-toastr';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideAnimations(), // Required
+    provideToastr({
+      positionClass: 'toast-bottom-right',
+      timeOut: 3000,
+      closeButton: true,
+      progressBar: true,
+    }),
+  ],
+};
+=====================================================================================
+
+=====================================================================================
+H. SweetAlert2
+1. Install
+npm install sweetalert2 --save
+2. Add angular.json
+"styles": [
+      "node_modules/sweetalert2/dist/sweetalert2.css"
+  ],
+"scripts": [
+      "node_modules/sweetalert2/dist/sweetalert2.js"
+  ],
+2. Import in Component
+import swal from 'sweetalert2';
+3. Use in Component
+swal({
+  title: 'Error!',
+  text: 'Do you want to continue',
+  type: 'error',
+  confirmButtonText: 'Cool'
+})
+=====================================================================================
+
+
+
+
+
+=====================================================================================
+N. Quill Rich Text Editor
+1. Installation
+npm install quill ngx-quill --legacy-peer-deps
+
+2. App module:
+app.module.ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { QuillModule } from 'ngx-quill';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    QuillModule.forRoot() // configure modules here if needed
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+
+3. Template:
+  <form [formGroup]="form">
+    <quill-editor formControlName="content" [styles]="{height: '300px'}"></quill-editor>
+  </form>
+
+4. Angular.json styles
+"node_modules/quill/dist/quill.snow.css",
+=====================================================================================
+

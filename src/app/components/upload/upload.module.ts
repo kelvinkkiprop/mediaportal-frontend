@@ -7,6 +7,8 @@ import { IndexComponent } from './index/index.component';
 import { UploadRoutingModule } from './upload-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateComponent } from './create/create.component';
+import { QuillModule } from 'ngx-quill';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -20,10 +22,12 @@ import { CreateComponent } from './create/create.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    QuillModule.forRoot(),
+
 
     // import
     UploadRoutingModule,
-    // SharedModule
+    SharedModule
   ]
 })
 export class UploadModule { }

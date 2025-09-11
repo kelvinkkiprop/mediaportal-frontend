@@ -5,7 +5,7 @@
 <div class="app-wrapper">
 
   <!--===================================Header===================================-->
-  <nav class="app-header navbar navbar-expand bg-body1 navbar-dark bg-primary">
+  <nav class="app-header navbar navbar-expand bg-body1 navbar-dark bg-success">
   <!-- <nav class="app-header navbar navbar-expand bg-body"> -->
     <div class="container-fluid">
       <ul class="navbar-nav">
@@ -64,8 +64,8 @@
             <span class="d-none d-md-inline">{{ mCurrentUser.name }}</span> -->
           </a>
           <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-            <li class="user-header text-bg-primary">
-              <!-- <span class="rounded-circle shadow bg-light p-2 fw-bold text-primary">{{ this.mAppContextService.getInitials(mCurrentUser.name) }}</span> -->
+            <li class="user-header text-bg-success">
+              <!-- <span class="rounded-circle shadow bg-light p-2 fw-bold text-success">{{ this.mAppContextService.getInitials(mCurrentUser.name) }}</span> -->
               <!-- <p>
                 {{ mCurrentUser.name }} - {{ mCurrentUser.role?.name }}
                 <small>Joined {{ mCurrentUser.created_at | date }}</small>
@@ -97,9 +97,9 @@
 
   <!--===================================Sidebar===================================-->
   <aside class="app-sidebar bg-body-secondary1 shadow" data-bs-theme="light">
-    <div class="sidebar-brand bg-primary navbar-dark border-bottom border-3 border-warning">
+    <div class="sidebar-brand bg-success navbar-dark border-bottom border-2 border-danger">
       <a routerLink="/" class="brand-link">
-        <!-- <span class="brand-image opacity-75 rounded bg-light text-primary p-2">AP</span>
+        <!-- <span class="brand-image opacity-75 rounded bg-light text-success p-2">AP</span>
         <span class="brand-text fw-light">AdminLTE 4</span> -->
         <img src="images/logo_wide.png" alt="Logo" height="32">
       </a>
@@ -130,15 +130,21 @@
             </a>
           </li> -->
           <li class="nav-item">
-            <a routerLink="/tags" routerLinkActive="active" class="nav-link">
+            <a routerLink="/media-tags" routerLinkActive="active" class="nav-link">
               <i class="nav-icon bi bi-tag-fill"></i>
               <p>Tags</p>
             </a>
           </li>
           <li class="nav-item">
-            <a routerLink="/categories" routerLinkActive="active" class="nav-link">
+            <a routerLink="/media-categories" routerLinkActive="active" class="nav-link">
               <i class="nav-icon bi bi-card-list"></i>
               <p>Categories</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/users" routerLinkActive="active" class="nav-link">
+              <i class="nav-icon bi bi-people-fill"></i>
+              <p>Users</p>
             </a>
           </li>
           <hr>
@@ -169,20 +175,6 @@
                 <i class="nav-arrow bi bi-chevron-right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a routerLink="/users/create" class="nav-link">
-                  <i class="nav-icon bi bi-circle"></i>
-                  <p>Create user</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="/users" class="nav-link">
-                  <i class="nav-icon bi bi-circle"></i>
-                  <p>Users list</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item">
             <a routerLink="/payments" routerLinkActive="active" class="nav-link">
@@ -257,7 +249,7 @@
               <div class="card-body">
                 <p>Click the hamburger menu in the header to toggle the sidebar.</p>
                 <p>Sidebar is currently:
-                  <span class="badge" [class]="sidebarService.isCollapsed() ? 'bg-warning' : 'bg-success'">
+                  <span class="badge" [class]="sidebarService.isCollapsed() ? 'bg-danger' : 'bg-success'">
                     {{ sidebarService.isCollapsed() ? 'Collapsed' : 'Expanded' }}
                   </span>
                 </p>

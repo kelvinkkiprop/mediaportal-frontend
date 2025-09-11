@@ -12,7 +12,7 @@ export class AppInfoService {
 
   // variables
   private readonly appInfo = {
-    name: 'SecuraysCMS',
+    name: 'GovStream',
     year: new Date().getFullYear(),
     version: packageInfo.version
   };

@@ -33,7 +33,7 @@ export class VideoCardComponent implements OnChanges, AfterViewInit {
 
   constructor(
     public mHomeService: HomeService,
-    private sanitizer: DomSanitizer
+    // private sanitizer: DomSanitizer
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
