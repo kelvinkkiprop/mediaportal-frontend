@@ -1,58 +1,111 @@
 <app-progress *ngIf="mProgress"/>
 
-<section>
-  <div class="app-content-header">
-    <div class="container-fluid">
-      <!-- <div class="row">
-        <div class="col-sm-6">
-          <h3 class="mb-0">Dashboard</h3>
-        </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-end">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-          </ol>
-        </div>
-      </div> -->
-    </div>
-  </div>
+<div class="container my-4">
 
-  <div class="app-content">
-    <div class="container-fluid">
+  <!-- Home -->
+  <section id="home" class="p-lg-0 pt-lg-5 text-center text-sm-start">
+    <div class="container">
+      <div class="d-sm-flex align-items-center justify-content-between">
+        <div class="mb-5 mb-sm-0 col-sm-7 justify-text">
+          <h1 class="display-5 fw-bold">
+            Government Video Streaming Platform
+          </h1>
+          <h5>
+            Ministries | Departments | Agenncies | State Departments
+             <!-- <span class="text-danger h4">M</span>inistries | <span class="text-success h4">D</span>epartments | <span class="text-dark h4">A</span>gencies | <span class="text-light h4">S</span>tate Departments> -->
+          </h5>
+          <p class="lead my-4">
+            Access videos from government in one centralized platform
+          </p>
+          <a routerLink="/dashboard" class="btn btn-success btn-lg1">
+            <i class="bi bi-chevron-right"></i>
+            Get Started
+          </a>
+        </div>
+        <div class="col-sm-5 d-flex justify-content-sm-end ms-sm-5">
 
-      <div class="row mb-2">
-        <div *ngIf="mMedia && mMedia.length>0; else noItemsTemplate" class="col-md-12">
-          <h5 class="fw-bold1">Featured</h5>
-          <div class="row row-cols-1 row-cols-md-4 g-4">
-            <div *ngFor="let item of mMedia" class="col">
-              <a routerLink="/show/{{ item.id }}" class="btn btn-outline-dark btn-sm me-1" class="row text-decoration-none text-reset">
-                <div class="col-md-12">
-                  <!-- <app-video-card [data]="item"/> -->
-                  <!-- <app-hls-player/> -->
-                  <img [src]="item.thumbnail_url" width="100%" height="auto" alt="Video Thumbnail"/>
-                </div>
-                <div class="col-md-12">
-                  {{ item.title }}
-                </div>
-                <div class="col-md-6">
-                  <div class="fs-6 text-muted">
-                    {{ item.description }}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="fs-6 text-muted">
-                    {{ item.created_at|date }}
-                  </div>
-                </div>
-              </a>
+          <div *ngIf="mRandomCourseModule" class="ratio ratio-16x9 w-100 w-sm-75">
+            <app-hls-player [data]="mRandomCourseModule"/>
+          </div>
+
+          <!-- <div *ngIf="mRandomCourseModule" class="ratio ratio-16x9 w-100 w-sm-75">
+           <div *ngFor="let link of mContext.getYoutubeLinks(mRandomCourseModule.link)">
+                <iframe [src]="mContext.getSafeUrl(mContext.getVideoId(link))" title="Video" allowfullscreen class="rounded-3" style="border: none; aspect-ratio: 16/9;"> </iframe>
             </div>
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section *ngIf="mPartners && mPartners.length>0" class="my-4 py-4">
+    <div class="scroll-wrapper">
+      <div class="scroll-track">
+        <div *ngFor="let mPartner of mPartners" class="card scroll-item shadow-none border-0 p-2 bg-transparent">
+          <img [src]="mPartner.url" class="card-img-top mx-4" alt="Image" style="height:86px; width:86px;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses -->
+  <section id="about" class="my-4">
+    <div class="text-center">
+      <h3 class="fw-bolder">Transformative government platform!</h3>
+      <p class="lead">Interactive content, One platform, Different Categories!</p>
+    </div>
+    <div class="container mt-3">
+      <form>
+        <div *ngIf="mMediaCategories && mMediaCategories.length>0" class="row justify-content-center g-2">
+          <div class="col-12 col-md-4">
+            <select *ngIf="mMediaCategories && mMediaCategories.length>0" class="form-select" (change)="onFilter($event)">
+              <option selected disabled>Select Category</option>
+              <!-- <option value="1">One</option> -->
+              <option *ngFor="let mCourseCategory of mMediaCategories" value="{{mCourseCategory.id}}">{{mCourseCategory.name}}</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-4">
+            <input type="text" class="form-control" placeholder="Search by Keyword" (input)="onSearch($event)">
           </div>
         </div>
-        <ng-template #noItemsTemplate>
-            <p class="p-5 text-center text-muted">No items</p>
-        </ng-template>
+      </form>
+
+      <div class="container mt-4">
+        <div *ngIf="mTopCourseModules && mTopCourseModules.length>0" class="row row-cols-1 row-cols-md-3 g-4">
+          <!-- <div class="col">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video" allowfullscreen class="w-100 rounded-3" style="aspect-ratio: 16/9; border: none;"></iframe>
+          </div>
+          <div class="col">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video" allowfullscreen class="w-100 rounded-3" style="aspect-ratio: 16/9; border: none;"></iframe>
+          </div>
+          <div class="col">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video" allowfullscreen class="w-100 rounded-3" style="aspect-ratio: 16/9; border: none;"></iframe>
+          </div>
+          <div class="col">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video" allowfullscreen class="w-100 rounded-3" style="aspect-ratio: 16/9; border: none;"></iframe>
+          </div>
+          <div class="col">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video" allowfullscreen class="w-100 rounded-3" style="aspect-ratio: 16/9; border: none;"></iframe>
+          </div>
+          <div class="col">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video" allowfullscreen class="w-100 rounded-3" style="aspect-ratio: 16/9; border: none;"></iframe>
+          </div> -->
+          <div *ngFor="let course of mTopCourseModules" class="col">
+            <!-- <div *ngFor="let link of mContext.getYoutubeLinks(course.link)">
+              <iframe [src]="mContext.getSafeUrl(mContext.getVideoId(link))" title="Video" allowfullscreen class="w-100 rounded-3" style="aspect-ratio: 16/9; border: none;"></iframe>
+            </div> -->
+            <div *ngIf="course" class="ratio ratio-16x9 w-100 w-sm-75">
+              <app-video-card [data]="course"/>
+            </div>
+
+          </div>
+
+        </div>
       </div>
 
     </div>
-  </div>
-</section>
+  </section>
+
+</div>

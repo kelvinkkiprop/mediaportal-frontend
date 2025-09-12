@@ -1,0 +1,48 @@
+<app-progress *ngIf="mProgress"/>
+
+<div>
+  <div class="card mb-4 card-danger card-outline h-100">
+    <div class="card-body">
+      <div class="my-3">
+        <div class="text-center pb-3">
+          <span class="user-image rounded-circle fs-2 p-4 bg-light text-success">{{ mInitials }}</span>
+        </div>
+        <h4 class="profile-username text-center m-0">{{ mCurrentUser?.name }}</h4>
+        <p class="text-muted text-center m-0">{{ mCurrentUser?.role?.name }}</p>
+      </div>
+      <ol class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto"><div class="fw-bold">Email:</div></div>
+          <span class="text-muted">{{ mCurrentUser?.email }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto"><div class="fw-bold">Joined:</div></div>
+          <span class="text-muted">{{ mCurrentUser?.created_at | date }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto"><div class="fw-bold">Status:</div></div>
+          <span class="text-muted">{{ mCurrentUser?.status?.name }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto"><div class="fw-bold">Referral Code:</div></div>
+          <span class="text-muted">{{ mCurrentUser?.referral_code }}</span>
+        </li>
+      </ol>
+      <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
+        <div class="mb-3">
+          <div class="form-check d-inline-block">
+            <label for="receive_notifications">Activate notifications</label>
+            <input [(ngModel)]="mCurrentUser.receive_notifications" type="checkbox" formControlName="receive_notifications" class="form-check-input" [ngClass]="{ 'is-invalid': itemForm.get('receive_notifications')?.invalid && (itemForm.get('receive_notifications')?.dirty || itemForm.get('receive_notifications')?.touched) }"/>
+            <div *ngIf="itemForm.get('receive_notifications')?.invalid && (itemForm.get('receive_notifications')?.dirty || itemForm.get('receive_notifications')?.touched)" class="invalid-feedback d-block" role="alert">
+              <div *ngIf="itemForm.get('receive_notifications')?.errors?.['required']">This field is required.</div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-2 text-center">
+          <button [disabled]="itemForm.invalid" type="submit" class="btn btn-success me-2">Save</button>
+          <a routerLink="/profile/edit/{{mCurrentUser.id}}" class="btn btn-danger">Edit</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

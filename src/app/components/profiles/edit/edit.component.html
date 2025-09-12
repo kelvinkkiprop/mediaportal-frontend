@@ -1,0 +1,116 @@
+<app-progress *ngIf="mProgress"/>
+
+<section>
+  <div class="app-content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <h3 class="mb-0">Profile</h3>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" aria-current="page">Profile</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-content">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-12 col-12">
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                Edit Profile
+              </div>
+              <div class="card-tools">
+              </div>
+            </div>
+            <div class="card-body">
+
+              <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
+                <div class="container-fluid py-2">
+                  <fieldset class="border p-4">
+                    <legend class="fs-6 fw-bold">Personalia:</legend>
+                    <div>
+                      <div class="mb-3">
+                        <label for="phone" class="form-label required">Phone:</label>
+                        <input [(ngModel)]="item.phone" type="name" class="form-control" formControlName="phone"
+                        [ngClass]="{ 'is-invalid': itemForm.get('phone')?.invalid && (itemForm.get('phone')?.dirty || itemForm.get('phone')?.touched) }"/>
+                        <div *ngIf="itemForm.get('phone')?.invalid && (itemForm.get('phone')?.dirty || itemForm.get('phone')?.touched)" class="invalid-feedback d-block" role="alert">
+                          <div *ngIf="itemForm.get('phone')?.errors?.['required']">This field is required.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="container-fluid py-2">
+                  <fieldset class="border p-4">
+                    <legend class="fs-6 fw-bold">Location Details:</legend>
+                    <div>
+                      <div class="row mb-3">
+                        <div class="col-md-4">
+                          <div class="mb-3">
+                            <label for="county_id" class="form-label required">County:</label>
+                            <select (change)="onCountyChange($event.target)" [(ngModel)]="item.county_id" class="form-select" aria-label="Default select" formControlName="county_id"
+                              [ngClass]="{ 'is-invalid': itemForm.get('county_id')?.invalid && (itemForm.get('county_id')?.dirty || itemForm.get('county_id')?.touched) }">
+                              <option value="" disabled selected>--- Select county ---</option>
+                              <option *ngFor="let mCounty of mCounties" value="{{mCounty.id}}">{{ mCounty.name }}</option>
+                            </select>
+                            <div *ngIf="itemForm.get('county_id')?.invalid && (itemForm.get('county_id')?.dirty || itemForm.get('county_id')?.touched)" class="invalid-feedback d-block1" role="alert">
+                              <div *ngIf="itemForm.get('county_id')?.errors?.['required']">This field is required.</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="mb-3">
+                            <label for="constituency_id" class="form-label required">Constituency:</label>
+                            <select (change)="onConstituencyChange($event.target)" [(ngModel)]="item.constituency_id" class="form-select" aria-label="Default select" formControlName="constituency_id"
+                              [ngClass]="{ 'is-invalid': itemForm.get('constituency_id')?.invalid && (itemForm.get('constituency_id')?.dirty || itemForm.get('constituency_id')?.touched) }">
+                              <option value="" disabled selected>--- Select constituency ---</option>
+                              <option *ngFor="let mConstituency of mConstituencies" value="{{mConstituency.id}}">{{ mConstituency.name }}</option>
+                            </select>
+                            <div *ngIf="itemForm.get('constituency_id')?.invalid && (itemForm.get('constituency_id')?.dirty || itemForm.get('constituency_id')?.touched)" class="invalid-feedback d-block1" role="alert">
+                              <div *ngIf="itemForm.get('constituency_id')?.errors?.['required']">This field is required.</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="mb-3">
+                            <label for="ward_id" class="form-label required">Ward:</label>
+                            <select [(ngModel)]="item.ward_id" class="form-select" aria-label="Default select" formControlName="ward_id"
+                              [ngClass]="{ 'is-invalid': itemForm.get('ward_id')?.invalid && (itemForm.get('ward_id')?.dirty || itemForm.get('ward_id')?.touched) }">
+                              <option value="" disabled selected>--- Select ward ---</option>
+                              <option *ngFor="let mWard of mWards" value="{{mWard.id}}">{{ mWard.name }}</option>
+                            </select>
+                            <div *ngIf="itemForm.get('ward_id')?.invalid && (itemForm.get('ward_id')?.dirty || itemForm.get('ward_id')?.touched)" class="invalid-feedback d-block1" role="alert">
+                              <div *ngIf="itemForm.get('ward_id')?.errors?.['required']">This field is required.</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="text-end">
+                  <a routerLink="/profile" class="btn btn-danger me-1">Cancel</a>
+                  <button [disabled]="itemForm.invalid" type="submit" class="btn btn-success">Submit</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>

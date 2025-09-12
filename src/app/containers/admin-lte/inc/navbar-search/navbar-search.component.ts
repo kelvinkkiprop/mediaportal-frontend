@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DashboardService } from '../../../../services/dashboard.service';
 
 @Component({
   selector: 'app-navbar-search',
@@ -18,28 +19,28 @@ export class NavbarSearchComponent {
   showSuggestions = false;
 
   constructor(
-    // private suggestionSvc: DashboardService,
+    private mDashboardService: DashboardService,
     private router: Router
   ) {}
 
-  // onSearch(query: string) {
-  //   this.query = query;
-  //   if (query.trim()) {
-  //     this.suggestionSvc.getSuggestions(query).subscribe((results) => {
-  //       this.suggestions = results;
-  //       this.showSuggestions = true; // 👈 show dropdown
-  //     });
-  //   } else {
-  //     this.suggestions = [];
-  //     this.showSuggestions = false;
-  //   }
-  // }
+  onSearch(query: string) {
+    this.query = query;
+    if (query.trim()) {
+      this.mDashboardService.getSuggestions(query).subscribe((results) => {
+        this.suggestions = results;
+        this.showSuggestions = true; // 👈 show dropdown
+      });
+    } else {
+      this.suggestions = [];
+      this.showSuggestions = false;
+    }
+  }
 
-  // onSelect(suggestion: any) {
-  //   this.router.navigate(['/course-modules/show', suggestion.id]);
-  //   this.query = '';
-  //   this.suggestions = [];
-  //   this.showSuggestions = false; // 👈 hide dropdown
-  // }
+  onSelect(suggestion: any) {
+    this.router.navigate(['/media/show', suggestion.id]);
+    this.query = '';
+    this.suggestions = [];
+    this.showSuggestions = false; // 👈 hide dropdown
+  }
 
 }

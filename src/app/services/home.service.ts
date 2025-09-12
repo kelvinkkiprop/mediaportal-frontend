@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 // import
 import { AppContextService } from '../core/app-context.service';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,24 +15,18 @@ export class HomeService {
     private http: HttpClient
   ) { }
 
-  // index
-  index():Observable<any[]>{
+  // Functions
+  allItems():Observable<any[]>{
     const url = `${environment.base_url}/home`;
     return this.http.get<any[]>(url, this.mAppContextService.getHttpOptions());
   }
 
-  stream(id:number){
-    const url =  `${environment.base_url}/stream/${id}/original`;
+  filter(lesson_category_id:any){
+    const url = `${environment.base_url}/home/filter-topics/${lesson_category_id}`;
     return this.http.get<any[]>(url, this.mAppContextService.getHttpOptions());
   }
-
-  streamHls(id:any, file:any){
-    const url =  `${environment.base_url}/media/stream/${id}/${file}`;
-    return this.http.get<any[]>(url, this.mAppContextService.getHttpOptions());
-  }
-
-  getOneItem(id:number){
-    const url =  `${environment.base_url}/home/${id}`;
+  search(term:any){
+    const url = `${environment.base_url}/home/search-topics/${term}`;
     return this.http.get<any[]>(url, this.mAppContextService.getHttpOptions());
   }
 

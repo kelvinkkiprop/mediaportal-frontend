@@ -1,31 +1,34 @@
 import { Routes } from '@angular/router';
 import { AdminLTEComponent } from './containers/admin-lte/admin-lte.component';
+import { AuthUIComponent } from './containers/auth-ui/auth-ui.component';
+import { VerificationGuard } from './guards/verify.guard';
+import { ErrorUIComponent } from './containers/error-ui/error-ui.component';
 
 // export const routes: Routes = [];
 
 
 export const routes: Routes = [
 
-  // // Auth
-  // {
-  //   path: '',
-  //   component: AuthUIComponent,
-  //   data: {
-  //     title: 'Auth',
-  //   },
-  //   children: [
-  //     {
-  //       path: '',
-  //       loadChildren: () =>
-  //         import('./components/home/home.module').then((m) => m.HomeModule)
-  //     },
-  //     {
-  //       path: 'auth',
-  //       loadChildren: () =>
-  //         import('./components/auth/auth.module').then((m) => m.AuthModule)
-  //     },
-  //   ]
-  // },
+  // Auth
+  {
+    path: '',
+    component: AuthUIComponent,
+    data: {
+      title: 'Auth',
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./components/home/home.module').then((m) => m.HomeModule)
+      },
+      {
+        path: 'auth',
+        loadChildren: () =>
+          import('./components/auth/auth.module').then((m) => m.AuthModule)
+      },
+    ]
+  },
 
 
   // AdminLTE
@@ -36,17 +39,12 @@ export const routes: Routes = [
       title: 'Dashboard',
     },
     // canActivate: [VerificationGuard, WithProfileGuard],
-    // canActivateChild: [VerificationGuard, WithProfileGuard],
+    canActivateChild: [VerificationGuard],
     children: [
       {
-        path: '',
+        path: 'dashboard',
         loadChildren: () =>
-          import('./components/home/home.module').then((m) => m.HomeModule)
-      },
-      {
-        path: 'upload',
-        loadChildren: () =>
-          import('./components/upload/upload.module').then((m) => m.UploadModule)
+          import('./components/dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
       {
         path: 'users',
@@ -63,11 +61,21 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./components/mediaTags/media-tag.module').then((m) => m.MediaTagModule)
       },
+      {
+        path: 'media',
+        loadChildren: () =>
+          import('./components/media/media.module').then((m) => m.MediaModule)
+      },
       // {
       //   path: 'payments',
       //   loadChildren: () =>
       //     import('./components/payments/payment.module').then((m) => m.PaymentModule)
       // },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./components/profiles/profile.module').then((m) => m.ProfileModule)
+      },
       {
         path: 'about',
         loadChildren: () =>
@@ -82,22 +90,22 @@ export const routes: Routes = [
   },
 
 
-//   // Error
-//   {
-//     path: '',
-//     component: ErrorUIComponent,
-//     data: {
-//       title: 'Error',
-//     },
-//     children: [
-//       {
-//         path: 'error',
-//         loadChildren: () =>
-//           import('./components/errors/error.module').then((m) => m.ErrorModule)
-//       },
-//     ]
-//   },
-//   { path: '**', redirectTo: "/error/404" },
+  // Error
+  {
+    path: '',
+    component: ErrorUIComponent,
+    data: {
+      title: 'Error',
+    },
+    children: [
+      {
+        path: 'error',
+        loadChildren: () =>
+          import('./components/errors/error.module').then((m) => m.ErrorModule)
+      },
+    ]
+  },
+  { path: '**', redirectTo: "/error/404" },
 
 
 ];

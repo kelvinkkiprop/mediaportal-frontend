@@ -52,11 +52,6 @@ export class UserService {
     return this.http.get<User[]>(url, this.mAppContextService.getHttpOptions());
   }
 
-  updateAccountStatus(item: User): Observable<User>{
-    const url =  `${environment.base_url}/update-account-status/${item.id}`;
-    return this.http.post<User>(url, item, this.mAppContextService.getHttpOptions());
-  }
-
   searchItems(item: User): Observable<User>{
     const url =  `${environment.base_url}/search-users`;
     return this.http.post<User>(url, item, this.mAppContextService.getHttpOptions());

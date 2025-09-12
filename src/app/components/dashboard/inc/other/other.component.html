@@ -1,0 +1,75 @@
+<app-progress *ngIf="mProgress"/>
+
+<section>
+  <div class="app-content-header">
+    <div class="container-fluid">
+      <!-- <div class="row">
+        <div class="col-sm-6">
+          <h3 class="mb-0">Dashboard</h3>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+          </ol>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="app-content">
+    <div class="container-fluid">
+
+      <div class="row mb-3">
+        <div *ngIf="mFeaturedMedia && mFeaturedMedia.length>0; else noItemsTemplate" class="col-md-12">
+          <div class="mb-2 h6"><span class="fw-bold">Featured</span><a routerLink="/media" class="ms-2 text-muted text-decoration-none">VIEW ALL</a></div>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+            <div *ngFor="let item of mFeaturedMedia" class="col">
+              <a routerLink="/media/show/{{ item.id }}" class="text-decoration-none text-reset">
+                <app-media-card [data]="item"/>
+              </a>
+            </div>
+          </div>
+        </div>
+        <ng-template #noItemsTemplate>
+            <p class="p-5 text-center text-muted">No items</p>
+        </ng-template>
+      </div>
+      <hr>
+
+      <div class="row mb-3">
+        <div *ngIf="mRecommendedMedia && mRecommendedMedia.length>0; else noItemsTemplate" class="col-md-12">
+          <div class="mb-2 h6"><span class="fw-bold">Recommended</span><a routerLink="/media" class="ms-2 text-muted text-decoration-none">VIEW ALL</a></div>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+            <div *ngFor="let item of mRecommendedMedia" class="col">
+              <a routerLink="/media/{{ item.id }}/show" class="row text-decoration-none text-reset me-1">
+                <app-media-card [data]="item"/>
+              </a>
+            </div>
+          </div>
+        </div>
+        <ng-template #noItemsTemplate>
+            <p class="p-5 text-center text-muted">No items</p>
+        </ng-template>
+      </div>
+      <hr>
+
+      <div class="row mb-3">
+        <div *ngIf="mLatestMedia && mLatestMedia.length>0; else noItemsTemplate" class="col-md-12">
+          <div class="mb-2 h6"><span class="fw-bold">Latest</span><a routerLink="/media" class="ms-2 text-muted text-decoration-none">VIEW ALL</a></div>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+            <div *ngFor="let item of mLatestMedia" class="col">
+              <a routerLink="/media/{{ item.id }}/show" class="row text-decoration-none text-reset me-1">
+                <app-media-card [data]="item"/>
+              </a>
+            </div>
+          </div>
+        </div>
+        <ng-template #noItemsTemplate>
+            <p class="p-5 text-center text-muted">No items</p>
+        </ng-template>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -9,6 +9,7 @@ import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { HlsPlayerComponent } from './hls-player/hls-player.component';
 import { VideoCardComponent } from './video-card/video-card.component';
 import { ProgressComponent } from './progress/progress.component';
+import { MediaCardComponent } from './media-card/media-card.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +18,14 @@ import { ProgressComponent } from './progress/progress.component';
     // CommonModule,
     ProgressComponent,
     HlsPlayerComponent,
-    VideoCardComponent
+    VideoCardComponent,
+    MediaCardComponent
   ],
   exports: [
     ProgressComponent,
     HlsPlayerComponent,
-    VideoCardComponent
+    VideoCardComponent,
+    MediaCardComponent
   ],
 })
 export class SharedModule {}

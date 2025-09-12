@@ -1,0 +1,54 @@
+<app-progress *ngIf="mProgress"/>
+
+<section>
+  <div class="app-content-header">
+    <div class="container-fluid">
+      <!-- <div class="row">
+        <div class="col-sm-6">
+          <h3 class="mb-0">Media</h3>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" aria-current="page">Media</li>
+            <li class="breadcrumb-item active" aria-current="page">Show</li>
+          </ol>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="app-content">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-12 col-12">
+
+          <div class="card1">
+            <!-- <div class="card-header">
+              <div class="card-title">
+                Show Media
+              </div>
+              <div class="card-tools">
+              </div>
+            </div> -->
+            <div class="card-body p-0 m-0">
+
+              <div class="row">
+                <div class="col-md-8">
+                  <!-- <app-video-card *ngIf="item" [data]="item"/> -->
+                  <app-hls-player *ngIf="item" [data]="item"/>
+                </div>
+                <div class="col-md-4">
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

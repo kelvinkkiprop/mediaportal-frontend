@@ -1,29 +1,30 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 // import
 import { RouterModule } from '@angular/router';
-import { IndexComponent } from './index/index.component';
-import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { VideoCardComponent } from '../shared/video-card/video-card.component';
-import { ShowComponent } from './show/show.component';
+import { HomeRoutingModule } from './home-routing.module';
+import { IndexComponent } from './index/index.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 
 
 
 @NgModule({
   declarations: [
-    // add
     IndexComponent,
-    ShowComponent,
-    // LearnerComponent,
+    PrivacyPolicyComponent,
+    TermsOfServiceComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
 
+    // Add
+    SharedModule,
+
     // import
     HomeRoutingModule,
-    SharedModule,
   ]
 })
 export class HomeModule { }

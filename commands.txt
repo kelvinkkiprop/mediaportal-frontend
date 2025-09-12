@@ -39,8 +39,8 @@ ng generate component components/auth/profile
 ng generate component components/dashboard/index
 ng generate module components/dashboard/dashboard
 ng generate module components/dashboard/dashboardRouting
-ng generate component components/dashboard/inc/learner
 ng generate component components/dashboard/inc/admin
+ng generate component components/dashboard/inc/other
 
 ng generate component components/users/index
 ng generate component components/users/create
@@ -77,6 +77,13 @@ ng generate component components/mediaTags/show
 ng generate module components/mediaTags/mediaTag
 ng generate module components/mediaTags/mediaTagRouting
 
+ng generate component components/media/index
+ng generate component components/media/create
+ng generate component components/media/edit
+ng generate component components/media/show
+ng generate module components/media/media
+ng generate module components/media/mediaRouting
+
 ng generate component components/payment-methods/index
 ng generate component components/payment-methods/create
 ng generate component components/payment-methods/edit
@@ -102,6 +109,7 @@ ng generate module components/about/aboutRouting
 ng generate component components/shared/progress
 ng generate component components/shared/videoCard
 ng generate component components/shared/hlsPlayer
+ng generate component components/shared/mediaCard
 
 ng generate module components/shared/shared
 
@@ -130,11 +138,11 @@ ng generate interceptor interceptors/RoleChange
 ng generate service services/auth
 ng generate service services/user
 ng generate service services/home
-ng generate service services/upload
 ng generate service services/profile
 ng generate service services/dashboard
 ng generate service services/theme
 ng generate service services/course
+ng generate service services/media
 ng generate service services/media-category
 ng generate service services/media-tag
 ng generate service services/interest
@@ -146,6 +154,7 @@ ng generate service services/payment
 ng generate interface interfaces/user
 ng generate interface interfaces/role
 ng generate interface interfaces/course
+ng generate interface interfaces/media
 ng generate interface interfaces/media-category
 ng generate interface interfaces/media-tag
 ng generate interface interfaces/profile

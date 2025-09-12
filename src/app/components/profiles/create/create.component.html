@@ -1,0 +1,45 @@
+<app-progress *ngIf="mProgress"/>
+
+<div>
+  <div class="card mb-4 h-100">
+    <div class="card-header">
+      <div class="card-title">Update Password</div>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
+        <fieldset class="border p-4">
+          <div>
+            <div class="mb-3">
+              <label for="current_password" class="form-label required">Current Password:</label>
+              <input type="password" class="form-control" formControlName="current_password"
+              [ngClass]="{ 'is-invalid': itemForm.get('current_password')?.invalid && (itemForm.get('current_password')?.dirty || itemForm.get('current_password')?.touched) }"/>
+              <div *ngIf="itemForm.get('current_password')?.invalid && (itemForm.get('current_password')?.dirty || itemForm.get('current_password')?.touched)" class="invalid-feedback d-block" role="alert">
+                <div *ngIf="itemForm.get('current_password')?.errors?.['required']">This field is required.</div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label required">Password:</label>
+              <input type="password" class="form-control" formControlName="password"
+              [ngClass]="{ 'is-invalid': itemForm.get('password')?.invalid && (itemForm.get('password')?.dirty || itemForm.get('password')?.touched) }"/>
+              <div *ngIf="itemForm.get('password')?.invalid && (itemForm.get('password')?.dirty || itemForm.get('password')?.touched)" class="invalid-feedback d-block" role="alert">
+                <div *ngIf="itemForm.get('password')?.errors?.['required']">This field is required.</div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password_confirmation" class="form-label required">Confirm Password:</label>
+              <input type="password" class="form-control" formControlName="password_confirmation"
+              [ngClass]="{ 'is-invalid': itemForm.get('password_confirmation')?.invalid && (itemForm.get('password_confirmation')?.dirty || itemForm.get('password_confirmation')?.touched) }"/>
+              <div *ngIf="itemForm.get('password_confirmation')?.invalid && (itemForm.get('password_confirmation')?.dirty || itemForm.get('password_confirmation')?.touched)" class="invalid-feedback d-block" role="alert">
+                <div *ngIf="itemForm.get('password_confirmation')?.errors?.['required']">This field is required.</div>
+                <div *ngIf="itemForm.get('password_confirmation')?.errors?.['passwordsDoNotMatch']">Passwords do not match.</div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div class="mt-2 text-end">
+          <button [disabled]="itemForm.invalid" type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

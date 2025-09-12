@@ -1,5 +1,4 @@
-
-<!-- <app-progress *ngIf="mProgress"/> -->
+<app-progress *ngIf="mProgress"/>
 
 <!--===================================Wrapper===================================-->
 <div class="app-wrapper">
@@ -14,22 +13,21 @@
             <i class="bi bi-list"></i>
           </button>
         </li>
-        <li class="nav-item d-none d-md-block">
+        <!-- <li class="nav-item d-none d-md-block">
           <a routerLink="/" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-md-block">
           <a routerLink="/dashboard" class="nav-link">Dashboard</a>
-        </li>
+        </li> -->
       </ul>
+      <app-navbar-search/>
+
       <ul class="navbar-nav ms-auto">
         <!-- <li class="nav-item">
           <a class="nav-link" aria-label="Toggle search" role="button">
             <i class="bi bi-search"></i>
           </a>
         </li> -->
-        <li class="nav-item">
-          <app-navbar-search/>
-        </li>
         <li class="nav-item dropdown">
           <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static">
             <span class="theme-icon-active">
@@ -59,41 +57,39 @@
           </ul>
         </li>
         <li class="nav-item dropdown user-menu">
-          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-            <!-- <span class="user-image rounded-circle shadow bg-light1 p-2 fw-bold">{{ this.mAppContextService.getInitials(mCurrentUser.name) }}</span>
-            <span class="d-none d-md-inline">{{ mCurrentUser.name }}</span> -->
+          <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
+            <span class="user-image d-inline-flex justify-content-center align-items-center rounded-circle shadow bg-light1 fw-bold" style="width: 40px; height: 40px; font-size: 1rem;">
+              {{ this.mAppContextService.getInitials(mCurrentUser.name) }}
+            </span>
+            <span class="d-none d-md-inline ms-2">{{ mCurrentUser.name }}</span>
           </a>
-          <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-            <li class="user-header text-bg-success">
-              <!-- <span class="rounded-circle shadow bg-light p-2 fw-bold text-success">{{ this.mAppContextService.getInitials(mCurrentUser.name) }}</span> -->
-              <!-- <p>
-                {{ mCurrentUser.name }} - {{ mCurrentUser.role?.name }}
-                <small>Joined {{ mCurrentUser.created_at | date }}</small>
-              </p> -->
-            </li>
-            <li class="user-body">
-              <div class="row">
-                <div class="col-4 text-center">
-                  <a routerLink="/dashboard">Dashboard</a>
-                </div>
-                <div class="col-4 text-center">
-                  <a routerLink="/courses">Course</a>
-                </div>
-                <div class="col-4 text-center">
-                  <a routerLink="/course-modules">Modules</a>
+          <ul class="dropdown-menu dropdown-menu-end p-0 shadow rounded-3">
+            <li class="p-3 border-bottom">
+              <div class="d-flex align-items-center">
+                <span class="user-image rounded-circle bg-success text-white fw-bold d-inline-flex justify-content-center align-items-center me-3" style="width: 40px; height: 40px; font-size: 1rem;">
+                  {{ this.mAppContextService.getInitials(mCurrentUser.name) }}
+                </span>
+                <div>
+                  <p class="mb-0 fw-semibold">{{ mCurrentUser.name }}</p>
+                  <!-- <small class="text-muted">{{ mCurrentUser.username }}</small> -->
+                  <small class="text-muted">{{ mCurrentUser.role?.name }}</small>
                 </div>
               </div>
             </li>
-            <li class="user-footer">
-              <a routerLink="/profile" class="btn btn-default btn-flat">Profile</a>
-              <!-- <a class="btn btn-default btn-flat float-end" (click)="onLogout()">Sign out</a> -->
-            </li>
+            <li><a class="dropdown-item" routerLink="/"><i class="bi bi-house-door me-2"></i> Home</a></li>
+            <li><a class="dropdown-item" routerLink="/my-media"><i class="bi bi-collection-play-fill me-2"></i> My Media</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" routerLink="/profile"><i class="bi bi-person me-2"></i> Profile</a></li>
+            <li><button class="dropdown-item" (click)="onLogout()"><i class="bi bi-box-arrow-right me-2"></i> Sign out</button></li>
           </ul>
         </li>
+
+
       </ul>
     </div>
   </nav>
   <!--===================================./Header===================================-->
+
 
   <!--===================================Sidebar===================================-->
   <aside class="app-sidebar bg-body-secondary1 shadow" data-bs-theme="light">
@@ -112,9 +108,11 @@
             aria-label="Main navigation"
             id="navigation">
           <li class="nav-item">
-            <a routerLink="/" routerLinkActive="active" class="nav-link">
-              <i class="nav-icon bi bi-house-door-fill"></i>
-              <p>Home</p>
+            <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+              <i class="nav-icon bi bi-speedometer"></i>
+              <p>Dashboard</p>
+              <!-- <i class="nav-icon bi bi-house-door-fill"></i>
+              <p>Home</p> -->
             </a>
           </li>
           <!-- <li class="nav-item">
@@ -149,7 +147,7 @@
           </li>
           <hr>
           <li class="nav-item">
-            <a routerLink="/upload" routerLinkActive="active" class="nav-link">
+            <a routerLink="/media/create" routerLinkActive="active" class="nav-link">
               <i class="nav-icon bi bi-camera-video-fill"></i>
               <p>Upload</p>
             </a>

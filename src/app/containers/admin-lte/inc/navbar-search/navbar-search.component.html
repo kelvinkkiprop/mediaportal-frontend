@@ -1,9 +1,22 @@
 <!-- navbar-search.component.html -->
 <!-- <div class="dropdown nav-link1 me-2" [class.show]="suggestions.length > 0">
-  <input type="text" [(ngModel)]="query" (input)="onSearch(query)" placeholder="Search..." class="form-control form-control-sm."/>
+  <input type="text" [(ngModel)]="query" (input)="onSearch(query)" placeholder="Search..." class="form-control form-control-sm"/>
   <ul class="dropdown-menu show w-1001" *ngIf="suggestions.length > 0">
     <li *ngFor="let suggestion of suggestions">
-      <button type="button" class="dropdown-item" (click)="onSelect(suggestion)">{{ suggestion.name }}</button>
+      <button type="button" class="dropdown-item" (click)="onSelect(suggestion)">{{ suggestion.title }}</button>
     </li>
   </ul>
 </div> -->
+
+
+<div class="form-inline ml-3 w-10" [class.show]="suggestions.length > 0">
+  <div class="input-group input-group-sm">
+    <input  [(ngModel)]="query" (input)="onSearch(query)"class="form-control form-control-navbar" type="text" placeholder="Search..." aria-label="Search">
+    <ul class="dropdown-menu show w-1001" *ngIf="suggestions.length > 0">
+      <li *ngFor="let suggestion of suggestions">
+        <button type="button" class="dropdown-item" (click)="onSelect(suggestion)">{{ suggestion.title }}</button>
+      </li>
+    </ul>
+  </div>
+</div>
+

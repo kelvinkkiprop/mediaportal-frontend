@@ -1,21 +1,20 @@
 // layout.component.ts
-import { Component, inject, OnInit, EventEmitter, Output, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { SidebarService } from '../../core/sidebar.service';
-// import { AuthService } from '../../services/auth.service';
-// import { ToastrService } from 'ngx-toastr';
 import { AppInfoService } from '../../core/app-info.service';
-// import { SharedModule } from '../../components/shared/shared.module';
-import { ThemeService } from '../../core/theme.service';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { NavbarSearchComponent } from './inc/navbar-search/navbar-search.component';
+import { ToastrService } from 'ngx-toastr';
+import { SharedModule } from '../../components/shared/shared.module';
 import { AppContextService } from '../../core/app-context.service';
+import { ThemeService } from '../../core/theme.service';
+import { AuthService } from '../../services/auth.service';
+import { NavbarSearchComponent } from './inc/navbar-search/navbar-search.component';
 
 @Component({
   selector: 'app-admin-lte',
-  imports: [CommonModule, RouterModule, RouterOutlet, FormsModule, NavbarSearchComponent],
+  imports: [CommonModule, RouterModule, RouterOutlet, FormsModule, NavbarSearchComponent, SharedModule],
   templateUrl: './admin-lte.component.html',
   styleUrl: './admin-lte.component.scss'
 })
@@ -29,8 +28,8 @@ export class AdminLTEComponent implements OnInit {
   mCurrentUser:any
 
   constructor(
-    // private mAuthService: AuthService,
-    // private mToastrService: ToastrService,
+    private mAuthService: AuthService,
+    private mToastrService: ToastrService,
     private router: Router,
     public mAppInfo: AppInfoService,
     public mAppContextService: AppContextService,
@@ -44,7 +43,7 @@ export class AdminLTEComponent implements OnInit {
       this.sidebarService.expand();
     }
     // set
-    // this.mCurrentUser = this.mAuthService.currentUser;
+    this.mCurrentUser = this.mAuthService.currentUser;
   }
 
   ngAfterViewInit(): void {
@@ -98,26 +97,26 @@ export class AdminLTEComponent implements OnInit {
     }
   }
 
-  // // onLogout
-  // onLogout(){
-  //   this.mProgress = true
-  //   this.mAuthService.logout().subscribe({
-  //     next: (response) => {
-  //       if(response.status =='success'){
-  //         this.mToastrService.success(response.message);
-  //         this.router.navigateByUrl('/auth/login');
-  //         this.mProgress = false;
-  //       }else{
-  //         this.mToastrService.error(response.message);
-  //         this.mProgress = false;
-  //       }
-  //     },
-  //     error: (error ) => {
-  //       this.mToastrService.error(error.error.message);
-  //       this.mProgress = false
-  //     }
-  //   });
-  // }
+  // onLogout
+  onLogout(){
+    this.mProgress = true
+    this.mAuthService.logout().subscribe({
+      next: (response) => {
+        if(response.status =='success'){
+          this.mToastrService.success(response.message);
+          this.router.navigateByUrl('/auth/login');
+          this.mProgress = false;
+        }else{
+          this.mToastrService.error(response.message);
+          this.mProgress = false;
+        }
+      },
+      error: (error ) => {
+        this.mToastrService.error(error.error.message);
+        this.mProgress = false
+      }
+    });
+  }
 
 
   onSearch(q: string) {

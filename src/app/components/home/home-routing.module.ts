@@ -1,29 +1,38 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 // import
 import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
-import { ShowComponent } from './show/show.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 
 // Routes
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'index',
+    // redirectTo: '',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   },
   {
-    path: 'index',
+    path: '',
     component: IndexComponent,
     data: {
-      title: 'Index'
+      title: 'index'
     }
   },
   {
-    path: 'show/:id',
-    component: ShowComponent,
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent,
     data: {
-      title: 'Show'
+      title: 'privacy-policy'
+    }
+  },
+  {
+    path: 'terms-of-service',
+    component: TermsOfServiceComponent,
+    data: {
+      title: 'terms-of-service'
     }
   },
 ];
@@ -39,4 +48,5 @@ const routes: Routes = [
   // Add
   exports: [RouterModule]
 })
+
 export class HomeRoutingModule { }

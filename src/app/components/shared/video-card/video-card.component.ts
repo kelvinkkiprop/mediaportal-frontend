@@ -1,11 +1,10 @@
-import { Component, Input, OnChanges, SimpleChanges, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { HomeService } from '../../../services/home.service';;
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgCoreModule } from '@videogular/ngx-videogular/core';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import Hls from 'hls.js';
+import { DashboardService } from '../../../services/dashboard.service';
 
 @Component({
   selector: 'app-video-card',
@@ -32,7 +31,7 @@ export class VideoCardComponent implements OnChanges, AfterViewInit {
   item:any
 
   constructor(
-    public mHomeService: HomeService,
+    public mHomeService: DashboardService,
     // private sanitizer: DomSanitizer
   ) {}
 

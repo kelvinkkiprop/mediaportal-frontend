@@ -1,0 +1,29 @@
+export interface Media {
+  id?: any,
+  title?: any,
+  description?: any,
+  src_path?: any,
+  hls_master?: any,
+  thumbnail_path?: any,
+
+  file_size?: any,
+  mime_type?: any,
+
+  user_id?: any,
+  media_status_id?: any,
+  status_id?: any,
+  views?: any,
+
+  type_id?: any,
+  category_id?: any,
+  allow_comments?: any,
+  allow_download?: any,
+
+  created_by?: any,
+  updated_by?: any,
+  approved_by?: any,
+  approved_on?: any,
+
+  created_at?: any,
+  updated_at?: any,
+}
