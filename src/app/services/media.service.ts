@@ -64,6 +64,10 @@ export class MediaService {
     return this.http.get<Media[]>(url, this.mAppContextService.getHttpOptions());
   }
 
+  reactItem(item: any): Observable<Media>{
+    const url =  `${environment.base_url}/media/${item.id}/react`;
+    return this.http.post<Media>(url, item, this.mAppContextService.getHttpOptions());
+  }
 
   upload(item: any): Observable<any>{
     const url =  `${environment.base_url}/upload`;
