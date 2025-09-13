@@ -59,6 +59,11 @@ export class MediaService {
 
 
 
+  myMedia(id:number){
+    const url =  `${environment.base_url}/my-media/${id}`;
+    return this.http.get<Media[]>(url, this.mAppContextService.getHttpOptions());
+  }
+
 
   upload(item: any): Observable<any>{
     const url =  `${environment.base_url}/upload`;

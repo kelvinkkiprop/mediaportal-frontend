@@ -42,7 +42,7 @@ export class EditComponent {
   // index
   index(id:any){
     this.mProgress = true
-    this.mMediaService.getOneItem(id).subscribe({
+    this.mMediaService.myMedia(id).subscribe({
       next: (response) => {
         if(response){
           this.myMedia = (response as any).data.my_media
