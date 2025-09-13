@@ -36,12 +36,29 @@ const routes: Routes = [
     }
   },
   {
-    path: 'show/:id',
+    path: ':id/show',
     component: ShowComponent,
     data: {
       title: 'Show'
     }
   },
+
+  // Other
+  {
+    path: 'about',
+    component: IndexComponent,
+    data: {
+      title: 'Index'
+    }
+  },
+  {
+    path: 'my-playlist',
+    component: IndexComponent,
+    data: {
+      title: 'Index'
+    }
+  },
+
 ];
 
 
