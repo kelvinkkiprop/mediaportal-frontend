@@ -20,7 +20,7 @@ export class ShowComponent {
   item:any = {}
 
   mCurrentUrl:any = ''
-  mShowOptions = false
+  mItem:any = ''
 
   constructor(
     private route: ActivatedRoute,
@@ -49,6 +49,7 @@ export class ShowComponent {
         if(response){
           this.item = response as any
           // console.log(this.item)
+          this.mItem = this.item
           this.mProgress = false
         }
       },
@@ -69,19 +70,21 @@ export class ShowComponent {
       id: formValues.id,
       type_id: type_id,
     }
-    this.mProgress = true
+    // this.mProgress = true
     this.mMediaService.reactItem(item).subscribe({
       next: (response) => {
         if(response){
           if((response as any).status === 'success'){
-            // call
-            this.index(this.id)
-            if(type_id==1){
-              this.mToastrService.success((response as any).message);
-            }else{
-              this.mToastrService.error((response as any).message);
-            }
-            this.mProgress = false;
+            // // call
+            // this.index(this.id)
+            // if(type_id==1){
+            //   this.mToastrService.success((response as any).message);
+            // }else{
+            //   this.mToastrService.error((response as any).message);
+            // }
+
+            // console.log(response)
+            this.mItem = (response as any).data
           }
           this.mProgress = false
         }
@@ -94,11 +97,6 @@ export class ShowComponent {
         this.mProgress = false
       }
     })
-  }
-
-  // toggleShare
-  toggleShare() {
-    this.mShowOptions = !this.mShowOptions;
   }
 
   // copyUrl

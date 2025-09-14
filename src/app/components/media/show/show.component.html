@@ -50,20 +50,19 @@
                         <div class="col-6">
                           <div class="d-flex justify-content-end">
                               <span (click)="toggleReact(item, 1)" >
-                                <span [ngClass]="{ 'text-success': item.is_liked }">
+                                <span [ngClass]="{ 'text-success': mItem.is_liked }">
                                   <i class="bi me-2"
-                                    [ngClass]="item.is_liked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'">
-                                  </i>{{ item.likes_count }}
+                                    [ngClass]="mItem.is_liked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'">
+                                  </i>{{ mItem.likes_count }}
                                 </span>
                               </span>
                               <span (click)="toggleReact(item, 2)" class="mx-4">
-                                <span [ngClass]="{ 'text-danger': item.is_disliked }">
+                                <span [ngClass]="{ 'text-danger': mItem.is_disliked }">
                                   <i class="bi me-2"
-                                    [ngClass]="item.is_disliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'">
-                                  </i>{{ item.dislikes_count }}
+                                    [ngClass]="mItem.is_disliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'">
+                                  </i>{{ mItem.dislikes_count }}
                                 </span>
                               </span>
-                              <!-- <span (click)="toggleShare()"> -->
                               <span data-bs-toggle="modal" data-bs-target="#modal">
                                 <i class="bi bi-share-fill me-2"></i><span>SHARE</span>
                               </span>
