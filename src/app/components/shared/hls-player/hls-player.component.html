@@ -1,6 +1,7 @@
 <div class="video-wrapper">
   <video #media id="singleVideo" preload="auto" crossorigin controls class="w-100 rounded-3" style="aspect-ratio: 16/9; border: none;"></video>
-  <div class="my-1">
+
+  <div class="text-end my-2">
     <label for="quality">Quality:</label>
     <select id="quality" (change)="setQuality($event)">
       <option [value]="-1">Auto</option>
