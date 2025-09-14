@@ -76,6 +76,7 @@ ng generate component components/media/edit
 ng generate component components/media/show
 ng generate component components/media/inc/read
 ng generate component components/media/inc/liked
+ng generate component components/media/inc/history
 ng generate module components/media/media
 ng generate module components/media/mediaRouting
 

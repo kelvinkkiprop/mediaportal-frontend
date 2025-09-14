@@ -39,7 +39,7 @@ export const routes: Routes = [
       title: 'Dashboard',
     },
     // canActivate: [VerificationGuard, WithProfileGuard],
-    canActivateChild: [VerificationGuard],
+    // canActivateChild: [VerificationGuard],
     children: [
       {
         path: 'dashboard',
