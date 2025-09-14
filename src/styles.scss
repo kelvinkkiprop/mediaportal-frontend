@@ -78,7 +78,10 @@ $danger: #dc3545;
     border-bottom: 2px solid $danger !important;
   }
 }
-
+.form-check-input:checked {
+  background-color: $success !important;
+  border-color: $success !important;
+}
 /*--===================================./Common===================================--*/
 
 /*--===================================Theme===================================--*/
