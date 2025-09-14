@@ -18,11 +18,11 @@ export class CreateComponent {
 
 
   // variables
-  selectedFile: any | null = null;
-  // title:any = '';
-  // description = '';
-  progress = 0;
-  isDragging = false;
+  selectedFile: any | null = null
+  // title:any = ''
+  // description = ''
+  progress = 0
+  isDragging = false
 
   // variables
   itemForm: any

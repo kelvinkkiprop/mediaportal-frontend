@@ -58,7 +58,6 @@ export class MediaService {
 
 
 
-
   myMedia(id:number){
     const url =  `${environment.base_url}/my-media/${id}`;
     return this.http.get<Media[]>(url, this.mAppContextService.getHttpOptions());
@@ -68,6 +67,13 @@ export class MediaService {
     const url =  `${environment.base_url}/media/${item.id}/react`;
     return this.http.post<Media>(url, item, this.mAppContextService.getHttpOptions());
   }
+
+  commentItem(item: any): Observable<Media>{
+    const url =  `${environment.base_url}/media/${item.id}/comment`;
+    return this.http.post<Media>(url, item, this.mAppContextService.getHttpOptions());
+  }
+
+
 
   upload(item: any): Observable<any>{
     const url =  `${environment.base_url}/upload`;

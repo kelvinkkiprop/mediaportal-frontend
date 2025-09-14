@@ -122,6 +122,42 @@
                         <p [innerHTML]="item.description" class="justify-text" style="word-break: break-word; white-space: normal;"></p>
                       </div>
                     </div>
+                    <hr>
+                    <div class="col-md-12">
+                      <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
+                        <div class="row g-2 align-items-start">
+                          <label for="text" class="form-label required1">{{ mItem.total_comments }}</label>
+                          <div class="col-auto">
+                            <div class="rounded-circle bg-danger text-white d-flex justify-content-center align-items-center fw-bold" style="width:40px; height:40px;">
+                              {{ mContext.getInitials(item.user?.name) }}
+                            </div>
+                          </div>
+                          <div class="col">
+                            <input formControlName="text" class="form-control" [ngClass]="{'is-invalid': itemForm.get('text')?.invalid && (itemForm.get('text')?.dirty || itemForm.get('text')?.touched) }"/>
+                            <div *ngIf="itemForm.get('text')?.invalid && (itemForm.get('text')?.dirty || itemForm.get('text')?.touched)" class="invalid-feedback d-block" role="alert">
+                              <div *ngIf="itemForm.get('text')?.errors?.['required']">This field is required.</div>
+                            </div>
+                            <div class="text-end my-2">
+                              <button [disabled]=" itemForm.invalid" type="submit" class="btn btn-success btn-sm">Submit</button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-md-12">
+                      <div *ngIf="mComments && mComments.length>0">
+                        <div *ngFor="let mComment of mComments; index as i" class="d-flex align-items-center mb-3">
+                          <div class="rounded-circle bg-secondary text-muted d-flex justify-content-center align-items-center fw-bold1" style="width:32px; height:32px;">
+                            {{ mContext.getInitials(mComment.user?.name) }}
+                          </div>
+                          <div class="ms-2">
+                            <h6 class="fw-semibold1 mb-0">{{ mComment.user?.name }} <span class="text-xs text-muted">{{ mComment.readable_date}}</span></h6>
+                            <div class="mt-0 text-muted justify-text">{{ mComment.text}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>

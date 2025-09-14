@@ -36,7 +36,24 @@ $danger: #dc3545;
 }
 .required:after {
   content:" *";
-    color: $danger;
+  color: $danger;
+}
+
+.bg-gradient {
+  // background: linear-gradient($danger, $success) !important;
+  // background: linear-gradient(to left, var(--bs-danger), var(--bs-success)) !important;
+  background: linear-gradient(to left, $danger, $success) !important;
+
+}
+.text-gradient {
+  background: linear-gradient(to right, $danger, $success);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+.btn-gradient {
+  background: linear-gradient(to right, $success, $danger);
+  color: #fff !important;
+  border: none !important;
 }
 /*--===================================./Common===================================--*/
 
@@ -116,166 +133,31 @@ $danger: #dc3545;
 
 
 /*--===================================AdminLTE===================================--*/
-// #adminLTE{
-//   //mainheader
-//   .main-header{
-//     background: $green;
-//     border-top: 2px solid $red;
-//       a{
-//           color: $white;
-//       }
-//       .dropdown-menu{
-//         a{
-//           color: $black;
-//         }
-//         a:hover{
-//           background-color: $white;
-//           font-weight: bold;
-//           border-bottom: 2px solid $black;
-//         }
-//       }
-//     }
+#adminLTE{
+  //mainheader
+  .app-header{
+    .dropdown-item.active,
+    .dropdown-item:active {
+      // color: $white;
+      // text-decoration: none;
+      background-color: $success;
+    }
+  }
+  .app-sidebar{
 
-//     //sidebar
-//     .sidebar-dark-success {
-//       background-color: $black !important;
-//       .bg-opaque{
-//         background-color: $opaque;
-//       }
-//     }
-//     .sidebar-dark-success .nav-sidebar > .nav-item > .nav-link.active,
-//     .sidebar-light-success .nav-sidebar > .nav-item > .nav-link.active {
-//       background-color: $green !important;
-//       color: $white !important;
-//       border-left: $red 5px solid !important;
-//     }
-//     .sidebar-dark-success .nav-sidebar > .nav-item > .nav-link:hover,
-//     .sidebar-light-success .nav-sidebar > .nav-item > .nav-link:hover,
-//     .sidebar-light-success .nav-sidebar > .nav-item > .nav-link:visited {
-//         border-bottom: 2px solid $white;
-//         background-color: $black !important;
-//     }
-//     // .nav-item::before{
-//     //   background: #ffffff;
-//     //   bottom: auto;
-//     //   content: "";
-//     //   height: 8px;
-//     //   left: 23px;
-//     //   margin-top: 15px;
-//     //   position: absolute;
-//     //   right: auto;
-//     //   width: 8px;
-//     //   z-index: 1;
-//     //   border-radius: 50%;
-//     // }
-//     // .nav-item::after {
-//     //   border-left: 1px solid #ffffff;
-//     //   bottom: 0;
-//     //   content: "";
-//     //   left: 27px;
-//     //   position: absolute;
-//     //   top: 0;
-//     // }
-//     .has-treeview{
-//     .nav-treeview>li>a,.far{
-//         padding-top: 0;
-//         padding-bottom: 0;
-//         // font-size: 14px;
-//         }
-//         .nav-treeview > .nav-item > .nav-link.active,
-//         .nav-treeview > .nav-item > .nav-link.active:focus,
-//         .nav-treeview > .nav-item > .nav-link.active:hover {
-//           background-color: $green !important;
-//           color: $white !important;
-//           font-weight: bold;
-//         }
-//       }
-//       .nav-treeview > .nav-item > .nav-link,
-//       .nav-treeview > .nav-item > .nav-link,
-//       .nav-treeview > .nav-item > .nav-link {
-//           font-size: 14px;
-//           padding-bottom: 0px !important;
-//         //  padding-top: 0px !important;
-//       }
-//       .nav-sidebar > .nav-item > .nav-link.active, .sidebar-light-success .nav-sidebar > .nav-item > .nav-link.active {
-//         background-color: $green;
-//         color: $white;
-//         font-weight: bold;
-//       }
-//       .nav-sidebar > .nav-item > .nav-link:hover, .sidebar-light-success .nav-sidebar > .nav-item > .nav-link:hover {
-//           border-left: $white 5px solid !important;
-//       }
-//     //content-wrapper
-//     .content-wrapper{
-//       background-color: $body-bg;
-//       .content-header{
-//         .breadcrumb-item{
-//           a{
-//               color: $green;
-//           }
-//           a:hover{
-//               color: $red;
-//               text-decoration: none;
-//           }
-//         }
-//       }
-//       .card{
-//           box-shadow: none !important;
-//           // border-radius: 0 !important;
-//           // box-shadow: 2px 2px 2px 2px $body-bg;
-//           // border: none;
-//         .card-header{
-//           border-bottom: 0;
-//         }
-//         .card-body{
-//           .bs-stepper{
-//             .bs-stepper-header{
-//               //AddResponsiveness
-//               // display: block;
-//               // width: 100%;
-//               overflow-x: auto;
-//               // -webkit-overflow-scrolling: touch;
-//               .bs-stepper-circle{
-//                 background-color: $green !important;
-//               }
-//              .step-trigger:active,  .step-trigger:hover,
-//              .step-trigger:focus, .step-trigger:visited {
-//                 .bs-stepper-label{
-//                   color: $green !important;
-//                 }
-//               }
-//             }
-//           }
-//         }
-//         .nav-pills {
-//           .nav-link {
-//             font-weight: 600 !important;
-//             border-radius: 0 !important;
-//           }
-//           .nav-link.active, .nav-link.focus, .show, > .nav-link {
-//             color: $green;
-//             background-color: inherit;
-//             border-bottom: 2px $green solid;
-//           }
-//           .nav-link:hover {
-//             color: $red !important;
-//             background-color: inherit !important;
-//             border-bottom: 2px $red solid !important;
-//           }
-//         }
-//       }
-//     }
-// }
-// // main-footer
-// .sidebar-mini{
-//   footer {
-//     a{
-//       color: $green !important;
-//     }
-//     a:hover{
-//       color: $red !important;
-//       text-decoration: none !important;
-//     }
-//   }
-// }
+  }
+  .app-main{
+
+  }
+  // main-footer
+  footer {
+    a{
+      color: $success !important;
+    }
+    a:hover{
+      color: $danger !important;
+      text-decoration: none !important;
+    }
+  }
+}
 /*--===================================./AdminLTE===================================--*/
