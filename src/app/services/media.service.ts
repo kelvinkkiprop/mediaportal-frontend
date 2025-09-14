@@ -63,6 +63,17 @@ export class MediaService {
     return this.http.get<Media[]>(url, this.mAppContextService.getHttpOptions());
   }
 
+  likedMediaItems():Observable<Media[]>{
+    const url = `${environment.base_url}/liked-media`;
+    return this.http.get<Media[]>(url, this.mAppContextService.getHttpOptions());
+  }
+
+  historyMediaItems():Observable<Media[]>{
+    const url = `${environment.base_url}/history-media`;
+    return this.http.get<Media[]>(url, this.mAppContextService.getHttpOptions());
+  }
+
+
   reactItem(item: any): Observable<Media>{
     const url =  `${environment.base_url}/media/${item.id}/react`;
     return this.http.post<Media>(url, item, this.mAppContextService.getHttpOptions());

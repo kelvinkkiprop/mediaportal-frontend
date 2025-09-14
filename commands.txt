@@ -56,13 +56,6 @@ ng generate component components/profiles/show
 ng generate module components/profiles/profile
 ng generate module components/profiles/profileRouting
 
-ng generate component components/upload/index
-ng generate component components/upload/create
-ng generate component components/upload/edit
-ng generate component components/upload/show
-ng generate module components/upload/upload
-ng generate module components/upload/uploadRouting
-
 ng generate component components/mediaCategories/index
 ng generate component components/mediaCategories/create
 ng generate component components/mediaCategories/edit
@@ -81,15 +74,10 @@ ng generate component components/media/index
 ng generate component components/media/create
 ng generate component components/media/edit
 ng generate component components/media/show
+ng generate component components/media/inc/read
+ng generate component components/media/inc/liked
 ng generate module components/media/media
 ng generate module components/media/mediaRouting
-
-ng generate component components/payment-methods/index
-ng generate component components/payment-methods/create
-ng generate component components/payment-methods/edit
-ng generate component components/payment-methods/show
-ng generate module components/payment-methods/payment-method
-ng generate module components/payment-methods/payment-methodRouting
 
 ng generate component components/payments/index
 ng generate component components/payments/create

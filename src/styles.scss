@@ -55,6 +55,30 @@ $danger: #dc3545;
   color: #fff !important;
   border: none !important;
 }
+// Pagination
+.page-item.active .page-link {
+  background-color: $success;
+  border-color: $success;
+  color: $white;
+}
+.page-link:hover,.page-item.active:hover {
+  color: $white !important;
+  background-color: $danger !important;
+  border-color: $danger !important;
+}
+.page-link {
+  color: $success;
+}
+.nav-tabs {
+  .nav-link{
+    color: $success;
+  }
+  .nav-link.active{
+    color: $danger !important;
+    border-bottom: 2px solid $danger !important;
+  }
+}
+
 /*--===================================./Common===================================--*/
 
 /*--===================================Theme===================================--*/

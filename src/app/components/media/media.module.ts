@@ -11,6 +11,9 @@ import { SharedModule } from '../shared/shared.module';
 import { MediaRoutingModule } from './media-routing.module';
 import { EditComponent } from './edit/edit.component';
 import { ShowComponent } from './show/show.component';
+import { ReadComponent } from './inc/read/read.component';
+import { LikedComponent } from './inc/liked/liked.component';
+import { HistoryComponent } from './inc/history/history.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { ShowComponent } from './show/show.component';
     IndexComponent,
     CreateComponent,
     EditComponent,
-    ShowComponent
+    ShowComponent,
+    ReadComponent,
+    LikedComponent,
+    HistoryComponent
   ],
   imports: [
     CommonModule,

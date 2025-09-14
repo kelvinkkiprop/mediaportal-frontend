@@ -6,6 +6,8 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { IndexComponent } from './index/index.component';
 import { ShowComponent } from './show/show.component';
+import { LikedComponent } from './inc/liked/liked.component';
+import { HistoryComponent } from './inc/history/history.component';
 
 // Routes
 const routes: Routes = [
@@ -36,14 +38,14 @@ const routes: Routes = [
     }
   },
   {
-    path: ':id/show',
+    path: 'show/:id',
     component: ShowComponent,
     data: {
       title: 'Show'
     }
   },
 
-  // Other
+  // Inc
   {
     path: 'about',
     component: IndexComponent,
@@ -54,6 +56,20 @@ const routes: Routes = [
   {
     path: 'my-playlist',
     component: IndexComponent,
+    data: {
+      title: 'Index'
+    }
+  },
+  {
+    path: 'liked',
+    component: LikedComponent,
+    data: {
+      title: 'Index'
+    }
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
     data: {
       title: 'Index'
     }
