@@ -59,20 +59,20 @@
         <li class="nav-item dropdown user-menu">
           <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
             <span class="user-image d-inline-flex justify-content-center align-items-center rounded-circle shadow bg-light1 fw-bold" style="width: 40px; height: 40px; font-size: 1rem;">
-              {{ this.mAppContextService.getInitials(mCurrentUser.name) }}
+              {{ this.mAppContextService.getInitials(mCurrentUser?.name) }}
             </span>
-            <span class="d-none d-md-inline ms-2">{{ mCurrentUser.name }}</span>
+            <span class="d-none d-md-inline ms-2">{{ mCurrentUser?.name }}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end p-2 shadow rounded-3">
             <li class="p-3 border-bottom">
               <div class="d-flex align-items-center">
                 <span class="user-image rounded-circle bg-success text-white fw-bold d-inline-flex justify-content-center align-items-center me-3" style="width: 40px; height: 40px; font-size: 1rem;">
-                  {{ this.mAppContextService.getInitials(mCurrentUser.name) }}
+                  {{ this.mAppContextService.getInitials(mCurrentUser?.name) }}
                 </span>
                 <div>
-                  <p class="mb-0 fw-semibold">{{ mCurrentUser.name }}</p>
+                  <p class="mb-0 fw-semibold">{{ mCurrentUser?.name }}</p>
                   <!-- <small class="text-muted">{{ mCurrentUser.username }}</small> -->
-                  <small class="text-muted">{{ mCurrentUser.role?.name }}</small>
+                  <small class="text-muted">{{ mCurrentUser?.role.name }}</small>
                 </div>
               </div>
             </li>

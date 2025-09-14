@@ -31,7 +31,7 @@ export class AuthUIComponent {
   ngOnInit(): void {
     this.mProgress = true
     // call
-    this.mCurrentUser = this.mAuthService.currentUser;
+    this.mCurrentUser = this.mAuthService?.currentUser;
     this.mProgress = false
   }
 

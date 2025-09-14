@@ -43,7 +43,7 @@ export class AdminLTEComponent implements OnInit {
       this.sidebarService.expand();
     }
     // set
-    this.mCurrentUser = this.mAuthService.currentUser;
+    this.mCurrentUser = this.mAuthService?.currentUser;
   }
 
   ngAfterViewInit(): void {
