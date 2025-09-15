@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="card-body login-card-body">
-        <p class="login-box-msg text-danger">Sign in to start your session</p>
+        <p class="login-box-msg text-warning ">Sign in to start your session</p>
 
         <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
           <div class="input-group mb-3">
@@ -51,7 +51,7 @@
             </div>
             <div class="col-4">
               <div class="d-grid gap-2">
-                <button [disabled]="itemForm.invalid" type="submit" class="btn btn-success">Login</button>
+                <button [disabled]="itemForm.invalid" type="submit" class="btn btn-primary">Login</button>
               </div>
             </div>
           </div>

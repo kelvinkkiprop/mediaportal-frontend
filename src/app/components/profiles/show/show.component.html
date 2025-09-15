@@ -1,11 +1,11 @@
 <app-progress *ngIf="mProgress"/>
 
 <div>
-  <div class="card mb-4 card-danger card-outline h-100">
+  <div class="card mb-4 card-warning card-outline h-100">
     <div class="card-body">
       <div class="my-3">
         <div class="text-center pb-3">
-          <span class="user-image rounded-circle fs-2 p-4 bg-light text-success">{{ mInitials }}</span>
+          <span class="user-image rounded-circle fs-2 p-4 bg-light text-primary">{{ mInitials }}</span>
         </div>
         <h4 class="profile-username text-center m-0">{{ mCurrentUser?.name }}</h4>
         <p class="text-muted text-center m-0">{{ mCurrentUser?.role?.name }}</p>
@@ -39,8 +39,8 @@
           </div>
         </div>
         <div class="mt-2 text-center">
-          <button [disabled]="itemForm.invalid" type="submit" class="btn btn-success me-2">Save</button>
-          <a routerLink="/profile/edit/{{mCurrentUser.id}}" class="btn btn-danger">Edit</a>
+          <button [disabled]="itemForm.invalid" type="submit" class="btn btn-primary me-2">Save</button>
+          <a routerLink="/profile/edit/{{mCurrentUser.id}}" class="btn btn-warning">Edit</a>
         </div>
       </form>
     </div>

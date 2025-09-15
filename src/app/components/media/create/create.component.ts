@@ -69,7 +69,7 @@ export class CreateComponent {
   async upload(title:any, description:any) {
     // if (!this.selectedFile || this.itemForm.invalid) return;
     if (!this.selectedFile || this.itemForm.invalid) {
-      this.mToastrService.warning('Please fill out all fields and select a file.');
+      this.mToastrService.error('Please fill out all fields and select a file.');
       return;
     }
 

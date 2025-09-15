@@ -78,18 +78,18 @@
               <div class="mb-3">
                 <div *ngIf="progress > 0">
                   <div class="progress">
-                    <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" [style.width.%]="progress" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ progress }}%</div>
+                    <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" [style.width.%]="progress" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ progress }}%</div>
                   </div>
                 </div>
               </div>
 
               <!-- <div class="text-end">
-                <button (click)="upload()" [disabled]="!selectedFile" class="btn btn-success">Upload</button>
+                <button (click)="upload()" [disabled]="!selectedFile" class="btn btn-primary">Upload</button>
               </div> -->
 
               <div class="text-end">
-                <a routerLink="/my-media" class="btn btn-danger me-1">Cancel</a>
-                <button [disabled]="!selectedFile || itemForm.invalid" type="submit" class="btn btn-success">Submit</button>
+                <a routerLink="/my-media" class="btn btn-warning me-1">Cancel</a>
+                <button [disabled]="!selectedFile || itemForm.invalid" type="submit" class="btn btn-primary">Submit</button>
               </div>
             </form>
 

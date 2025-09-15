@@ -72,7 +72,7 @@ export class EditComponent {
       next: (response) => {
         if(response){
           // console.log(response);
-          this.mToastrService.info((response as any).message);
+          this.mToastrService.success((response as any).message);
           this.router.navigateByUrl('/media-tags');
           this.mProgress = false
         }

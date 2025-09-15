@@ -50,14 +50,14 @@
                         <div class="col-6">
                           <div class="d-flex justify-content-end">
                               <span (click)="toggleReact(item, 1)" >
-                                <span [ngClass]="{ 'text-success': mItem.is_liked }">
+                                <span [ngClass]="{ 'text-primary': mItem.is_liked }">
                                   <i class="bi me-2"
                                     [ngClass]="mItem.is_liked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'">
                                   </i>{{ mItem.likes_count }}
                                 </span>
                               </span>
                               <span (click)="toggleReact(item, 2)" class="mx-4">
-                                <span [ngClass]="{ 'text-danger': mItem.is_disliked }">
+                                <span [ngClass]="{ 'text-warning': mItem.is_disliked }">
                                   <i class="bi me-2"
                                     [ngClass]="mItem.is_disliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'">
                                   </i>{{ mItem.dislikes_count }}
@@ -87,7 +87,7 @@
                                         <a [href]="'https://www.linkedin.com/shareArticle?url='+mCurrentUrl" target="_blank" class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
                                           <i class="bi bi-linkedin fs-4"></i>
                                         </a>
-                                        <a [href]="'https://wa.me/?text='+mCurrentUrl" target="_blank" class="btn btn-outline-success rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                        <a [href]="'https://wa.me/?text='+mCurrentUrl" target="_blank" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
                                           <i class="bi bi-whatsapp fs-4"></i>
                                         </a>
                                       </div>
@@ -95,7 +95,7 @@
                                     <div class="modal-footer">
                                       <div class="input-group mb-3">
                                         <input type="text" class="form-control" [(ngModel)]="mCurrentUrl" readonly/>
-                                        <div class="input-group-text text-success" (click)="copyUrl()">COPY</div>
+                                        <div class="input-group-text text-primary" (click)="copyUrl()">COPY</div>
                                       </div>
                                     </div>
                                   </div>
@@ -108,7 +108,7 @@
                     </div>
                     <div class="col-md-12">
                       <div class="d-flex align-items-center">
-                        <div class="rounded-circle bg-success text-white d-flex justify-content-center align-items-center fw-bold" style="width:40px; height:40px;">
+                        <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center fw-bold" style="width:40px; height:40px;">
                           {{ mContext.getInitials(item.user?.name) }}
                         </div>
                         <div class="ms-2">
@@ -128,7 +128,7 @@
                         <div class="row g-2 align-items-start">
                           <label for="text" class="form-label required1">{{ mItem.total_comments }}</label>
                           <div class="col-auto">
-                            <div class="rounded-circle bg-danger text-white d-flex justify-content-center align-items-center fw-bold" style="width:40px; height:40px;">
+                            <div class="rounded-circle bg-warning text-white d-flex justify-content-center align-items-center fw-bold" style="width:40px; height:40px;">
                               {{ mContext.getInitials(item.user?.name) }}
                             </div>
                           </div>
@@ -138,7 +138,7 @@
                               <div *ngIf="itemForm.get('text')?.errors?.['required']">This field is required.</div>
                             </div>
                             <div class="text-end my-2">
-                              <button [disabled]=" itemForm.invalid" type="submit" class="btn btn-success btn-sm">Submit</button>
+                              <button [disabled]=" itemForm.invalid" type="submit" class="btn btn-primary btn-sm">Submit</button>
                             </div>
                           </div>
                         </div>

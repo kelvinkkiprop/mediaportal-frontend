@@ -4,7 +4,7 @@
 <div id="adminLTE" class="app-wrapper">
 
   <!--===================================Header===================================-->
-  <nav class="app-header navbar navbar-expand bg-body1 navbar-dark bg-success bg-gradient">
+  <nav class="app-header navbar navbar-expand bg-body1 navbar-dark bg-primary bg-gradient">
   <!-- <nav class="app-header navbar navbar-expand bg-body"> -->
     <div class="container-fluid">
       <ul class="navbar-nav">
@@ -66,7 +66,7 @@
           <ul class="dropdown-menu dropdown-menu-end p-2 shadow rounded-3">
             <li class="p-3 border-bottom">
               <div class="d-flex align-items-center">
-                <span class="user-image rounded-circle bg-success text-white fw-bold d-inline-flex justify-content-center align-items-center me-3" style="width: 40px; height: 40px; font-size: 1rem;">
+                <span class="user-image rounded-circle bg-primary text-white fw-bold d-inline-flex justify-content-center align-items-center me-3" style="width: 40px; height: 40px; font-size: 1rem;">
                   {{ this.mAppContextService.getInitials(mCurrentUser?.name) }}
                 </span>
                 <div>
@@ -93,9 +93,9 @@
 
   <!--===================================Sidebar===================================-->
   <aside class="app-sidebar bg-body-secondary1 shadow" data-bs-theme="light">
-    <div class="sidebar-brand bg-success navbar-dark border-bottom border-2 border-danger">
+    <div class="sidebar-brand bg-primary navbar-dark border-bottom border-3 border-warning">
       <a routerLink="/" class="brand-link">
-        <!-- <span class="brand-image opacity-75 rounded bg-light text-success p-2">AP</span>
+        <!-- <span class="brand-image opacity-75 rounded bg-light text-primary p-2">AP</span>
         <span class="brand-text fw-light">AdminLTE 4</span> -->
         <img src="images/logo_wide.png" alt="Logo" height="32">
       </a>
@@ -247,7 +247,7 @@
               <div class="card-body">
                 <p>Click the hamburger menu in the header to toggle the sidebar.</p>
                 <p>Sidebar is currently:
-                  <span class="badge" [class]="sidebarService.isCollapsed() ? 'bg-danger' : 'bg-success'">
+                  <span class="badge" [class]="sidebarService.isCollapsed() ? 'bg-danger' : 'bg-primary'">
                     {{ sidebarService.isCollapsed() ? 'Collapsed' : 'Expanded' }}
                   </span>
                 </p>

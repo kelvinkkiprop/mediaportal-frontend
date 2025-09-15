@@ -21,12 +21,16 @@
 // }
 
 
-// Override bootstrap colors
-$success: #076C3A; //198754;
-// $success: #0262C0;
+// Override_bootstrap_colors
+$primary: #0262C0;
+$warning: #ffc107;
+$danger: #dc3545;
 $white: #ffffff;
 $black: #000000;
-$danger: #BF2835; //dc3545;
+// BF2835;
+
+// $primary: #0d6efd;
+// $warning: #ffc107;
 
 .justify-text {
   text-align: justify !important;
@@ -41,50 +45,50 @@ $danger: #BF2835; //dc3545;
 }
 
 .bg-gradient {
-  // background: linear-gradient($danger, $success) !important;
-  // background: linear-gradient(to left, var(--bs-danger), var(--bs-success)) !important;
-  background: linear-gradient(to left, $danger, $success) !important;
+  // background: linear-gradient($warning, $primary) !important;
+  // background: linear-gradient(to left, var(--bs-warning), var(--bs-primary)) !important;
+  background: linear-gradient(to left, $warning, $primary) !important;
 
 }
 .text-gradient {
-  background: linear-gradient(to right, $danger, $success);
+  background: linear-gradient(to right, $warning, $primary);
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 .btn-gradient {
-  background: linear-gradient(to right, $success, $danger);
+  background: linear-gradient(to right, $primary, $warning);
   color: #fff !important;
   border: none !important;
 }
 // Pagination
 .page-item.active .page-link {
-  background-color: $success;
-  border-color: $success;
+  background-color: $primary;
+  border-color: $primary;
   color: $white;
 }
 .page-link:hover,.page-item.active:hover {
   color: $white !important;
-  background-color: $danger !important;
-  border-color: $danger !important;
+  background-color: $warning !important;
+  border-color: $warning !important;
 }
 .page-link {
-  color: $success;
+  color: $primary;
 }
 .nav-tabs {
   .nav-link{
-    color: $success;
+    color: $primary;
   }
   .nav-link.active{
-    color: $danger !important;
-    border-bottom: 2px solid $danger !important;
+    color: $warning !important;
+    border-bottom: 2px solid $warning !important;
   }
 }
 .form-check-input:checked {
-  background-color: $success !important;
-  border-color: $success !important;
+  background-color: $primary !important;
+  border-color: $primary !important;
 }
-.bg-success {
-  background-color: $success !important;
+.bg-primary {
+  background-color: $primary !important;
 }
 /*--===================================./Common===================================--*/
 
@@ -112,13 +116,13 @@ $danger: #BF2835; //dc3545;
 {
   background-color: $black !important;
   i{
-    color: $danger;
+    color: $warning;
   }
   a{
     color: $white !important;
   }
   a:hover{
-    color: $danger !important;
+    color: $warning !important;
     text-decoration: none;
   }
 }
@@ -152,10 +156,10 @@ $danger: #BF2835; //dc3545;
       // }
       a{
         text-decoration: none;
-        color: $success;
+        color: $primary;
       }
       a:hover{
-        color: $danger
+        color: $warning
       }
     }
   }
@@ -171,7 +175,7 @@ $danger: #BF2835; //dc3545;
     .dropdown-item:active {
       // color: $white;
       // text-decoration: none;
-      background-color: $success;
+      background-color: $primary;
     }
   }
   .app-sidebar{
@@ -183,10 +187,10 @@ $danger: #BF2835; //dc3545;
   // main-footer
   footer {
     a{
-      color: $success !important;
+      color: $primary !important;
     }
     a:hover{
-      color: $danger !important;
+      color: $warning !important;
       text-decoration: none !important;
     }
   }

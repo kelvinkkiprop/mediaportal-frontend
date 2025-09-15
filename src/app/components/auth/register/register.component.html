@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="card-body register-card-body">
-        <p class="register-box-msg text-danger">Register now!</p>
+        <p class="register-box-msg text-warning ">Register now!</p>
           <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="First Name" formControlName="first_name"
@@ -75,7 +75,7 @@
               </div>
               <div class="col-4">
                 <div class="d-grid gap-2">
-                  <button [disabled]="itemForm.invalid" type="submit" class="btn btn-success">Register</button>
+                  <button [disabled]="itemForm.invalid" type="submit" class="btn btn-primary">Register</button>
                 </div>
               </div>
             </div>
