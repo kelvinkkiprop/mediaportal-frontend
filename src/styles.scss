@@ -22,10 +22,11 @@
 
 
 // Override bootstrap colors
-$success: #198754;
+$success: #076C3A; //198754;
+// $success: #0262C0;
 $white: #ffffff;
 $black: #000000;
-$danger: #dc3545;
+$danger: #BF2835; //dc3545;
 
 .justify-text {
   text-align: justify !important;
@@ -81,6 +82,9 @@ $danger: #dc3545;
 .form-check-input:checked {
   background-color: $success !important;
   border-color: $success !important;
+}
+.bg-success {
+  background-color: $success !important;
 }
 /*--===================================./Common===================================--*/
 

@@ -57,4 +57,10 @@ export class UserService {
     return this.http.post<User>(url, item, this.mAppContextService.getHttpOptions());
   }
 
+
+  filterOrganizations(id:number){
+    const url = `${environment.base_url}/filter-organizations/${id}`;
+    return this.http.get<User[]>(url, this.mAppContextService.getHttpOptions());
+  }
+
 }

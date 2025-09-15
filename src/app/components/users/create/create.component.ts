@@ -20,6 +20,8 @@ export class CreateComponent {
   mProgress: boolean = false;
 
   mRoles:any
+  mOrganizationCategories:any
+  mOrganizations:any
 
   constructor(
     public mToastrService: ToastrService,
@@ -34,6 +36,8 @@ export class CreateComponent {
       last_name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       role_id: ['', Validators.required],
+      organization_category_id: ['', Validators.nullValidator],
+      organization_id: ['', Validators.nullValidator],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -77,6 +81,8 @@ export class CreateComponent {
       next: (response) => {
         if(response){
           this.mRoles = (response as any).data.roles
+          this.mOrganizationCategories = (response as any).data.organization_categories
+          this.mOrganizations = (response as any).data.organizations
           this.mProgress = false
         }
       },
@@ -88,6 +94,32 @@ export class CreateComponent {
         this.mProgress = false
       }
     });
+  }
+
+  // onOrganizationChange
+  onOrganizationChange($event: any){
+    let id = $event.value
+    this.filterConstituencies(id)
+    this.mOrganizations = []//Reset
+  }
+  // filterConstituencies
+  filterConstituencies(id:any){
+    this.mProgress = true
+    this.mUserService.filterOrganizations(id).subscribe({
+      next: (response) => {
+        if(response){
+          // console.log(response)
+          //set
+          this.mOrganizations = response
+          this.mProgress = false
+        }
+      },
+      error: (error ) => {
+        // console.log(error.error)
+        this.mToastrService.error(error.error.message)
+        this.mProgress = false
+      }
+    })
   }
 
 }

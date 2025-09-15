@@ -1,19 +1,9 @@
-// import { Injectable } from '@angular/core';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class AppContextService {
-
-//   constructor() { }
-// }
-
 // src/app/core/app-context.service.ts
 import { Injectable, Injector } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
-// import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { catchError, debounceTime, first, map, Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
@@ -113,11 +103,15 @@ export class AppContextService {
     return control.value && /\s/.test(control.value) ? { hasSpace: true } : null;
   }
 
-  // // hasRoles
-  // hasRoles(roles: any[]): boolean {
-  //   const { role_id } = this.injector.get(AuthService).currentUser;
-  //   // console.log(roles)
-  //   return roles.includes(role_id);
-  // }
+  // hasRoles
+  hasRoles(roles: any[]): boolean {
+    const authService = this.injector.get(AuthService);
+    const currentUser = authService?.currentUser;
+    if (!currentUser) {
+      return false;
+    }
+    const { role_id } = currentUser;
+    return roles.includes(role_id);
+  }
 
 }
