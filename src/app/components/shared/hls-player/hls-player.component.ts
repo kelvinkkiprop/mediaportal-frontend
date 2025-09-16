@@ -42,7 +42,7 @@ export class HlsPlayerComponent {
         // this.mHls.loadSource('http://localhost:8000//storage/videos/processed/d050b5ce-dc6f-4646-a8bc-fddd6646a37f/master.m3u8');
         // this.mHls.loadSource(this.item.file);
         // this.mHls.loadSource('http://localhost:8000/videos/335376e7-4afe-4759-a262-af27101af25a/master.m3u8');
-        if(this.item.type_id==1){ //Live
+        if(this.item.type_id==2){ //Live
           this.mHls.loadSource(this.item.live_stream_key_hash);
         }else{
           this.mHls.loadSource(this.item.full_hls_master);
