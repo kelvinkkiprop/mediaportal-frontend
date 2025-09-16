@@ -1,8 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-media-card',
-  imports: [],
+  imports: [CommonModule],
   standalone: true,
   templateUrl: './media-card.component.html',
   styleUrl: './media-card.component.scss'

@@ -4,7 +4,9 @@
     <img [src]="item.thumbnail_url" width="100%" height="auto" alt="Thumbnail" class="img-fluid rounded ratio ratio-16x9"/>
   </div>
   <div class="col-md-12">
-    {{ item.title }}
+    <div class="position-relative">
+      {{ item.title }} <span *ngIf="this.item?.type_id==2" class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">LIVE</span>
+    </div>
   </div>
   <div class="col-md-6">
     <small class="text-muted">{{ item.total_views }}</small>

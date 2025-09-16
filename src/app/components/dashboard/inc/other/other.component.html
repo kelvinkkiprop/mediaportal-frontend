@@ -20,55 +20,49 @@
   <div class="app-content">
     <div class="container-fluid">
 
-      <div class="row mb-3">
-        <div *ngIf="mFeaturedMedia && mFeaturedMedia.length>0; else noItemsTemplate" class="col-md-12">
-          <div class="mb-2 h6"><span class="fw-bold">Featured</span><a routerLink="/media" class="ms-2 text-muted text-decoration-none">VIEW ALL</a></div>
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-            <div *ngFor="let item of mFeaturedMedia" class="col">
-              <a routerLink="/media/show/{{ item.id }}" class="text-decoration-none text-reset">
-                <app-media-card [data]="item"/>
-              </a>
+      <div *ngIf="(mRecommendedMedia && mRecommendedMedia.length>0 || mRecommendedMedia && mRecommendedMedia.length>0 || mLatestMedia && mLatestMedia.length>0); else noItemsTemplate">
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="mb-2 h6"><span class="fw-bold">Featured</span><a routerLink="/media" class="ms-2 text-muted text-decoration-none">VIEW ALL</a></div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+              <div *ngFor="let item of mFeaturedMedia" class="col">
+                <a routerLink="/media/show/{{ item.id }}" class="text-decoration-none text-reset">
+                  <app-media-card [data]="item"/>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-        <ng-template #noItemsTemplate>
-            <p class="p-5 text-center text-muted">No items</p>
-        </ng-template>
-      </div>
-      <hr>
-
-      <div class="row mb-3">
-        <div *ngIf="mRecommendedMedia && mRecommendedMedia.length>0; else noItemsTemplate" class="col-md-12">
-          <div class="mb-2 h6"><span class="fw-bold">Recommended</span><a routerLink="/media" class="ms-2 text-muted text-decoration-none">VIEW ALL</a></div>
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-            <div *ngFor="let item of mRecommendedMedia" class="col">
-              <a routerLink="/media/show/{{ item.id }}" class="row text-decoration-none text-reset me-1">
-                <app-media-card [data]="item"/>
-              </a>
+        <hr>
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="mb-2 h6"><span class="fw-bold">Recommended</span><a routerLink="/media" class="ms-2 text-muted text-decoration-none">VIEW ALL</a></div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+              <div *ngFor="let item of mRecommendedMedia" class="col">
+                <a routerLink="/media/show/{{ item.id }}" class="row text-decoration-none text-reset me-1">
+                  <app-media-card [data]="item"/>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-        <ng-template #noItemsTemplate>
-            <p class="p-5 text-center text-muted">No items</p>
-        </ng-template>
-      </div>
-      <hr>
-
-      <div class="row mb-3">
-        <div *ngIf="mLatestMedia && mLatestMedia.length>0; else noItemsTemplate" class="col-md-12">
-          <div class="mb-2 h6"><span class="fw-bold">Latest</span><a routerLink="/media" class="ms-2 text-muted text-decoration-none">VIEW ALL</a></div>
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-            <div *ngFor="let item of mLatestMedia" class="col">
-              <a routerLink="/media/show/{{ item.id }}" class="row text-decoration-none text-reset me-1">
-                <app-media-card [data]="item"/>
-              </a>
+        <hr>
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <div class="mb-2 h6"><span class="fw-bold">Latest</span><a routerLink="/media" class="ms-2 text-muted text-decoration-none">VIEW ALL</a></div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+              <div *ngFor="let item of mLatestMedia" class="col">
+                <a routerLink="/media/show/{{ item.id }}" class="row text-decoration-none text-reset me-1">
+                  <app-media-card [data]="item"/>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-        <ng-template #noItemsTemplate>
-            <p class="p-5 text-center text-muted">No items</p>
-        </ng-template>
       </div>
+      <ng-template #noItemsTemplate>
+        <p class="p-5 text-center text-muted">No items</p>
+      </ng-template>
 
     </div>
   </div>
