@@ -1,0 +1,107 @@
+<app-progress *ngIf="mProgress"/>
+
+<section>
+  <div class="app-content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <h3 class="mb-0">Live Streams</h3>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" aria-current="page">Live Streams</li>
+            <li class="breadcrumb-item active" aria-current="page">Create</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-content">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-12 col-12">
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                  Create Live Stream
+              </div>
+              <div class="card-tools">
+              </div>
+            </div>
+            <div class="card-body">
+
+              <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="title" class="form-label required">Title:</label>
+                      <input type="text" formControlName="title" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('title')?.invalid && (itemForm.get('title')?.dirty || itemForm.get('title')?.touched) }"/>
+                      <div *ngIf="itemForm.get('title')?.invalid && (itemForm.get('title')?.dirty || itemForm.get('title')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('title')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="description" class="form-label required">Description:</label>
+                      <quill-editor formControlName="description" class="w-100" [styles]="{height: '150px'}" [ngClass]="{ 'is-invalid': itemForm.get('description')?.invalid && (itemForm.get('description')?.dirty || itemForm.get('description')?.touched) }"></quill-editor>
+                      <div *ngIf="itemForm.get('description')?.invalid && (itemForm.get('description')?.dirty || itemForm.get('description')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('description')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="scheduled_at" class="form-label required">Scheduled At:</label>
+                      <input type="datetime-local" formControlName="scheduled_at" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('scheduled_at')?.invalid && (itemForm.get('scheduled_at')?.dirty || itemForm.get('scheduled_at')?.touched) }"/>
+                      <div *ngIf="itemForm.get('scheduled_at')?.invalid && (itemForm.get('scheduled_at')?.dirty || itemForm.get('scheduled_at')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('scheduled_at')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="thumbnail" class="form-label required">Thumbnail:</label>
+                      <input (change)="onThumbnailChange($event)" type="file" formControlName="thumbnail" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('thumbnail')?.invalid && (itemForm.get('thumbnail')?.dirty || itemForm.get('thumbnail')?.touched) }"/>
+                      <div *ngIf="itemForm.get('thumbnail')?.invalid && (itemForm.get('thumbnail')?.dirty || itemForm.get('thumbnail')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('thumbnail')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                    <div *ngIf="mThumbnailPreviewFile" class="mt-2">
+                      <img [src]="mThumbnailPreviewFile" class="img-fluid rounded" style="max-height: 200px;" alt="Thumbnail Preview">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="live_stream_link" class="form-label required">Live Stream Link:</label>
+                      <input type="text" formControlName="live_stream_link" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('live_stream_link')?.invalid && (itemForm.get('live_stream_link')?.dirty || itemForm.get('live_stream_link')?.touched) }"/>
+                      <div *ngIf="itemForm.get('live_stream_link')?.invalid && (itemForm.get('live_stream_link')?.dirty || itemForm.get('live_stream_link')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('live_stream_link')?.errors?.['required']">This field is required.</div>
+                        <div *ngIf="itemForm.get('live_stream_link')?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <a routerLink="/live-stream" class="btn btn-warning me-1">Cancel</a>
+                  <button [disabled]="itemForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

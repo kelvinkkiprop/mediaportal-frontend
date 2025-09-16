@@ -16,6 +16,9 @@ export interface Media {
 
   type_id?: any,
   category_id?: any,
+  visibility_id?: any,
+  is_recordable?: any,
+  is_streamable?: any,
   allow_comments?: any,
   allow_download?: any,
 
@@ -24,6 +27,17 @@ export interface Media {
   approved_by?: any,
   approved_on?: any,
 
+  live_stream_link?: any,
+  live_stream_status_id?: any,
+  scheduled_at?: any,
+  started_at?: any,
+  ended_at?: any,
+
   created_at?: any,
   updated_at?: any,
+
+
+  type?: any,
+  status?: any,
+  visibility?: any,
 }

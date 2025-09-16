@@ -5,12 +5,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6">
-          <h3 class="mb-0">Categories</h3>
+          <h3 class="mb-0">Live Streams</h3>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-end">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Categories</li>
+            <li class="breadcrumb-item active" aria-current="page">Live Streams</li>
           </ol>
         </div>
       </div>
@@ -26,9 +26,9 @@
           <div class="card">
             <div class="card-header">
               <div class="card-title">
-                  <a routerLink="/media-categories/create" class="btn btn-warning btn-sm">
-                    <i class="bi bi-plus-circle-fill"></i> Create
-                  </a>
+                <a routerLink="/live-stream/create" class="btn btn-warning btn-sm">
+                  <i class="bi bi-plus-circle-fill"></i> Create
+                </a>
               </div>
               <div class="card-tools">
                 <form [formGroup]="itemForm" (ngSubmit)="onSearch(itemForm.value)">
@@ -52,7 +52,11 @@
                   <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Scheduled At</th>
+                        <th>Started At</th>
+                        <th>Ended At</th>
+                        <th>Status</th>
                         <th>Created</th>
                         <th>Action</th>
                     </tr>
@@ -60,12 +64,17 @@
                   <tbody>
                     <tr *ngFor="let item of mItems; index as i">
                       <td>{{ i+1 }}.</td>
-                      <td>{{ item.name }}</td>
+                      <td>{{ item.title }}</td>
+                      <td>{{ item.scheduled_at | date }}</td>
+                      <td>{{ item.started_at | date }}</td>
+                      <td>{{ item.ended_at | date }}</td>
+                      <td><span class="badge rounded-pill" [ngClass]="{'bg-warning text-dark': item.live_stream_status_id == 1, 'bg-primary': item.live_stream_status_id == 2, 'bg-danger': item.live_stream_status_id==4, 'bg-secondary': item.live_stream_status_id==5}"> {{ item.live_stream_status?.name }}</span></td>
                       <td>{{ item.created_at | date }}</td>
                       <td class="text-nowrap">
                         <button class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" [attr.data-bs-target]="'#modal1'+item.id"><i class="bi bi-eye-fill"></i></button>
-                        <a class="btn btn-dark btn-sm me-1" routerLink="/media-categories/edit/{{item.id}}"><i class="bi bi-pencil-fill"></i></a>
+                        <a class="btn btn-dark btn-sm me-1" routerLink="/live-stream/edit/{{item.id}}"><i class="bi bi-pencil-fill"></i></a>
                         <button (click)="onDelete(item)" class="btn btn-danger btn-sm"><i class="bi bi-trash2-fill"></i></button>
+
                         <div class="modal fade" [attr.id]="'modal1'+item.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">

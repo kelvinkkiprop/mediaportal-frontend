@@ -1,0 +1,134 @@
+<app-progress *ngIf="mProgress"/>
+
+<section>
+  <div class="app-content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <h3 class="mb-0">Live Streams</h3>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" aria-current="page">Live Streams</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-content">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-12 col-12">
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                Edit Live Stream
+              </div>
+              <div class="card-tools">
+              </div>
+            </div>
+            <div class="card-body">
+
+              <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="first_name" class="form-label required">First Name:</label>
+                      <input [(ngModel)]="item.first_name" type="text" formControlName="first_name" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('first_name')?.invalid && (itemForm.get('first_name')?.dirty || itemForm.get('first_name')?.touched) }"/>
+                      <div *ngIf="itemForm.get('first_name')?.invalid && (itemForm.get('first_name')?.dirty || itemForm.get('first_name')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('first_name')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="last_name" class="form-label required">Last Name:</label>
+                      <input [(ngModel)]="item.last_name" type="text" formControlName="last_name" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('last_name')?.invalid && (itemForm.get('last_name')?.dirty || itemForm.get('last_name')?.touched) }"/>
+                      <div *ngIf="itemForm.get('last_name')?.invalid && (itemForm.get('last_name')?.dirty || itemForm.get('last_name')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('last_name')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="email" class="form-label required">Email:</label>
+                      <input [(ngModel)]="item.email" type="email" formControlName="email" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('email')?.invalid && (itemForm.get('email')?.dirty || itemForm.get('email')?.touched) }"/>
+                      <div *ngIf="itemForm.get('email')?.invalid && (itemForm.get('email')?.dirty || itemForm.get('email')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('email')?.errors?.['required']">This field is required.</div>
+                        <div *ngIf="itemForm.get('email')?.errors?.['email']">Enter a valid email address.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="role_id" class="form-label required">Role:</label>
+                      <select [(ngModel)]="item.role_id" class="form-select" formControlName="role_id"
+                        [ngClass]="{ 'is-invalid': itemForm.get('role_id')?.invalid && (itemForm.get('role_id')?.dirty || itemForm.get('role_id')?.touched) }">
+                        <option value="" disabled selected>--- Select role ---</option>
+                        <option *ngFor="let mRole of mRoles" value="{{mRole.id}}">{{ mRole.name }}</option>
+                      </select>
+                      <div *ngIf="itemForm.get('role_id')?.invalid && (itemForm.get('role_id')?.dirty || itemForm.get('role_id')?.touched)" class="invalid-feedback d-block1" role="alert">
+                        <div *ngIf="itemForm.get('role_id')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="status_id" class="form-label required">Status:</label>
+                      <select [(ngModel)]="item.status_id" class="form-select" formControlName="status_id"
+                        [ngClass]="{ 'is-invalid': itemForm.get('status_id')?.invalid && (itemForm.get('status_id')?.dirty || itemForm.get('status_id')?.touched) }">
+                        <option value="" disabled selected>Status</option>
+                        <option *ngFor="let mStatus of mStatuses" value="{{mStatus.id}}">{{ mStatus.name }}</option>
+                      </select>
+                      <div *ngIf="itemForm.get('status_id')?.invalid && (itemForm.get('status_id')?.dirty || itemForm.get('status_id')?.touched)" class="invalid-feedback d-block1" role="alert">
+                        <div *ngIf="itemForm.get('status_id')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="password" class="form-label required">Password:</label>
+                      <input [(ngModel)]="item.password" type="password" formControlName="password" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('password')?.invalid && (itemForm.get('password')?.dirty || itemForm.get('password')?.touched) }"/>
+                      <div *ngIf="itemForm.get('password')?.invalid && (itemForm.get('password')?.dirty || itemForm.get('password')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('password')?.errors?.['required']">This field is required.</div>
+                        <div *ngIf="itemForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="text-end">
+                      <div class="form-check d-inline-block">
+                        <input type="checkbox" formControlName="reset_password" class="form-check-input"
+                        [ngClass]="{ 'is-invalid': itemForm.get('reset_password')?.invalid && (itemForm.get('reset_password')?.dirty || itemForm.get('reset_password')?.touched) }"/>
+                        <label for="reset_password"> Reset user password?</label>
+                        <div *ngIf="itemForm.get('reset_password')?.invalid && (itemForm.get('reset_password')?.dirty || itemForm.get('reset_password')?.touched)" class="invalid-feedback d-block" role="alert">
+                          <div *ngIf="itemForm.get('reset_password')?.errors?.['required']">This field is required.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <a routerLink="/live-stream" class="btn btn-warning me-1">Cancel</a>
+                  <button [disabled]="itemForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,18 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 // import
-import { RouterModule } from '@angular/router';
-import { IndexComponent } from './index/index.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CreateComponent } from './create/create.component';
+import { RouterModule } from '@angular/router';
 import { QuillModule } from 'ngx-quill';
 import { SharedModule } from '../shared/shared.module';
-import { MediaRoutingModule } from './media-routing.module';
+import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
+import { IndexComponent } from './index/index.component';
+import { LiveStreamRoutingModule } from './live-stream-routing.module';
 import { ShowComponent } from './show/show.component';
-import { ReadComponent } from './inc/read/read.component';
-import { LikedComponent } from './inc/liked/liked.component';
-import { HistoryComponent } from './inc/history/history.component';
 
 
 @NgModule({
@@ -22,9 +19,6 @@ import { HistoryComponent } from './inc/history/history.component';
     CreateComponent,
     EditComponent,
     ShowComponent,
-    ReadComponent,
-    LikedComponent,
-    HistoryComponent
   ],
   imports: [
     CommonModule,
@@ -35,8 +29,8 @@ import { HistoryComponent } from './inc/history/history.component';
 
 
     // import
-    MediaRoutingModule,
+    LiveStreamRoutingModule,
     SharedModule
   ]
 })
-export class MediaModule { }
+export class LiveStreamModule { }

@@ -66,6 +66,11 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./components/media/media.module').then((m) => m.MediaModule)
       },
+      {
+        path: 'live-stream',
+        loadChildren: () =>
+          import('./components/liveStream/live-stream.module').then((m) => m.LiveStreamModule)
+      },
       // {
       //   path: 'payments',
       //   loadChildren: () =>

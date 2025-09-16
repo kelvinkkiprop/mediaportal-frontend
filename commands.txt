@@ -80,6 +80,13 @@ ng generate component components/media/inc/history
 ng generate module components/media/media
 ng generate module components/media/mediaRouting
 
+ng generate component components/liveStream/index
+ng generate component components/liveStream/create
+ng generate component components/liveStream/edit
+ng generate component components/liveStream/show
+ng generate module components/liveStream/liveStream
+ng generate module components/liveStream/liveStreamRouting
+
 ng generate component components/payments/index
 ng generate component components/payments/create
 ng generate component components/payments/edit
@@ -132,6 +139,7 @@ ng generate service services/dashboard
 ng generate service services/theme
 ng generate service services/course
 ng generate service services/media
+ng generate service services/live-stream
 ng generate service services/media-category
 ng generate service services/media-tag
 ng generate service services/interest
