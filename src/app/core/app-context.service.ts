@@ -114,4 +114,17 @@ export class AppContextService {
     return roles.includes(role_id);
   }
 
+  // formatMemory
+  formatMemory(bytes: number): string {
+    if (bytes >= 1_000_000_000) {
+      return (bytes / 1_000_000_000).toFixed(2) + ' GB';
+    } else if (bytes >= 1_000_000) {
+      return (bytes / 1_000_000).toFixed(2) + ' MB';
+    } else if (bytes >= 1_000) {
+      return (bytes / 1_000).toFixed(2) + ' KB';
+    }
+    return bytes + ' B';
+  }
+
+
 }

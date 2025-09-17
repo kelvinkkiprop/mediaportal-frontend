@@ -13,7 +13,10 @@ import { ShowComponent } from './show/show.component';
 import { ReadComponent } from './inc/read/read.component';
 import { LikedComponent } from './inc/liked/liked.component';
 import { HistoryComponent } from './inc/history/history.component';
+import { LiveStreamsComponent } from './inc/live-streams/live-streams.component';
+import { AnalyticsComponent } from './inc/analytics/analytics.component';
 
+import { NgApexchartsModule } from "ng-apexcharts";
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { HistoryComponent } from './inc/history/history.component';
     ShowComponent,
     ReadComponent,
     LikedComponent,
-    HistoryComponent
+    HistoryComponent,
+    LiveStreamsComponent,
+    AnalyticsComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +41,10 @@ import { HistoryComponent } from './inc/history/history.component';
 
     // import
     MediaRoutingModule,
-    SharedModule
+    SharedModule,
+
+    // Add
+    NgApexchartsModule
   ]
 })
 export class MediaModule { }

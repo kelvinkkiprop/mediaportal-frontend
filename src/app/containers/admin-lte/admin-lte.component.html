@@ -24,17 +24,23 @@
 
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a routerLink="/media/create" class="nav-link"><i class="bi bi-upload"></i> Upload</a>
+          <a routerLink="/media/create" class="nav-link">
+            <i class="bi bi-upload"></i>
+            <span class="d-none d-md-inline"> Upload</span>
+          </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/live-stream" class="nav-link"><i class="bi bi-broadcast"></i> Go Live</a>
+          <a routerLink="/live-stream/create" class="nav-link">
+            <i class="bi bi-broadcast"></i>
+            <span class="d-none d-md-inline"> Go Live</span>
+          </a>
         </li>
         <li class="nav-item dropdown">
           <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static">
             <span class="theme-icon-active">
-              <i class="my-1"></i>
+              <i class="bi bi-circle-half"></i>
             </span>
-            <span class="d-lg-none ms-2" id="bd-theme-text">Theme</span>
+            <span class="d-none d-md-inline ms-2" id="bd-theme-text">Theme</span>
           </button>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text" style="--bs-dropdown-min-width: 8rem;">
             <li>
@@ -128,14 +134,14 @@
               <p>Recommended</p>
             </a>
           </li> -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a routerLink="/media-tags" routerLinkActive="active" class="nav-link">
               <i class="nav-icon bi bi-tag-fill"></i>
               <p>Tags</p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a routerLink="/media-categories" routerLinkActive="active" class="nav-link">
+            <a routerLink="/content-categories" routerLinkActive="active" class="nav-link">
               <i class="nav-icon bi bi-card-list"></i>
               <p>Categories</p>
             </a>

@@ -1,1 +1,156 @@
-<p>edit works!</p>
+<app-progress *ngIf="mProgress"/>
+
+<section>
+  <div class="app-content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <h3 class="mb-0">Media</h3>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" aria-current="page">Media</li>
+            <li class="breadcrumb-item active" aria-current="page">Create</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+      <div class="row">
+        <div class="col-lg-12 col-12">
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                Create Media
+              </div>
+              <div class="card-tools">
+              </div>
+            </div>
+            <div class="card-body">
+
+              <!-- <div class="mb-3">
+                <div class="dropzone" [class.dragging]="isDragging">
+                  <p *ngIf="!selectedFile">Drag & drop a video here, or click to select</p>
+                  <p *ngIf="selectedFile">Selected: {{ selectedFile.title }}</p>
+                  <input type="file" hidden (change)="onFileSelected($event)" accept="video/*" #fileInput>
+                  <button (click)="fileInput.click()" class="btn btn-light btn-sm">Choose File</button>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <input type="text" [(ngModel)]="title" placeholder="Title" class="form-control">
+              </div> -->
+              <!-- <div class="mb-3">
+                <textarea [(ngModel)]="description" placeholder="Description" class="form-control"></textarea>
+              </div> -->
+
+              <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="title" class="form-label required">Title:</label>
+                      <input [ngModel]="item.title" type="text" formControlName="title" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('title')?.invalid && (itemForm.get('title')?.dirty || itemForm.get('title')?.touched) }"/>
+                      <div *ngIf="itemForm.get('title')?.invalid && (itemForm.get('title')?.dirty || itemForm.get('title')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('title')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="description" class="form-label required">Description:</label>
+                      <quill-editor [(ngModel)]="item.description" formControlName="description" class="w-100" [styles]="{height: '150px'}" [ngClass]="{ 'is-invalid': itemForm.get('description')?.invalid && (itemForm.get('description')?.dirty || itemForm.get('description')?.touched) }"></quill-editor>
+                      <div *ngIf="itemForm.get('description')?.invalid && (itemForm.get('description')?.dirty || itemForm.get('description')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('description')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="date_produced" class="form-label required">Date Produced:</label>
+                      <input [(ngModel)]="item.date_produced" type="datetime-local" formControlName="date_produced" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('date_produced')?.invalid && (itemForm.get('date_produced')?.dirty || itemForm.get('date_produced')?.touched) }"/>
+                      <div *ngIf="itemForm.get('date_produced')?.invalid && (itemForm.get('date_produced')?.dirty || itemForm.get('date_produced')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('date_produced')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label class="form-label required">Category:</label>
+                      <div class="row">
+                        <div class="col-6 col-md-3" *ngFor="let mCategory of mContentCategories; let i = index">
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input" [id]="'category_'+mCategory.id" [value]="mCategory.id" (change)="onCategoryChange($event, mCategory.id)">
+                            <label class="form-check-label" [for]="'category_' + mCategory.id">{{ mCategory.name }}</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="tags" class="form-label required">Tags <small>- a comma separated list of tags</small>:</label>
+                      <input [(ngModel)]="item.tags" type="text" formControlName="tags" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('tags')?.invalid && (itemForm.get('tags')?.dirty || itemForm.get('tags')?.touched) }"/>
+                      <div *ngIf="itemForm.get('tags')?.invalid && (itemForm.get('tags')?.dirty || itemForm.get('tags')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('tags')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="type_id" class="form-label required">Type:</label>
+                      <select [(ngModel)]="item.type_id" class="form-select" formControlName="type_id" [ngClass]="{ 'is-invalid': itemForm.get('type_id')?.invalid && (itemForm.get('type_id')?.dirty || itemForm.get('type_id')?.touched) }">
+                        <option value="" disabled selected>--- Select type ---</option>
+                        <option *ngFor="let mMediaType of mMediaTypes" value="{{mMediaType.id}}">{{ mMediaType.name }}</option>
+                      </select>
+                      <div *ngIf="itemForm.get('type_id')?.invalid && (itemForm.get('type_id')?.dirty || itemForm.get('type_id')?.touched)" class="invalid-feedback d-block1" role="alert">
+                        <div *ngIf="itemForm.get('type_id')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="organization_id" class="form-label required">Organization:</label>
+                      <select [(ngModel)]="item.organization_id" class="form-select" formControlName="organization_id"
+                        [ngClass]="{ 'is-invalid': itemForm.get('organization_id')?.invalid && (itemForm.get('organization_id')?.dirty || itemForm.get('organization_id')?.touched) }">
+                        <option value="" disabled selected>--- Select organization ---</option>
+                        <option *ngFor="let mOrganization of mOrganizations" value="{{mOrganization.id}}">{{ mOrganization.name }}</option>
+                      </select>
+                      <div *ngIf="itemForm.get('organization_id')?.invalid && (itemForm.get('organization_id')?.dirty || itemForm.get('organization_id')?.touched)" class="invalid-feedback d-block1" role="alert">
+                        <div *ngIf="itemForm.get('organization_id')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <div class="form-check d-inline-block">
+                        <input [(ngModel)]="item.allow_comments" type="checkbox" formControlName="allow_comments" class="form-check-input"
+                        [ngClass]="{ 'is-invalid': itemForm.get('allow_comments')?.invalid && (itemForm.get('allow_comments')?.dirty || itemForm.get('allow_comments')?.touched) }"/>
+                        <label for="allow_comments"> Allow comments</label>
+                        <div *ngIf="itemForm.get('allow_comments')?.invalid && (itemForm.get('allow_comments')?.dirty || itemForm.get('allow_comments')?.touched)" class="invalid-feedback d-block" role="alert">
+                          <div *ngIf="itemForm.get('allow_comments')?.errors?.['required']">This field is required.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-end">
+                  <a routerLink="/media" class="btn btn-warning  me-1">Cancel</a>
+                  <button [disabled]="itemForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</section>

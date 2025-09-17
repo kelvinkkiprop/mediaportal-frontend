@@ -9,7 +9,8 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { ShowComponent } from './show/show.component';
 import { MediaCategoryRoutingModule } from './media-category-routing.module';
-
+// Add
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -30,6 +31,9 @@ import { MediaCategoryRoutingModule } from './media-category-routing.module';
 
     // import
     MediaCategoryRoutingModule,
+
+    // Add
+    InfiniteScrollModule
   ]
 })
 export class MediaCategoryModule { }

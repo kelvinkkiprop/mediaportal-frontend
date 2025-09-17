@@ -52,14 +52,9 @@ export const routes: Routes = [
           import('./components/users/user.module').then((m) => m.UserModule)
       },
       {
-        path: 'media-categories',
+        path: 'content-categories',
         loadChildren: () =>
           import('./components/mediaCategories/media-category.module').then((m) => m.MediaCategoryModule)
-      },
-      {
-        path: 'media-tags',
-        loadChildren: () =>
-          import('./components/mediaTags/media-tag.module').then((m) => m.MediaTagModule)
       },
       {
         path: 'media',

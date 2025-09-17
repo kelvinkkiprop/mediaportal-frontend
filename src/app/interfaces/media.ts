@@ -37,6 +37,12 @@ export interface Media {
   updated_at?: any,
 
 
+  tags?: any,
+  organization_id?: any,
+  date_produced?: any,
+  enable_comments?: any,
+
+
   type?: any,
   status?: any,
   visibility?: any,

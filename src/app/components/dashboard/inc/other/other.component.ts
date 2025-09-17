@@ -16,9 +16,9 @@ export class OtherComponent {
   itemForm: any
   item:any
 
-  mFeaturedMedia?: any[] = []
-  mRecommendedMedia?: any[] = []
   mLatestMedia?: any[] = []
+  mFeaturedMedia?: any[] = []
+  // mRecommendedMedia?: any[] = []
 
   constructor(
     private mToastrService: ToastrService,
@@ -36,9 +36,9 @@ export class OtherComponent {
     this.mDashboardService.dashboard2().subscribe({
       next: (response) => {
         if(response){
-          this.mFeaturedMedia = (response as any).data.featured_media
-          this.mRecommendedMedia = (response as any).data.recommended_media
           this.mLatestMedia = (response as any).data.latest_media
+          this.mFeaturedMedia = (response as any).data.featured_media
+          // this.mRecommendedMedia = (response as any).data.recommended_media
           this.mProgress = false;
         }
       },

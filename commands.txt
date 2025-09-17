@@ -77,6 +77,8 @@ ng generate component components/media/show
 ng generate component components/media/inc/read
 ng generate component components/media/inc/liked
 ng generate component components/media/inc/history
+ng generate component components/media/inc/analytics
+ng generate component components/media/inc/live-streams
 ng generate module components/media/media
 ng generate module components/media/mediaRouting
 
@@ -103,6 +105,7 @@ ng generate module components/about/about
 ng generate module components/about/aboutRouting
 
 ng generate component components/shared/progress
+ng generate component components/shared/loader
 ng generate component components/shared/videoCard
 ng generate component components/shared/hlsPlayer
 ng generate component components/shared/mediaCard
@@ -142,7 +145,7 @@ ng generate service services/media
 ng generate service services/live-stream
 ng generate service services/media-category
 ng generate service services/media-tag
-ng generate service services/interest
+ng generate service services/report
 ng generate service services/payment-method
 ng generate service services/institution
 ng generate service services/payment
@@ -456,3 +459,38 @@ export class AppModule {}
 "node_modules/quill/dist/quill.snow.css",
 =====================================================================================
 
+=====================================================================================
+D. APEX CHART
+1. Installation
+npm install apexcharts ng-apexcharts --legacy-peer-deps
+
+2. Module in app.module.ts
+import { NgApexchartsModule } from "ng-apexcharts";
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    NgApexchartsModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+=====================================================================================
+
+
+=====================================================================================
+E. INFINITE SCROLL
+1. Installation
+npm install ngx-infinite-scroll --legacy-peer-deps
+
+2. App.module.ts:
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+@NgModule({
+  imports: [
+    // ... other imports
+    InfiniteScrollModule
+  ]
+})
+export class AppModule {}
+=====================================================================================

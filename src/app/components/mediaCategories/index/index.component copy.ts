@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 // import
 import { ToastrService } from 'ngx-toastr';
 import swal from 'sweetalert2';
-import { ContentCategoryService } from '../../../services/content-category.service';
+import { MediaCategoryService } from '../../../services/content-category.service';
 
 @Component({
   selector: 'app-index',
@@ -23,18 +23,14 @@ export class IndexComponent {
   mProgress:boolean = false
   links:any= []
 
-  currentPage = 1;
-  mLoadingMore  = false;
-  mHasMorePages = true;
-
   constructor(
-    private mContentCategoryService: ContentCategoryService,
+    private mMediaCategoryService: MediaCategoryService,
     private mToastrService:ToastrService,
   ) { }
 
   ngOnInit(): void {
     //Call
-    this.index(this.currentPage)
+    this.index()
 
     //validation
     this.search_term = new FormControl('', Validators.required)
@@ -43,49 +39,54 @@ export class IndexComponent {
     })
   }
 
-
-  index(pageOrUrl?: any) {
-    // if a full URL is passed, use it; otherwise build it using currentPage
-    const url = typeof pageOrUrl === 'string'
-      ? pageOrUrl
-      : `?page=${this.currentPage}`;
-
-    this.mContentCategoryService.allItems(url).subscribe({
-      next: (res: any) => {
-        if (this.currentPage === 1) {
-          this.mItems = res.data;
-        } else {
-          this.mItems = [...this.mItems, ...res.data];
+  // index
+  index(){
+    this.mProgress = true
+    // console.log(formValues)
+    this.mProgress = true
+    this.mMediaCategoryService.allItems().subscribe({
+      next: (response) => {
+        if(response){
+          this.mItems = (response as any).data
+          // console.log(this.mItems)
+          this.links = (response as any).links
+          this.mProgress = false
         }
-
-        this.links = res.links;
-        this.mLoadingMore = false;
-
-        // ✅ Disable infinite scroll if there is no next page
-        const nextPage = this.links.find((l: { label: string }) => l.label === 'Next &raquo;');
-        this.mHasMorePages = !!nextPage?.url;
       },
-      error: () => {
-        this.mLoadingMore = false;
-        this.mHasMorePages = false;
+      error: (error ) => {
+        // console.log(error)
+        if(error.error.message){
+          this.mToastrService.error(error.error.message)
+        }
+        this.mProgress = false
       }
-    });
+    })
+
   }
 
+  // onChangePage
+  onChangePage(item:any){
+    // console.log(item)
+    this.mProgress = true
+    this.mMediaCategoryService.paginateItems(item).subscribe({
+      next: (response) => {
+        if(response){
+          // console.log(response)
+          this.mItems =(response as any).data
+          this.links = (response as any).links
+          this.mProgress = false
+        }
+      },
+      error: (error ) => {
+        // console.log(error)
+        if(error.error.message){
+          this.mToastrService.error(error.error.message)
+        }
+        this.mProgress = false
+      }
+    })
 
-onLoadMore() {
-  if (!this.mHasMorePages || this.mLoadingMore) return;
-
-  const nextPage = this.links.find((l: { label: string }) => l.label === 'Next &raquo;');
-  if (nextPage) {
-    this.mLoadingMore = true;
-    this.currentPage++;
-    this.index(nextPage); // ✅ Now this works with full URL
-  } else {
-    this.mHasMorePages = false;
   }
-}
-
 
   // onDelete
   onDelete(item:any){
@@ -112,7 +113,7 @@ onLoadMore() {
           //Delete
           if (result.isConfirmed) {
             this.mProgress = true
-            this.mContentCategoryService.deleteItem(item).subscribe({
+            this.mMediaCategoryService.deleteItem(item).subscribe({
               next: (response) => {
                 if(response){
                   // console.log(response)
@@ -137,7 +138,7 @@ onLoadMore() {
   // onSearch
   onSearch(formValues: any){
     this.mProgress = true
-    this.mContentCategoryService.searchItems(formValues).subscribe({
+    this.mMediaCategoryService.searchItems(formValues).subscribe({
       next: (response) => {
         if(response){
           this.mItems = (response as any).data

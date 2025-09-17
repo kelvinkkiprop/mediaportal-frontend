@@ -52,6 +52,16 @@
                       Playlist
                     </button>
                   </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link border-0 text-uppercase text-sm" routerLink="/media/live-streams" routerLinkActive="active" id="live-streams-tab" data-bs-toggle="tab" data-bs-target="#live-streams" type="button" role="tab" aria-controls="live-streams">
+                      Live Streams
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link border-0 text-uppercase text-sm" routerLink="/media/analytics" routerLinkActive="active" id="analytics-tab" data-bs-toggle="tab" data-bs-target="#analytics" type="button" role="tab" aria-controls="analytics">
+                      Analytics
+                    </button>
+                  </li>
                 </ul>
               </div>
               <div class="card-tools">
@@ -62,15 +72,15 @@
             </div>
             <div class="card-body p-0 m-0">
 
-              <div class="tab-content container py-3" id="myTabContent">
+              <div class="tab-content container-fluid p-3" id="myTabContent">
                 <div *ngIf="router.url === '/media/about'" class="tab-pane fade show active">
-                  <div class="mb-3 container">
+                  <div class="mb-3">
                     <label for="bio" class="form-label">Biography:</label>
                     <div class="text-muted">{{ mCurrentUser.bio }}</div>
                   </div>
                 </div>
                 <div *ngIf="router.url === '/media/index'" class="tab-pane fade show active">
-                  <div class="mb-3 container">
+                  <div class="mb-3">
                     <label for="uploads" class="form-label">Uploads:</label>
                     <div *ngIf="myMedia && myMedia.length>0; else noItemsTemplate" class="row row-cols-1 row-cols-md-3 g-4">
                       <div *ngFor="let item of myMedia" class="col">
@@ -81,6 +91,10 @@
                             <button (click)="onDelete(item)" type="button" class="btn btn-warning  btn-sm">Delete</button>
                           </div>
                           <app-media-card [data]="item"/>
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="badge rounded-pill" [ngClass]="{'bg-warning text-dark': item.status_id == 1, 'bg-primary': item.status_id == 2,'bg-danger': item.status_id == 3}"> {{ item.status?.name }}</span>
+                            <span class="text-end badge rounded-pill text-bg-success">Success</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -90,7 +104,7 @@
                   </div>
                 </div>
                 <div *ngIf="router.url === '/media/my-playlist'" class="tab-pane fade show active">
-                  <div class="mb-3 container">
+                  <div class="mb-3">
                     <label for="bio" class="form-label">Playlists:</label>
                     <div *ngIf="myPlaylists && myPlaylists.length>0; else noItemsTemplate" class="row row-cols-1 row-cols-md-3 g-4">
                       <div *ngFor="let item of myPlaylists" class="col">
@@ -102,6 +116,27 @@
                     <ng-template #noItemsTemplate>
                       <p class="p-5 text-center text-muted">No items</p>
                     </ng-template>
+                  </div>
+                </div>
+                <div *ngIf="router.url === '/media/live-streams'" class="tab-pane fade show active">
+                  <div class="mb-3">
+                    <label for="bio" class="form-label">Live Streams:</label>
+                    <div *ngIf="mLiveStreams && mLiveStreams.length>0; else noItemsTemplate" class="row row-cols-1 row-cols-md-3 g-4">
+                      <div *ngFor="let item of mLiveStreams" class="col">
+                        <a *ngIf="item" routerLink="/media/show/{{ item.id }}" class="text-decoration-none text-reset">
+                          <app-media-card [data]="item"/>
+                        </a>
+                      </div>
+                    </div>
+                    <ng-template #noItemsTemplate>
+                      <p class="p-5 text-center text-muted">No items</p>
+                    </ng-template>
+                  </div>
+                </div>
+                <div *ngIf="router.url === '/media/analytics'" class="tab-pane fade show active">
+                  <div class="mb-3">
+                    <label for="analytics" class="form-label">Analytics:</label>
+                    <app-analytics/>
                   </div>
                 </div>
               </div>

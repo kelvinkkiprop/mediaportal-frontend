@@ -25,6 +25,7 @@ export class ReadComponent {
 
   myMedia: any[] = []
   myPlaylists: any[] = []
+  mLiveStreams: any[] = []
 
   constructor(
     public mAuthService: AuthService,
@@ -49,6 +50,8 @@ export class ReadComponent {
         if(response){
           this.myMedia = (response as any).data.my_media
           this.myPlaylists = (response as any).data.my_playlists
+          this.myPlaylists = (response as any).data.my_playlists
+          this.mLiveStreams = (response as any).data.live_streams
           this.mProgress = false
         }
       },

@@ -1,11 +1,10 @@
-// import { Component } from '@angular/core';
 import { Component, HostListener } from '@angular/core';
-// import { UploadService } from '../../services/upload.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { lastValueFrom } from 'rxjs';
 import { UploadService } from '../../../services/upload.service';
 import { Router } from '@angular/router';
+import { MediaService } from '../../../services/media.service';
 
 @Component({
   selector: 'app-create',
@@ -16,17 +15,13 @@ import { Router } from '@angular/router';
 })
 export class CreateComponent {
 
-
-  // variables
-  selectedFile: any | null = null
-  // title:any = ''
-  // description = ''
-  progress = 0
-  isDragging = false
-
   // variables
   itemForm: any
   mProgress: boolean = false
+
+  selectedFile: any | null = null
+  progress = 0
+  isDragging = false
 
   constructor(
     public mToastrService: ToastrService,
@@ -37,17 +32,18 @@ export class CreateComponent {
     // validation
     this.itemForm = this.fb.group({
       title: ['', Validators.required],
-      description: ['', Validators.required],
     });
   }
 
-   // onSubmit
+  ngOnInit(): void {
+  }
+
+  // onSubmit
   onSubmit(formValues: any){
     // console.log(formValues);
     this.mProgress = true
     this.upload(formValues.title, formValues.description);
   }
-
   // drag
   @HostListener('dragover', ['$event']) onDragOver(e: DragEvent) { e.preventDefault(); this.isDragging = true; }
   @HostListener('dragleave', ['$event']) onDragLeave(e: DragEvent) { e.preventDefault(); this.isDragging = false; }
@@ -62,9 +58,8 @@ export class CreateComponent {
   // onFileSelected
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
-      // console.log(this.selectedFile)
+    // console.log(this.selectedFile)
   }
-
   // upload
   async upload(title:any, description:any) {
     // if (!this.selectedFile || this.itemForm.invalid) return;
@@ -92,7 +87,7 @@ export class CreateComponent {
       this.progress = Math.round(((i + 1) / totalChunks) * 100);
     }
 
-    await lastValueFrom(this.mUploadService.completeUpload(uploadId, totalChunks, title, description));
+    await lastValueFrom(this.mUploadService.completeUpload(uploadId, totalChunks, title));
     // alert('Upload complete!');
     this.mToastrService.success('Media uploaded complete!')
     this.router.navigateByUrl('/media');

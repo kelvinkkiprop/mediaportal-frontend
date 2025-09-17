@@ -120,6 +120,14 @@
                     <div class="col-md-12">
                       <div class="py-2">
                         <p [innerHTML]="item.description" class="justify-text" style="word-break: break-word; white-space: normal;"></p>
+                        <!-- <div>
+                          <label for="categories" class="text-muted me-2">Categories:</label>
+                          <div class="text-success" *ngFor="let cat of item.categories">{{ cat | json }}</div>
+                        </div> -->
+                        <div>
+                          <label for="tags" class="text-muted me-2">Tags:</label>
+                          <span class="text-success">{{ item.tags }}</span>
+                        </div>
                       </div>
                     </div>
                     <hr>
