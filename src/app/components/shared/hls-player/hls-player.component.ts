@@ -45,7 +45,8 @@ export class HlsPlayerComponent {
         // this.mHls.loadSource(this.item.file);
         // this.mHls.loadSource('http://localhost:8000/videos/335376e7-4afe-4759-a262-af27101af25a/master.m3u8');
         if(this.item.type_id==2){ //Live
-          this.mHls.loadSource(this.item.live_stream_link);
+          this.mHls.loadSource(this.item.full_hls_master);
+          // this.mHls.loadSource('https://stream.cms.konza.go.ke/hls/4cb2acf17b56da144625d26d2ef24ce3.m3u8');
         }else{
           this.mHls.loadSource(this.item.full_hls_master);
         }
