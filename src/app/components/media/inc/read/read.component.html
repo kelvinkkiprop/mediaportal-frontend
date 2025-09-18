@@ -131,6 +131,9 @@
                         <a *ngIf="item" routerLink="/media/show/{{ item.id }}" class="text-decoration-none text-reset">
                           <app-media-card [data]="item"/>
                         </a>
+                        <div class="no-wrap">
+                          <small>Stream Key: <span class="text-muted">{{ item.stream_key }}</span></small>
+                        </div>
                       </div>
                     </div>
                     <ng-template #noItemsTemplate>
