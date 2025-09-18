@@ -35,7 +35,6 @@ export class CreateComponent {
       description: ['', Validators.required],
       scheduled_at: ['', Validators.required],
       thumbnail: ['', Validators.required],
-      live_stream_link: ['', Validators.required],
     });
   }
 
@@ -49,7 +48,6 @@ let formData:any = new FormData()
     formData.append('title', formValues.title)
     formData.append('description', formValues.description)
     formData.append('scheduled_at', formValues.scheduled_at)
-    formData.append('live_stream_link', formValues.live_stream_link)
     // attachments
     formData.append('thumbnail', this.mThumbnailFile, this.mThumbnailFile?.name)
     formData.append('_method', 'POST');
@@ -61,7 +59,8 @@ let formData:any = new FormData()
         // console.log(response.status);
         if(response.status === 'success'){
           this.mToastrService.success((response as any).message);
-          this.router.navigateByUrl('/live-stream');
+          // this.router.navigateByUrl('/live-stream');
+          this.router.navigateByUrl('/media/live-streams');
           this.mProgress = false;
         }else{
           this.mToastrService.error((response as any).message);

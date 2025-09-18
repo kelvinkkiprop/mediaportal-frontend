@@ -78,17 +78,6 @@
                       <img [src]="mThumbnailPreviewFile" class="img-fluid rounded" style="max-height: 200px;" alt="Thumbnail Preview">
                     </div>
                   </div>
-                  <div class="col-md-12">
-                    <div class="mb-3">
-                      <label for="live_stream_link" class="form-label required">Live Stream Link:</label>
-                      <input type="text" formControlName="live_stream_link" class="form-control"
-                      [ngClass]="{ 'is-invalid': itemForm.get('live_stream_link')?.invalid && (itemForm.get('live_stream_link')?.dirty || itemForm.get('live_stream_link')?.touched) }"/>
-                      <div *ngIf="itemForm.get('live_stream_link')?.invalid && (itemForm.get('live_stream_link')?.dirty || itemForm.get('live_stream_link')?.touched)" class="invalid-feedback d-block" role="alert">
-                        <div *ngIf="itemForm.get('live_stream_link')?.errors?.['required']">This field is required.</div>
-                        <div *ngIf="itemForm.get('live_stream_link')?.errors?.['minlength']">Password must be at least 6 characters long.</div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 <div class="text-end">
                   <a routerLink="/live-stream" class="btn btn-warning me-1">Cancel</a>
