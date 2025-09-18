@@ -79,6 +79,7 @@ ng generate component components/media/inc/liked
 ng generate component components/media/inc/history
 ng generate component components/media/inc/analytics
 ng generate component components/media/inc/live-streams
+ng generate component components/media/inc/process
 ng generate module components/media/media
 ng generate module components/media/mediaRouting
 
@@ -250,66 +251,6 @@ npm install bootstrap-icons --save
 
 
 =====================================================================================
-D. Deploy Angular App to Apache Server
-1. Install Apache2:
--Install from here: http://httpd.apache.org/docs/current/install.htm
-
-2. Copy the dist/ folder in /var/www/ folder.
-
-3. Create Apache configuration file for angular app:
-$ sudo vim /etc/apache2/sites-available/angular_mediaportal.conf
-<VirtualHost *:80>
-  ServerName cms.konza.go.ke
-  ServerAdmin kkiprop@konza.go.ke
-  DocumentRoot /var/www/html/mediaportal-frontend/dist/mediaportal-frontend/browser
-  <Directory "/var/www/html/mediaportal-frontend/dist/mediaportal-frontend/browser">
-    AllowOverride All
-    Require all granted
-  </Directory>
-</VirtualHost>
-
-4. Enable angular.conf file using the following command:
-$ a2ensite angular_mediaportal.conf
-
-sudo chown -R username:groupname /path/to/angular/project
-
-4. Permissions
-chmod -R 755 /var/www/html/mediaportal-frontend
-
-5. Restart the apache service:
-sudo systemctl restart apache2
-sudo systemctl reload apache2
-
-6. Reference
-=====================================================================================
-
-
-=====================================================================================
-M. Deploy Angular App to Nginx Server
-1. Install snapd
-$ sudo snap install --classic certbot
-
-2. Remove certbot-auto
-$ sudo apt-get remove certbot
-
-3. Prepare the Certbot command
-$ sudo ln -s /snap/bin/certbot /usr/bin/certbot
-
-4. Choose how you'd like to run Certbot, Either get and install your certificates
-$ sudo certbot --apache
-
-5. Or, just get a certificate
-$ sudo certbot certonly --apache
-
-6. Test automatic renewal
-$ sudo certbot renew --dry-run
-
-7. Reference
-https://certbot.eff.org/instructions?ws=apache&os=snap
-=====================================================================================
-
-
-=====================================================================================
 M. Deploy Angular App to Nginx Server
 1. Install snapd
 $ sudo snap install --classic certbot
@@ -343,7 +284,7 @@ $ sudo vim /etc/nginx/sites-available/angular_mediaportal
 server {
   listen 80;
   server_name cms.konza.go.ke;
- root /var/www/html/mediaportal-frontend-test/dist/mediaportal-frontend/browser;
+ root /var/www/html/mediaportal-frontend/dist/mediaportal-frontend/browser;
   location / {
     try_files $uri $uri/ /index.html;
   }
@@ -361,8 +302,8 @@ $ sudo nginx -t
 $ sudo systemctl reload nginx
 
 5. Permissions
-sudo chmod -R 755 /var/www/html/mediaportal-frontend-test
-sudo chown -R www-data:www-data /var/www/html/mediaportal-frontend-test
+sudo chmod -R 755 /var/www/html/mediaportal-frontend
+sudo chown -R www-data:www-data /var/www/html/mediaportal-frontend
 
 6. Reference
 https://www.devdungeon.com/content/deploy-angular-apps-nginx

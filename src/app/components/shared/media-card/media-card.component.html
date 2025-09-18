@@ -5,7 +5,7 @@
      <div class="position-relative d-inline-block">
       <!-- <img [src]="'/images/placeholder_600_by_400.png'" width="100%" height="auto" alt="Thumbnail" class="img-fluid rounded ratio ratio-16x9"/> -->
       <img [src]="item?.thumbnail_url ? item.thumbnail_url : '/images/placeholder_600_by_400.png'" width="100%" height="auto" alt="Thumbnail" class="img-fluid rounded ratio ratio-16x9"/>
-      <span class="btn btn-outline-light btn-sm position-absolute bottom-0 end-0"><small>LIVE</small></span>
+      <span *ngIf="this.item?.type_id==2" class="btn btn-outline-light btn-sm position-absolute bottom-0 end-0"><small>{{ item.live_stream_status.name }}</small></span>
     </div>
   </div>
   <div class="col-md-12">

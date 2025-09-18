@@ -23,13 +23,13 @@
       <app-navbar-search/>
 
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
+        <li *ngIf="mAppContextService.hasRoles([1,2,3])" class="nav-item">
           <a routerLink="/media/create" class="nav-link">
             <i class="bi bi-upload"></i>
             <span class="d-none d-md-inline"> Upload</span>
           </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="mAppContextService.hasRoles([1,2,3])" class="nav-item">
           <a routerLink="/live-stream/create" class="nav-link">
             <i class="bi bi-broadcast"></i>
             <span class="d-none d-md-inline"> Go Live</span>
@@ -122,31 +122,13 @@
               <p>Home</p>
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a routerLink="/featured" routerLinkActive="active" class="nav-link">
-              <i class="nav-icon bi bi-star-fill"></i>
-              <p>Featured</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/recommended" routerLinkActive="active" class="nav-link">
-              <i class="nav-icon bi bi-check-lg"></i>
-              <p>Recommended</p>
-            </a>
-          </li> -->
-          <!-- <li class="nav-item">
-            <a routerLink="/media-tags" routerLinkActive="active" class="nav-link">
-              <i class="nav-icon bi bi-tag-fill"></i>
-              <p>Tags</p>
-            </a>
-          </li> -->
           <li class="nav-item">
             <a routerLink="/content-categories" routerLinkActive="active" class="nav-link">
               <i class="nav-icon bi bi-card-list"></i>
               <p>Categories</p>
             </a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="mAppContextService.hasRoles([1,2])" class="nav-item">
             <a routerLink="/users" routerLinkActive="active" class="nav-link">
               <i class="nav-icon bi bi-people-fill"></i>
               <p>Users</p>
@@ -159,13 +141,13 @@
               <p>Upload</p>
             </a>
           </li>
-          <li *ngIf="mAppContextService.hasRoles([1,2,3])" class="nav-item">
+          <li *ngIf="!mAppContextService.hasRoles([5])" class="nav-item">
             <a routerLink="/media" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
               <i class="nav-icon bi bi-collection-play-fill"></i>
               <p>My media</p>
             </a>
           </li>
-          <li *ngIf="mAppContextService.hasRoles([1,2,3])" class="nav-item">
+          <li class="nav-item">
             <a routerLink="/media/my-playlist" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
               <i class="nav-icon bi bi-play-btn-fill"></i>
               <p>My playlists</p>
@@ -227,46 +209,7 @@
 
   <!--===================================Main===================================-->
   <main class="app-main">
-
-    <!-- <div class="app-content-header">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6">
-            <h3 class="mb-0">Welcome to Anza Academy</h3>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-end">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="app-content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Sidebar Toggle Demo</h3>
-              </div>
-              <div class="card-body">
-                <p>Click the hamburger menu in the header to toggle the sidebar.</p>
-                <p>Sidebar is currently:
-                  <span class="badge" [class]="sidebarService.isCollapsed() ? 'bg-danger' : 'bg-primary'">
-                    {{ sidebarService.isCollapsed() ? 'Collapsed' : 'Expanded' }}
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
     <router-outlet/>
-
   </main>
   <!--===================================./Main===================================-->
 

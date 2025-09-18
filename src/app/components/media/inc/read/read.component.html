@@ -88,12 +88,17 @@
                           <div class="btn-group w-100 mb-1" role="group" aria-label="Basic mixed styles example">
                             <a routerLink="/media/show/{{item.id}}" class="btn btn-dark btn-sm">Show</a>
                             <a routerLink="/media/edit/{{item.id}}" class="btn btn-primary btn-sm">Edit</a>
-                            <button (click)="onDelete(item)" type="button" class="btn btn-warning  btn-sm">Delete</button>
+                            <button (click)="onDelete(item)" type="button" class="btn btn-warning btn-sm">Delete</button>
                           </div>
                           <app-media-card [data]="item"/>
-                          <div class="d-flex align-items-center gap-2">
+                          <div class="d-flex align-items-center1 gap-2">
                             <span class="badge rounded-pill" [ngClass]="{'bg-warning text-dark': item.status_id == 1, 'bg-primary': item.status_id == 2,'bg-danger': item.status_id == 3}"> {{ item.status?.name }}</span>
-                            <span class="text-end badge rounded-pill text-bg-success">Success</span>
+                            <span class="badge rounded-pill" [ngClass]="{'bg-secondary': item.media_status_id == 1, 'bg-warning text-dark': item.media_status_id == 2,'bg-dark': item.media_status_id == 3}"> {{ item.media_status?.name }}</span>
+                          </div>
+                          <div *ngIf="mAppContextService.hasRoles([1,2,4])" class="my-1">
+                            <a routerLink="/media/process/{{item.id}}" class="btn btn-primary btn-sm w-100">
+                              <i class="bi bi-pencil-square"></i> Process
+                            </a>
                           </div>
                         </div>
                       </div>

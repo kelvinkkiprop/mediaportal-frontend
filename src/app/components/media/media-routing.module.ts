@@ -10,6 +10,7 @@ import { LikedComponent } from './inc/liked/liked.component';
 import { HistoryComponent } from './inc/history/history.component';
 import { AnalyticsComponent } from './inc/analytics/analytics.component';
 import { LiveStreamsComponent } from './inc/live-streams/live-streams.component';
+import { ProcessComponent } from './inc/process/process.component';
 
 // Routes
 const routes: Routes = [
@@ -90,6 +91,14 @@ const routes: Routes = [
       title: 'Index'
     }
   },
+  {
+    path: 'process/:id',
+    component: ProcessComponent,
+    data: {
+      title: 'Show'
+    }
+  },
+
 
 ];
 

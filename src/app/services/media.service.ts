@@ -83,6 +83,10 @@ export class MediaService {
     const url =  `${environment.base_url}/media/${item.id}/comment`;
     return this.http.post<Media>(url, item, this.mAppContextService.getHttpOptions());
   }
+  processItem(item: any): Observable<Media>{
+    const url =  `${environment.base_url}/media/${item.id}/process`;
+    return this.http.post<Media>(url, item, this.mAppContextService.getHttpOptions());
+  }
 
 
 

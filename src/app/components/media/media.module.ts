@@ -17,6 +17,7 @@ import { LiveStreamsComponent } from './inc/live-streams/live-streams.component'
 import { AnalyticsComponent } from './inc/analytics/analytics.component';
 
 import { NgApexchartsModule } from "ng-apexcharts";
+import { ProcessComponent } from './inc/process/process.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
     LikedComponent,
     HistoryComponent,
     LiveStreamsComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    ProcessComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,6 @@ import { NgApexchartsModule } from "ng-apexcharts";
     FormsModule,
     ReactiveFormsModule,
     QuillModule.forRoot(),
-
 
     // import
     MediaRoutingModule,
