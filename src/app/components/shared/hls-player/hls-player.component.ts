@@ -32,6 +32,8 @@ export class HlsPlayerComponent {
   @Input() data!: any;
   item:any
 
+  mLastTap:number = 0;
+
   // ngOnChanges
   ngOnChanges(changes: SimpleChanges) {
     if (changes['data'] && this.data?.id) {
@@ -105,4 +107,79 @@ export class HlsPlayerComponent {
     }
   }
 
+  // onDoubleClick
+  onDoubleClick(): void {
+    this.toggleFullscreen();
+  }
+
+  // toggleFullscreen
+  private toggleFullscreen(): void {
+    const video = this.media.nativeElement;
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if ((video as any).webkitRequestFullscreen) {
+        (video as any).webkitRequestFullscreen();
+      } else if ((video as any).msRequestFullscreen) {
+        (video as any).msRequestFullscreen();
+      }
+    }
+  }
+
+  // TabCounts
+  onTouchEnd(event: TouchEvent): void {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - this.mLastTap;
+    if (tapLength < 300 && tapLength > 0) {
+      this.toggleFullscreen();
+      event.preventDefault();
+    }
+    this.mLastTap = currentTime;
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+// import Hls from 'hls.js';
+
+// @Component({
+//   selector: 'app-hls-player',
+//   templateUrl: './hls-player.component.html',
+//   styleUrls: ['./hls-player.component.css']
+// })
+// export class HlsPlayerComponent implements AfterViewInit {
+//   @ViewChild('video', { static: true }) videoRef!: ElementRef<HTMLVideoElement>;
+
+//   private lastTap = 0;
+//   private hlsUrl = 'https://example.com/live/playlist.m3u8'; // replace with your stream
+
+//   ngAfterViewInit(): void {
+//     const video = this.videoRef.nativeElement;
+
+//     if (Hls.isSupported()) {
+//       const hls = new Hls();
+//       hls.loadSource(this.hlsUrl);
+//       hls.attachMedia(video);
+//     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+//       video.src = this.hlsUrl;
+//     }
+//   }
+
+// }
