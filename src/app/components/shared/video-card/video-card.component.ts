@@ -27,7 +27,6 @@ export class VideoCardComponent implements OnChanges, AfterViewInit {
   // videoUrl: string = 'http://localhost:8000/storage/videos/processed/d050b5ce-dc6f-4646-a8bc-fddd6646a37f/master.m3u8';
   // videoUrl: string = 'http://localhost:8000/media/d050b5ce-dc6f-4646-a8bc-fddd6646a37f/master.m3u8';
 
-
   item:any
 
   constructor(
@@ -38,10 +37,8 @@ export class VideoCardComponent implements OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['data'] && this.data?.id) {
       // here you could set `this.videoUrl` dynamically
-
-
       this.item = this.data
-      console.log(this.item)
+      // console.log(this.item)
     }
   }
 

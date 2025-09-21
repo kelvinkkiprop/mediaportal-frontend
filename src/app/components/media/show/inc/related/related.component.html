@@ -1,0 +1,25 @@
+<div *ngIf="(mItems && mItems.length>0)">
+  <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
+    <div class="d-flex align-items-start justify-content-between mb-3">
+      <h6 class="mb-0">Up next</h6>
+      <div class="form-check form-switch">
+        <label class="form-check-label text-muted" for="switchCheckDefault">AUTOPLAY</label>
+        <input type="checkbox" class="form-check-input" formControlName="autoplay" [(ngModel)]="mCurrentUser.autoplay" (change)="onSubmit(itemForm.value)" [checked]="mCurrentUser.autoplay" [ngClass]="{'is-invalid': itemForm.get('autoplay')?.invalid && (itemForm.get('autoplay')?.dirty || itemForm.get('autoplay')?.touched)}">
+        <div *ngIf="itemForm.get('autoplay')?.invalid && (itemForm.get('autoplay')?.dirty || itemForm.get('autoplay')?.touched)" class="invalid-feedback d-block" role="alert">
+          <div *ngIf="itemForm.get('autoplay')?.errors?.['required']">This field is required.</div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150" [infiniteScrollDisabled]="!mHasMorePages || mLoadingMore" (scrolled)="onLoadMore()">
+    <div *ngFor="let item of mItems" class="mb-3">
+      <a routerLink="/media/show/{{ item.id }}" class="text-decoration-none text-reset">
+        <app-media-card [data]="item"/>
+      </a>
+    </div>
+  </div>
+  <div>
+    <app-loader *ngIf="mLoadingMore"/>
+    <!-- <p class="text-center text-muted p-2" *ngIf="!mHasMorePages">No more items</p> -->
+  </div>
+</div>

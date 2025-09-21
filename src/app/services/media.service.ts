@@ -58,6 +58,11 @@ export class MediaService {
 
 
 
+  relatedItems(page:any, id:any):Observable<Media[]>{
+    const url = `${environment.base_url}/related-media/${id}`;
+    return this.http.get<Media[]>(url+page, this.mAppContextService.getHttpOptions());
+  }
+
   myMedia(id:number){
     const url =  `${environment.base_url}/my-media/${id}`;
     return this.http.get<Media[]>(url, this.mAppContextService.getHttpOptions());

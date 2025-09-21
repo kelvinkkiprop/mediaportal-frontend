@@ -17,9 +17,10 @@ export interface User {
   county_id?: any,
   constituency_id?: any,
   ward_id?: any,
-  receive_notifications?: any,
 
   referral_code?: any,
+  autoplay?: any,
+  receive_notifications?: any,
 
   name?: any,
   role?: any,

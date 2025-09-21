@@ -103,7 +103,9 @@ export class AuthService {
           county_id: response.data.user.county_id,
           // dob: response.data.user.dob,
           // address: response.data.user.address,
+
           referral_code: response.data.user.referral_code,
+          autoplay: response.data.user.autoplay,
           receive_notifications: response.data.user.receive_notifications,
         }
         // store

@@ -1,6 +1,6 @@
 // import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild, AfterViewInit, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, Input, OnInit, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgCoreModule } from '@videogular/ngx-videogular/core';
@@ -33,6 +33,7 @@ export class HlsPlayerComponent {
   item:any
 
   mLastTap:number = 0;
+  @Output() mVideoEnded = new EventEmitter<void>();
 
   // ngOnChanges
   ngOnChanges(changes: SimpleChanges) {
@@ -41,36 +42,39 @@ export class HlsPlayerComponent {
       // console.log(this.item)
       if (Hls.isSupported()) {
         this.mHls = new Hls();
-        // this.mHls.loadSource('http://localhost:8000//storage/videos/processed/d050b5ce-dc6f-4646-a8bc-fddd6646a37f/master.m3u8');
-        // this.mHls.loadSource(this.item.file);
-        // this.mHls.loadSource('http://localhost:8000/videos/335376e7-4afe-4759-a262-af27101af25a/master.m3u8');
-        if(this.item.type_id==2){ //Live
-          this.mHls.loadSource(this.item.full_hls_master);
-          // this.mHls.loadSource('https://stream.cms.konza.go.ke/hls/4cb2acf17b56da144625d26d2ef24ce3.m3u8');
-        }else{
-          this.mHls.loadSource(this.item.full_hls_master);
-        }
+        // this.mHls.loadSource(this.item.full_hls_master);
         // this.mHls.loadSource("https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8");
+        this.mHls.loadSource("https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8");
         this.mHls.attachMedia(this.media.nativeElement);
         this.mHls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
           this.mQualities = data.levels.map((level: any) => level.height + 'p');
-          // // AUTOPLAY
-          // this.media.nativeElement.play().catch((err: any) => {
-          //   console.warn('Autoplay was blocked by browser:', err);
-          // });
-
+          // AUTOPLAY
+          this.media.nativeElement.play().catch((err: any) => {
+            console.warn('Autoplay was blocked by browser:', err);
+          });
         });
-      } else if (this.media.nativeElement.canPlayType('application/vnd.apple.mpegurl')) {
-        this.media.nativeElement.src = this.item.full_hls_master;
-        // this.media.nativeElement.src = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
-        // this.media.nativeElement.src ='http://localhost:8000/videos/335376e7-4afe-4759-a262-af27101af25a/master.m3u8';
-        // this.media.nativeElement.src = 'http://localhost:8000//storage/videos/processed/d050b5ce-dc6f-4646-a8bc-fddd6646a37f/master.m3u8';
-        // // AUTOPLAY
-        // this.media.nativeElement.play().catch((err: any) => {
-        //   console.warn('Autoplay was blocked by browser:', err);
-        // });
+
+        // Detect_when_video_ends
+        const video = this.media.nativeElement;
+        video.addEventListener('ended', () => {
+        // video.addEventListener('playing', () => {
+          // call
+          this.mVideoEnded.emit();
+          // console.log('playing..')
+        });
 
       }
+      // else if (this.media.nativeElement.canPlayType('application/vnd.apple.mpegurl')) {
+      //   this.media.nativeElement.src = this.item.full_hls_master;
+      //   // this.media.nativeElement.src = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+      //   // this.media.nativeElement.src ='http://localhost:8000/videos/335376e7-4afe-4759-a262-af27101af25a/master.m3u8';
+      //   // this.media.nativeElement.src = 'http://localhost:8000//storage/videos/processed/d050b5ce-dc6f-4646-a8bc-fddd6646a37f/master.m3u8';
+      //   // // AUTOPLAY
+      //   // this.media.nativeElement.play().catch((err: any) => {
+      //   //   console.warn('Autoplay was blocked by browser:', err);
+      //   // });
+
+      // }
     }
   }
 
@@ -141,46 +145,3 @@ export class HlsPlayerComponent {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
-// import Hls from 'hls.js';
-
-// @Component({
-//   selector: 'app-hls-player',
-//   templateUrl: './hls-player.component.html',
-//   styleUrls: ['./hls-player.component.css']
-// })
-// export class HlsPlayerComponent implements AfterViewInit {
-//   @ViewChild('video', { static: true }) videoRef!: ElementRef<HTMLVideoElement>;
-
-//   private lastTap = 0;
-//   private hlsUrl = 'https://example.com/live/playlist.m3u8'; // replace with your stream
-
-//   ngAfterViewInit(): void {
-//     const video = this.videoRef.nativeElement;
-
-//     if (Hls.isSupported()) {
-//       const hls = new Hls();
-//       hls.loadSource(this.hlsUrl);
-//       hls.attachMedia(video);
-//     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-//       video.src = this.hlsUrl;
-//     }
-//   }
-
-// }

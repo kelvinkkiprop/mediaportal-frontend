@@ -1,0 +1,94 @@
+<!-- <div class="col-md-12">
+  <div *ngIf="mComments && mComments.length>0">
+    <div *ngFor="let mComment of mComments; index as i" class="d-flex align-items-center mb-3">
+      <div class="rounded-circle bg-secondary text-muted d-flex justify-content-center align-items-center fw-bold1" style="width:32px; height:32px;">
+        {{ mContext.getInitials(mComment.user?.name) }}
+      </div>
+      <div class="ms-2">
+        <h6 class="fw-semibold1 mb-0">{{ mComment.user?.name }} <span class="text-xs text-muted">{{ mComment.readable_date}}</span></h6>
+        <div class="mt-0 text-muted justify-text">{{ mComment.text}}</div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
+      <div class="row g-2 align-items-start">
+        <label for="text" class="form-label required1">{{ item.total_comments }}</label>
+        <div class="col-auto">
+          <div class="rounded-circle bg-warning text-white d-flex justify-content-center align-items-center fw-bold" style="width:40px; height:40px;">
+            {{ mAppContextService.getInitials(mCurrentUser?.name) }}
+          </div>
+        </div>
+        <div class="col">
+          <input formControlName="text" class="form-control" [ngClass]="{'is-invalid': itemForm.get('text')?.invalid && (itemForm.get('text')?.dirty || itemForm.get('text')?.touched) }"/>
+          <div *ngIf="itemForm.get('text')?.invalid && (itemForm.get('text')?.dirty || itemForm.get('text')?.touched)" class="invalid-feedback d-block" role="alert">
+            <div *ngIf="itemForm.get('text')?.errors?.['required']">This field is required.</div>
+          </div>
+          <div class="text-end my-2">
+            <button [disabled]=" itemForm.invalid" type="submit" class="btn btn-primary btn-sm">Submit</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-12">
+    <div *ngIf="(mItems && mItems.length>0)">
+      <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150" [infiniteScrollDisabled]="!mHasMorePages || mLoadingMore" (scrolled)="onLoadMore()">
+        <div *ngFor="let item of mItems; let i = index" class="d-flex align-items-start mb-3">
+          <div class="rounded-circle bg-secondary text-light d-flex justify-content-center align-items-center fw-medium" style="width:32px; height:32px;">
+            {{ mAppContextService.getInitials(item.user?.name) }}
+          </div>
+          <div class="ms-2 flex-grow-1">
+            <div *ngIf="mEditIndex !== null;">
+              <div *ngIf="mEditIndex !== i">
+                {{ item.text }}
+              </div>
+              <div *ngIf="mEditIndex === i">
+                <form [formGroup]="mItemForm" (ngSubmit)="onUpdate(mItemForm.value, item.id)">
+                  <!-- <input [(ngModel)]="item.id" formControlName="comment_id" class="form-control form-control-sm" [ngClass]="{'is-invalid': mItemForm.get('comment_id')?.invalid && (mItemForm.get('comment_id')?.dirty || mItemForm.get('comment_id')?.touched) }"/>
+                  <div *ngIf="mItemForm.get('comment_id')?.invalid && (mItemForm.get('comment_id')?.dirty || mItemForm.get('comment_id')?.touched)" class="invalid-feedback d-block" role="alert">
+                    <div *ngIf="mItemForm.get('comment_id')?.errors?.['required']">This field is required.</div>
+                  </div> -->
+                  <input [(ngModel)]="item.text" formControlName="comment_text" class="form-control form-control-sm" [ngClass]="{'is-invalid': mItemForm.get('comment_text')?.invalid && (mItemForm.get('comment_text')?.dirty || mItemForm.get('comment_text')?.touched) }"/>
+                  <div *ngIf="mItemForm.get('comment_text')?.invalid && (mItemForm.get('comment_text')?.dirty || mItemForm.get('comment_text')?.touched)" class="invalid-feedback d-block" role="alert">
+                    <div *ngIf="mItemForm.get('comment_text')?.errors?.['required']">This field is required.</div>
+                  </div>
+                  <div class="text-end my-2">
+                    <button (click)="onCancelEdit()" type="button" class="btn btn-light btn-sm me-1">Cancel</button>
+                    <button [disabled]=" mItemForm.invalid" type="submit" class="btn btn-primary btn-sm">Save</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div *ngIf="mEditIndex !== i;">
+              <h6 class="fw-semibold1 mb-0">{{ item?.user?.name }} <span class="text-xs text-muted">{{ item.readable_date}}</span></h6>
+              <div class="mt-0 text-muted justify-text">{{ item.text}}</div>
+            </div>
+          </div>
+          <div class="ms-auto d-flex align-items-start">
+            <div class="dropdown" *ngIf="mCurrentUser.id==item.user?.id">
+              <span class="p-0 border-0 bg-transparent" data-bs-toggle="dropdown" type="button">
+                <i class="bi bi-three-dots-vertical"></i>
+              </span>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item"(click)="onStartEdit(i)"><i class="bi bi-pencil"></i> Edit</a></li>
+                <li><a class="dropdown-item" (click)="onDelete(item)"><i class="bi bi-trash2"></i> Delete</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <app-loader *ngIf="mLoadingMore"/>
+        <!-- <p class="text-center text-muted p-2" *ngIf="!mHasMorePages">No comments yet. Be the first!</p> -->
+        <!-- <p class="text-center text-muted p-2" *ngIf="!mHasMorePages && mItems.length == 0">
+          No comments yet. Be the first!
+        </p> -->
+      </div>
+    </div>
+  </div>
+</div>

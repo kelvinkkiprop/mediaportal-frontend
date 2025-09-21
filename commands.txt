@@ -74,6 +74,8 @@ ng generate component components/media/index
 ng generate component components/media/create
 ng generate component components/media/edit
 ng generate component components/media/show
+ng generate component components/media/show/inc/related
+ng generate component components/media/show/inc/comments
 ng generate component components/media/inc/read
 ng generate component components/media/inc/liked
 ng generate component components/media/inc/history
@@ -110,6 +112,7 @@ ng generate component components/shared/loader
 ng generate component components/shared/videoCard
 ng generate component components/shared/hlsPlayer
 ng generate component components/shared/mediaCard
+ng generate component components/shared/shakaPlayer
 
 ng generate module components/shared/shared
 
@@ -143,6 +146,7 @@ ng generate service services/dashboard
 ng generate service services/theme
 ng generate service services/course
 ng generate service services/media
+ng generate service services/comment
 ng generate service services/live-stream
 ng generate service services/media-category
 ng generate service services/media-tag
@@ -163,6 +167,7 @@ ng generate interface interfaces/interest
 ng generate interface interfaces/payment-method
 ng generate interface interfaces/institution
 ng generate interface interfaces/payment
+ng generate interface interfaces/comment
 
 8. Guards
 ng generate guard guards/auth
@@ -434,4 +439,93 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   ]
 })
 export class AppModule {}
+=====================================================================================
+
+
+=====================================================================================
+F. SHAKA PLAYER
+1️⃣ Installation
+npm install shaka-player --legacy-peer-deps
+
+2️⃣ Create a Video Player Component
+ng generate component components/shared/shaka-player
+
+3️⃣ Component Code (TypeScript)
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import * as shaka from 'shaka-player';
+
+@Component({
+  selector: 'app-shaka-player',
+  templateUrl: './shaka-player.component.html',
+  styleUrls: ['./shaka-player.component.scss']
+})
+export class ShakaPlayerComponent implements OnInit, OnDestroy {
+  @ViewChild('video', { static: true }) videoElement!: ElementRef<HTMLVideoElement>;
+  player!: shaka.Player;
+
+  ngOnInit() {
+    this.initPlayer();
+  }
+
+  async initPlayer() {
+    // Install shaka polyfills
+    shaka.polyfill.installAll();
+
+    if (!shaka.Player.isBrowserSupported()) {
+      console.error('Browser not supported!');
+      return;
+    }
+
+    this.player = new shaka.Player(this.videoElement.nativeElement);
+
+    // Listen for error events.
+    this.player.addEventListener('error', this.onErrorEvent);
+
+    try {
+      // Replace with your HLS or DASH stream URL
+      await this.player.load('https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd');
+      console.log('The video has now been loaded!');
+    } catch (error) {
+      this.onError(error);
+    }
+  }
+
+  onErrorEvent = (event: any) => {
+    this.onError(event.detail);
+  };
+
+  onError(error: any) {
+    console.error('Error code', error.code, 'object', error);
+  }
+
+  ngOnDestroy() {
+    if (this.player) {
+      this.player.destroy();
+    }
+  }
+}
+
+4️⃣ Component Template (HTML)
+shaka-player.component.html:
+
+<div class="shaka-container">
+  <video #video width="100%" controls autoplay></video>
+</div>
+
+5️⃣ Style (Optional)
+.shaka-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: black;
+  border-radius: 8px;
+  overflow: hidden;
+}
+video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+6️⃣ Use the Component
+<app-shaka-player></app-shaka-player>
 =====================================================================================

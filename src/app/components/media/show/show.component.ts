@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { MediaService } from '../../../services/media.service';
 import { AppContextService } from '../../../core/app-context.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { MediaService } from '../../../services/media.service';
+// Add
+import { RelatedComponent } from './inc/related/related.component';
 
 @Component({
   selector: 'app-show',
@@ -20,10 +22,11 @@ export class ShowComponent {
 
   mCurrentUrl:any = ''
   mItem:any = ''
-  mComments:any = ''
 
   itemForm: any
   mProgress: boolean = false
+
+  @ViewChild('mRelatedComponent') mRelatedComponent!: RelatedComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,14 +34,7 @@ export class ShowComponent {
     private mToastrService: ToastrService,
     public mContext: AppContextService,
     private router: Router,
-    private fb: FormBuilder,
-  ) {
-    // validation
-    this.itemForm = this.fb.group({
-      text: ['', Validators.required],
-    });
-
-   }
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -60,7 +56,6 @@ export class ShowComponent {
           this.item = response as any
           // console.log(this.item)
           this.mItem = this.item
-          this.mComments = this.item.comments
           this.mProgress = false
         }
       },
@@ -116,34 +111,11 @@ export class ShowComponent {
     });
   }
 
-  // onSubmit
-  onSubmit(formValues: any){
-    const item: any = {
-      id: this.item.id,
-      text: formValues.text,
-    };
-    // this.mProgress = true
-    this.mMediaService.commentItem(item).subscribe({
-    next: (response) => {
-      if(response){
-        if((response as any).status === 'success'){
-            // console.log(response)
-            this.mComments = (response as any).data.comments
-            this.mItem = (response as any).data
-            this.itemForm.reset()
-            this.mToastrService.success((response as any).message)
-          }
-          // this.mProgress = false
-        }
-      },
-      error: (error ) => {
-        // console.log(error)
-        if(error.error.message){
-          this.mToastrService.error(error.error.message)
-        }
-        // this.mProgress = false
-      }
-    })
+  // onVideoEnded
+  onVideoEnded() {
+    if (this.mRelatedComponent) {
+      this.mRelatedComponent.playNextVideo();
+    }
   }
 
 }

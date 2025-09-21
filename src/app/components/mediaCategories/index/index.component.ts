@@ -73,18 +73,19 @@ export class IndexComponent {
   }
 
 
-onLoadMore() {
-  if (!this.mHasMorePages || this.mLoadingMore) return;
+  // onLoadMore
+  onLoadMore() {
+    if (!this.mHasMorePages || this.mLoadingMore) return;
 
-  const nextPage = this.links.find((l: { label: string }) => l.label === 'Next &raquo;');
-  if (nextPage) {
-    this.mLoadingMore = true;
-    this.currentPage++;
-    this.index(nextPage); // ✅ Now this works with full URL
-  } else {
-    this.mHasMorePages = false;
+    const nextPage = this.links.find((l: { label: string }) => l.label === 'Next &raquo;');
+    if (nextPage) {
+      this.mLoadingMore = true;
+      this.currentPage++;
+      this.index(nextPage); // ✅ Now this works with full URL
+    } else {
+      this.mHasMorePages = false;
+    }
   }
-}
 
 
   // onDelete

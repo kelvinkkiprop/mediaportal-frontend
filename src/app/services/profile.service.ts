@@ -59,11 +59,6 @@ export class ProfileService {
 
 
 
-  updateNotifications(item: Profile): Observable<Profile>{
-    const url =  `${environment.base_url}/update-notification-profiles`;
-    return this.http.post<Profile>(url, item, this.mAppContextService.getHttpOptions());
-  }
-
   filterConstituencies(id:number){
     const url = `${environment.base_url}/filter-constituencies/${id}`;
     return this.http.get<Profile[]>(url, this.mAppContextService.getHttpOptions());
@@ -72,6 +67,16 @@ export class ProfileService {
   filterWards(id:number, constituency_id:number){
     const url = `${environment.base_url}/filter-wards/${id}/${constituency_id}`;
     return this.http.get<Profile[]>(url, this.mAppContextService.getHttpOptions());
+  }
+
+
+  updateNotifications(item: Profile): Observable<Profile>{
+    const url =  `${environment.base_url}/update-notification-profiles`;
+    return this.http.post<Profile>(url, item, this.mAppContextService.getHttpOptions());
+  }
+  updateAutoplay(item: Profile): Observable<Profile>{
+    const url =  `${environment.base_url}/update-autoplay-profiles`;
+    return this.http.post<Profile>(url, item, this.mAppContextService.getHttpOptions());
   }
 
 }

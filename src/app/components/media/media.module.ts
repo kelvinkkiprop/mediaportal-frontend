@@ -18,6 +18,9 @@ import { AnalyticsComponent } from './inc/analytics/analytics.component';
 
 import { NgApexchartsModule } from "ng-apexcharts";
 import { ProcessComponent } from './inc/process/process.component';
+import { RelatedComponent } from './show/inc/related/related.component';
+import { CommentsComponent } from './show/inc/comments/comments.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -27,11 +30,15 @@ import { ProcessComponent } from './inc/process/process.component';
     EditComponent,
     ShowComponent,
     ReadComponent,
+
     LikedComponent,
     HistoryComponent,
     LiveStreamsComponent,
     AnalyticsComponent,
-    ProcessComponent
+    ProcessComponent,
+
+    RelatedComponent,
+    CommentsComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +52,8 @@ import { ProcessComponent } from './inc/process/process.component';
     SharedModule,
 
     // Add
-    NgApexchartsModule
+    NgApexchartsModule,
+    InfiniteScrollModule
   ]
 })
 export class MediaModule { }

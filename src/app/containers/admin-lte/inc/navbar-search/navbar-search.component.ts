@@ -38,7 +38,7 @@ export class NavbarSearchComponent {
 
   onSelect(suggestion: any) {
     // this.router.navigate(['/media/show', suggestion.id]);
-    this.router.navigate(['/media/'+suggestion.id+'/show']);
+    this.router.navigate(['/media/show/'+suggestion.id]);
     this.query = '';
     this.suggestions = [];
     this.showSuggestions = false; // 👈 hide dropdown

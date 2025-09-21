@@ -5,6 +5,7 @@ import { MediaCardComponent } from './media-card/media-card.component';
 import { ProgressComponent } from './progress/progress.component';
 import { VideoCardComponent } from './video-card/video-card.component';
 import { LoaderComponent } from './loader/loader.component';
+import { ShakaPlayerComponent } from './shaka-player/shaka-player.component';
 
 @NgModule({
   declarations: [
@@ -13,16 +14,19 @@ import { LoaderComponent } from './loader/loader.component';
     // CommonModule,
     ProgressComponent,
     LoaderComponent,
-    HlsPlayerComponent,
     VideoCardComponent,
-    MediaCardComponent
+    MediaCardComponent,
+    HlsPlayerComponent,
+    HlsPlayerComponent,
+    ShakaPlayerComponent
   ],
   exports: [
     ProgressComponent,
     LoaderComponent,
-    HlsPlayerComponent,
     VideoCardComponent,
-    MediaCardComponent
+    MediaCardComponent,
+    HlsPlayerComponent,
+    ShakaPlayerComponent,
   ],
 })
 export class SharedModule {}

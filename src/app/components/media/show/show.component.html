@@ -35,75 +35,76 @@
             <div class="card-body p-0 m-0">
 
               <div class="row">
-                <div class="col-md-9">
-                  <!-- <app-video-card *ngIf="item" [data]="item"/> -->
-                  <app-hls-player *ngIf="item" [data]="item"/>
+                <div class="col-md-9 order-md-1">
                   <div class="row">
+                    <div class="col-md-12">
+                      <!-- <app-video-card *ngIf="item" [data]="item"/> -->
+                      <!-- <app-shaka-player/> -->
+                      <app-hls-player *ngIf="item" [data]="item" (mVideoEnded)="onVideoEnded()"/>
+                    </div>
                     <div class="col-md-12">
                       <h6 class="fw-bold1 card-title1">{{ item.title }}</h6>
                     </div>
-                    <div class="col-md-12">
-                      <div class="row">
-                        <div class="col-6">
-                          {{ item.total_views}}
-                        </div>
-                        <div class="col-6">
-                          <div class="d-flex justify-content-end">
-                              <span (click)="toggleReact(item, 1)" >
-                                <span [ngClass]="{ 'text-primary': mItem.is_liked }">
-                                  <i class="bi me-2"
-                                    [ngClass]="mItem.is_liked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'">
-                                  </i>{{ mItem.likes_count }}
-                                </span>
-                              </span>
-                              <span (click)="toggleReact(item, 2)" class="mx-4">
-                                <span [ngClass]="{ 'text-warning': mItem.is_disliked }">
-                                  <i class="bi me-2"
-                                    [ngClass]="mItem.is_disliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'">
-                                  </i>{{ mItem.dislikes_count }}
-                                </span>
-                              </span>
-                              <span data-bs-toggle="modal" data-bs-target="#modal">
-                                <i class="bi bi-share-fill me-2"></i><span>SHARE</span>
-                              </span>
-                              <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="staticBackdropLabel">Share media</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <div class="d-flex justify-content-center gap-3">
-                                        <a [href]="'https://www.facebook.com/sharer/sharer.php?u='+mCurrentUrl" target="_blank" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                                          <i class="bi bi-facebook fs-4"></i>
-                                        </a>
-                                        <a [href]="'https://twitter.com/intent/tweet?url='+mCurrentUrl"
-                                          target="_blank"
-                                          class="btn btn-outline-info rounded-circle d-flex align-items-center justify-content-center"
-                                          style="width: 48px; height: 48px;">
-                                          <i class="bi bi-twitter fs-4"></i>
-                                        </a>
-                                        <a [href]="'https://www.linkedin.com/shareArticle?url='+mCurrentUrl" target="_blank" class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                                          <i class="bi bi-linkedin fs-4"></i>
-                                        </a>
-                                        <a [href]="'https://wa.me/?text='+mCurrentUrl" target="_blank" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                                          <i class="bi bi-whatsapp fs-4"></i>
-                                        </a>
-                                      </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <div class="input-group mb-3">
-                                        <input type="text" class="form-control" [(ngModel)]="mCurrentUrl" readonly/>
-                                        <div class="input-group-text text-primary" (click)="copyUrl()">COPY</div>
-                                      </div>
-                                    </div>
+                    <div class="col-6">
+                      {{ item.total_views}}
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex justify-content-end">
+                          <span (click)="toggleReact(item, 1)" >
+                            <span [ngClass]="{ 'text-primary': mItem.is_liked }">
+                              <i class="bi me-2"
+                                [ngClass]="mItem.is_liked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up'">
+                              </i>{{ mItem.likes_count }}
+                            </span>
+                          </span>
+                          <span (click)="toggleReact(item, 2)" class="mx-4">
+                            <span [ngClass]="{ 'text-warning': mItem.is_disliked }">
+                              <i class="bi me-2"
+                                [ngClass]="mItem.is_disliked ? 'bi-hand-thumbs-down-fill' : 'bi-hand-thumbs-down'">
+                              </i>{{ mItem.dislikes_count }}
+                            </span>
+                          </span>
+                          <span data-bs-toggle="modal" data-bs-target="#modal">
+                            <i class="bi bi-share-fill me-2"></i><span>SHARE</span>
+                          </span>
+                          <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="staticBackdropLabel">Share media</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="d-flex justify-content-center gap-3">
+                                    <a [href]="'https://www.facebook.com/sharer/sharer.php?u='+mCurrentUrl" target="_blank" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                      <i class="bi bi-facebook fs-4"></i>
+                                    </a>
+                                    <a [href]="'https://twitter.com/intent/tweet?url='+mCurrentUrl"
+                                      target="_blank"
+                                      class="btn btn-outline-info rounded-circle d-flex align-items-center justify-content-center"
+                                      style="width: 48px; height: 48px;">
+                                      <i class="bi bi-twitter fs-4"></i>
+                                    </a>
+                                    <a [href]="'https://www.linkedin.com/shareArticle?url='+mCurrentUrl" target="_blank" class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                      <i class="bi bi-linkedin fs-4"></i>
+                                    </a>
+                                    <a [href]="'https://wa.me/?text='+mCurrentUrl" target="_blank" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                      <i class="bi bi-whatsapp fs-4"></i>
+                                    </a>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <div class="input-group mb-3">
+                                    <input type="text" class="form-control" [(ngModel)]="mCurrentUrl" readonly/>
+                                    <div class="input-group-text text-primary" (click)="copyUrl()">COPY</div>
                                   </div>
                                 </div>
                               </div>
                             </div>
+                          </div>
                         </div>
-                      </div>
+                    </div>
+                    <div class="col-md-12">
                       <hr>
                     </div>
                     <div class="col-md-12">
@@ -120,53 +121,28 @@
                     <div class="col-md-12">
                       <div class="py-2">
                         <p [innerHTML]="item.description" class="justify-text" style="word-break: break-word; white-space: normal;"></p>
-                        <!-- <div>
+                        <div>
                           <label for="categories" class="text-muted me-2">Categories:</label>
-                          <div class="text-success" *ngFor="let cat of item.categories">{{ cat | json }}</div>
-                        </div> -->
+                          <span class="text-primary" *ngFor="let cat of item.categories; let last = last">
+                              {{ cat.name }}<span *ngIf="!last">,</span>
+                            </span>
+                        </div>
                         <div>
                           <label for="tags" class="text-muted me-2">Tags:</label>
                           <span class="text-primary">{{ item.tags }}</span>
                         </div>
                       </div>
                     </div>
-                    <hr>
                     <div class="col-md-12">
-                      <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
-                        <div class="row g-2 align-items-start">
-                          <label for="text" class="form-label required1">{{ mItem.total_comments }}</label>
-                          <div class="col-auto">
-                            <div class="rounded-circle bg-warning text-white d-flex justify-content-center align-items-center fw-bold" style="width:40px; height:40px;">
-                              {{ mContext.getInitials(item.user?.name) }}
-                            </div>
-                          </div>
-                          <div class="col">
-                            <input formControlName="text" class="form-control" [ngClass]="{'is-invalid': itemForm.get('text')?.invalid && (itemForm.get('text')?.dirty || itemForm.get('text')?.touched) }"/>
-                            <div *ngIf="itemForm.get('text')?.invalid && (itemForm.get('text')?.dirty || itemForm.get('text')?.touched)" class="invalid-feedback d-block" role="alert">
-                              <div *ngIf="itemForm.get('text')?.errors?.['required']">This field is required.</div>
-                            </div>
-                            <div class="text-end my-2">
-                              <button [disabled]=" itemForm.invalid" type="submit" class="btn btn-primary btn-sm">Submit</button>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
+                      <hr>
                     </div>
                     <div class="col-md-12">
-                      <div *ngIf="mComments && mComments.length>0">
-                        <div *ngFor="let mComment of mComments; index as i" class="d-flex align-items-center mb-3">
-                          <div class="rounded-circle bg-secondary text-muted d-flex justify-content-center align-items-center fw-bold1" style="width:32px; height:32px;">
-                            {{ mContext.getInitials(mComment.user?.name) }}
-                          </div>
-                          <div class="ms-2">
-                            <h6 class="fw-semibold1 mb-0">{{ mComment.user?.name }} <span class="text-xs text-muted">{{ mComment.readable_date}}</span></h6>
-                            <div class="mt-0 text-muted justify-text">{{ mComment.text}}</div>
-                          </div>
-                        </div>
-                      </div>
+                      <app-comments *ngIf="item" [data]="item"/>
                     </div>
-
                   </div>
+                </div>
+                <div class="col-md-3 order-md-2">
+                  <app-related #mRelatedComponent *ngIf="item" [data]="item"/>
                 </div>
               </div>
 
