@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ContentCategoryService } from '../../../services/content-category.service';
+import { CategoryService } from '../../../services/category.service';
 
 @Component({
   selector: 'app-create',
@@ -20,7 +20,7 @@ export class CreateComponent {
 
   constructor(
     public mToastrService: ToastrService,
-    public mContentCategoryService: ContentCategoryService,
+    public mCategoryService: CategoryService,
     private router: Router,
     private fb: FormBuilder
   ) {
@@ -34,12 +34,12 @@ export class CreateComponent {
   onSubmit(formValues: any){
     // console.log(formValues);
     this.mProgress = true
-    this.mContentCategoryService.createItem(formValues).subscribe({
+    this.mCategoryService.createItem(formValues).subscribe({
       next: (response) => {
         // console.log(response.status);
         if(response.status === 'success'){
           this.mToastrService.success((response as any).message);
-          this.router.navigateByUrl('/content-categories');
+          this.router.navigateByUrl('/categories');
           this.mProgress = false;
         }else{
           this.mToastrService.error((response as any).message);

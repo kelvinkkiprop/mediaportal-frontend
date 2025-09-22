@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ContentCategoryService } from '../../../services/content-category.service';
-import { ContentCategory } from '../../../interfaces/content-category';
+import { Category } from '../../../interfaces/category';
+import { CategoryService } from '../../../services/category.service';
 
 @Component({
   selector: 'app-edit',
@@ -20,11 +20,11 @@ export class EditComponent {
   mProgress: boolean = false;
 
   id:any
-  item:ContentCategory = {}
+  item:Category = {}
 
   constructor(
     public mToastrService: ToastrService,
-    public mContentCategoryService: ContentCategoryService,
+    public mCategoryService: CategoryService,
     private router: Router,
     private fb: FormBuilder,
     private route: ActivatedRoute
@@ -39,7 +39,7 @@ export class EditComponent {
     this.id = this.route.snapshot.paramMap.get('id')
     // this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.mProgress = true
-    this.mContentCategoryService.getOneItem(this.id).subscribe({
+    this.mCategoryService.getOneItem(this.id).subscribe({
       next: (response) => {
         if(response){
           this.item = response as any
@@ -66,12 +66,12 @@ export class EditComponent {
       name: formValues.name,
     }
     this.mProgress = true
-    this.mContentCategoryService.updateItem(item).subscribe({
+    this.mCategoryService.updateItem(item).subscribe({
       next: (response) => {
         if(response){
           // console.log(response);
           this.mToastrService.success((response as any).message);
-          this.router.navigateByUrl('/content-categories');
+          this.router.navigateByUrl('/categories');
           this.mProgress = false
         }
       },

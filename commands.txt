@@ -56,12 +56,12 @@ ng generate component components/profiles/show
 ng generate module components/profiles/profile
 ng generate module components/profiles/profileRouting
 
-ng generate component components/mediaCategories/index
-ng generate component components/mediaCategories/create
-ng generate component components/mediaCategories/edit
-ng generate component components/mediaCategories/show
-ng generate module components/mediaCategories/mediaCategory
-ng generate module components/mediaCategories/mediaCategoryRouting
+ng generate component components/categories/index
+ng generate component components/categories/create
+ng generate component components/categories/edit
+ng generate component components/categories/show
+ng generate module components/categories/category
+ng generate module components/categories/categoryRouting
 
 ng generate component components/mediaTags/index
 ng generate component components/mediaTags/create
@@ -85,12 +85,12 @@ ng generate component components/media/inc/process
 ng generate module components/media/media
 ng generate module components/media/mediaRouting
 
-ng generate component components/liveStream/index
-ng generate component components/liveStream/create
-ng generate component components/liveStream/edit
-ng generate component components/liveStream/show
-ng generate module components/liveStream/liveStream
-ng generate module components/liveStream/liveStreamRouting
+ng generate component components/live-stream/index
+ng generate component components/live-stream/create
+ng generate component components/live-stream/edit
+ng generate component components/live-stream/show
+ng generate module components/live-stream/live-stream
+ng generate module components/live-stream/live-streamRouting
 
 ng generate component components/payments/index
 ng generate component components/payments/create

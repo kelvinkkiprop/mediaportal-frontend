@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 // import
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ContentCategoryService } from '../../../services/content-category.service';
+import { CategoryService } from '../../../services/category.service';
 
 @Component({
   selector: 'app-show',
@@ -28,8 +28,7 @@ export class ShowComponent {
 
   constructor(
     public mToastrService: ToastrService,
-    public mContentCategoryService: ContentCategoryService,
-    private router: Router,
+    public mCategoryService: CategoryService,
     private route: ActivatedRoute
   ) { }
 
@@ -37,7 +36,7 @@ export class ShowComponent {
     this.id = this.route.snapshot.paramMap.get('id')
     // this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.mProgress = true
-    this.mContentCategoryService.getOneItem(this.id).subscribe({
+    this.mCategoryService.getOneItem(this.id).subscribe({
       next: (response) => {
         if(response){
           this.item = response
@@ -62,7 +61,7 @@ export class ShowComponent {
     if (this.currentPage === 1) this.mProgress = true;
     const url = typeof pageOrUrl === 'string' ? pageOrUrl : `?page=${this.currentPage}`;
 
-    this.mContentCategoryService.categorizedItems(url, this.item.id).subscribe({
+    this.mCategoryService.categorizedItems(url, this.item.id).subscribe({
       next: (res: any) => {
         if (this.currentPage === 1) {
           this.mItems = res.data;

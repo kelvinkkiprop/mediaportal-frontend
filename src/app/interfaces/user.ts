@@ -14,6 +14,10 @@ export interface User {
   password?: any,
 
   // profile
+  bio?: any,
+  organization_category_id?: any,
+  organization_id?: any,
+
   county_id?: any,
   constituency_id?: any,
   ward_id?: any,

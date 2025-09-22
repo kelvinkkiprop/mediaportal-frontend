@@ -123,13 +123,13 @@
                         <p [innerHTML]="item.description" class="justify-text" style="word-break: break-word; white-space: normal;"></p>
                         <div>
                           <label for="categories" class="text-muted me-2">Categories:</label>
-                          <span class="text-primary" *ngFor="let cat of item.categories; let last = last">
+                          <a *ngFor="let cat of item.media_categories; let last = last" routerLink="/categories/show/{{cat.category_id}}" class="text-decoration-none">
                               {{ cat.name }}<span *ngIf="!last">,</span>
-                            </span>
+                            </a>
                         </div>
                         <div>
                           <label for="tags" class="text-muted me-2">Tags:</label>
-                          <span class="text-primary">{{ item.tags }}</span>
+                          <a href="#" (click)="$event.preventDefault()"  class="text-decoration-none">{{ item.tags }}</a>
                         </div>
                       </div>
                     </div>

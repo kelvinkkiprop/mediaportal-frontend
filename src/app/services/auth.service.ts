@@ -104,6 +104,8 @@ export class AuthService {
           // dob: response.data.user.dob,
           // address: response.data.user.address,
 
+          bio: response.data.user.bio,
+
           referral_code: response.data.user.referral_code,
           autoplay: response.data.user.autoplay,
           receive_notifications: response.data.user.receive_notifications,

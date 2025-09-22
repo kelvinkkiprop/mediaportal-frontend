@@ -22,6 +22,8 @@ export class EditComponent {
 
   mRoles:any
   mStatuses:any
+  mOrganizationCategories:any
+  mOrganizations:any
 
   id:any
   item:User = {}
@@ -41,6 +43,8 @@ export class EditComponent {
       email: ['', [Validators.required, Validators.email]],
       role_id: ['', Validators.required],
       status_id: ['', Validators.required],
+      organization_category_id: ['', Validators.nullValidator],
+      organization_id: ['', Validators.nullValidator],
       password: ['', [Validators.nullValidator, Validators.minLength(6)]],
       reset_password: [false, Validators.nullValidator],
     });
@@ -79,6 +83,8 @@ export class EditComponent {
         if(response){
           this.mRoles = (response as any).data.roles
           this.mStatuses = (response as any).data.statuses
+          this.mOrganizationCategories = (response as any).data.organization_categories
+          this.mOrganizations = (response as any).data.organizations
           this.mProgress = false
         }
       },
@@ -92,6 +98,32 @@ export class EditComponent {
     });
   }
 
+  // onOrganizationChange
+  onOrganizationChange($event: any){
+    let id = $event.value
+    this.filterConstituencies(id)
+    this.mOrganizations = []//Reset
+  }
+  // filterConstituencies
+  filterConstituencies(id:any){
+    this.mProgress = true
+    this.mUserService.filterOrganizations(id).subscribe({
+      next: (response) => {
+        if(response){
+          // console.log(response)
+          //set
+          this.mOrganizations = response
+          this.mProgress = false
+        }
+      },
+      error: (error ) => {
+        // console.log(error.error)
+        this.mToastrService.error(error.error.message)
+        this.mProgress = false
+      }
+    })
+  }
+
   // onSubmit
   onSubmit(formValues: any){
     // const item: User = {
@@ -102,6 +134,8 @@ export class EditComponent {
       email: formValues.email,
       role_id: formValues.role_id,
       status_id: formValues.status_id,
+      organization_category_id: formValues.organization_category_id,
+      organization_id: formValues.organization_id,
       password: formValues.password,
       reset_password: formValues.reset_password,
     }

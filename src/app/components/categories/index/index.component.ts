@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 // import
 import { ToastrService } from 'ngx-toastr';
 import swal from 'sweetalert2';
-import { MediaCategoryService } from '../../../services/content-category.service';
+import { CategoryService } from '../../../services/category.service';
 
 @Component({
   selector: 'app-index',
@@ -23,14 +23,18 @@ export class IndexComponent {
   mProgress:boolean = false
   links:any= []
 
+  currentPage = 1;
+  mLoadingMore  = false;
+  mHasMorePages = true;
+
   constructor(
-    private mMediaCategoryService: MediaCategoryService,
+    private mCategoryService: CategoryService,
     private mToastrService:ToastrService,
   ) { }
 
   ngOnInit(): void {
     //Call
-    this.index()
+    this.index(this.currentPage)
 
     //validation
     this.search_term = new FormControl('', Validators.required)
@@ -39,54 +43,50 @@ export class IndexComponent {
     })
   }
 
+
   // index
-  index(){
-    this.mProgress = true
-    // console.log(formValues)
-    this.mProgress = true
-    this.mMediaCategoryService.allItems().subscribe({
-      next: (response) => {
-        if(response){
-          this.mItems = (response as any).data
-          // console.log(this.mItems)
-          this.links = (response as any).links
-          this.mProgress = false
-        }
-      },
-      error: (error ) => {
-        // console.log(error)
-        if(error.error.message){
-          this.mToastrService.error(error.error.message)
+  index(pageOrUrl?: any) {
+    if (this.currentPage === 1) this.mProgress = true;
+    const url = typeof pageOrUrl === 'string' ? pageOrUrl : `?page=${this.currentPage}`;
+
+    this.mCategoryService.allItems(url).subscribe({
+      next: (res: any) => {
+        if (this.currentPage === 1) {
+          this.mItems = res.data;
+        } else {
+          this.mItems = [...this.mItems, ...res.data];
         }
         this.mProgress = false
-      }
-    })
 
-  }
+        this.links = res.links;
+        this.mLoadingMore = false;
 
-  // onChangePage
-  onChangePage(item:any){
-    // console.log(item)
-    this.mProgress = true
-    this.mMediaCategoryService.paginateItems(item).subscribe({
-      next: (response) => {
-        if(response){
-          // console.log(response)
-          this.mItems =(response as any).data
-          this.links = (response as any).links
-          this.mProgress = false
-        }
+        // Disable_infinite_scroll_if_there_is_no_next_page
+        const nextPage = this.links.find((l: { label: string }) => l.label === 'Next &raquo;');
+        this.mHasMorePages = !!nextPage?.url;
       },
-      error: (error ) => {
-        // console.log(error)
-        if(error.error.message){
-          this.mToastrService.error(error.error.message)
-        }
-        this.mProgress = false
+      error: () => {
+        this.mLoadingMore = false;
+        this.mHasMorePages = false;
       }
-    })
-
+    });
   }
+
+
+  // onLoadMore
+  onLoadMore() {
+    if (!this.mHasMorePages || this.mLoadingMore) return;
+
+    const nextPage = this.links.find((l: { label: string }) => l.label === 'Next &raquo;');
+    if (nextPage) {
+      this.mLoadingMore = true;
+      this.currentPage++;
+      this.index(nextPage);
+    } else {
+      this.mHasMorePages = false;
+    }
+  }
+
 
   // onDelete
   onDelete(item:any){
@@ -113,7 +113,7 @@ export class IndexComponent {
           //Delete
           if (result.isConfirmed) {
             this.mProgress = true
-            this.mMediaCategoryService.deleteItem(item).subscribe({
+            this.mCategoryService.deleteItem(item).subscribe({
               next: (response) => {
                 if(response){
                   // console.log(response)
@@ -138,7 +138,7 @@ export class IndexComponent {
   // onSearch
   onSearch(formValues: any){
     this.mProgress = true
-    this.mMediaCategoryService.searchItems(formValues).subscribe({
+    this.mCategoryService.searchItems(formValues).subscribe({
       next: (response) => {
         if(response){
           this.mItems = (response as any).data

@@ -43,6 +43,7 @@ export class EditComponent {
     // validation
     this.itemForm = this.fb.group({
       phone: ['', Validators.required],
+      bio: ['', Validators.nullValidator],
       county_id: ['', Validators.required],
       constituency_id: ['', Validators.required],
       ward_id: ['', Validators.required],
@@ -102,6 +103,7 @@ export class EditComponent {
     // const item: User = {
     const item: any = {
       id: this.id,
+      bio: formValues.bio,
       phone: formValues.phone,
       county_id: formValues.county_id,
       constituency_id: formValues.constituency_id,

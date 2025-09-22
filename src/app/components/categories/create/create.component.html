@@ -11,7 +11,7 @@
           <ol class="breadcrumb float-sm-end">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item" aria-current="page">Categories</li>
-            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+            <li class="breadcrumb-item active" aria-current="page">Create</li>
           </ol>
         </div>
       </div>
@@ -27,7 +27,7 @@
           <div class="card">
             <div class="card-header">
               <div class="card-title">
-                Edit Category
+                Create Category
               </div>
               <div class="card-tools">
               </div>
@@ -39,7 +39,7 @@
                   <div class="col-md-12">
                     <div class="mb-3">
                       <label for="name" class="form-label required">Name:</label>
-                      <input [(ngModel)]="item.name" type="text" formControlName="name" class="form-control"
+                      <input type="text" formControlName="name" class="form-control"
                       [ngClass]="{ 'is-invalid': itemForm.get('name')?.invalid && (itemForm.get('name')?.dirty || itemForm.get('name')?.touched) }"/>
                       <div *ngIf="itemForm.get('name')?.invalid && (itemForm.get('name')?.dirty || itemForm.get('name')?.touched)" class="invalid-feedback d-block" role="alert">
                         <div *ngIf="itemForm.get('name')?.errors?.['required']">This field is required.</div>
@@ -48,7 +48,7 @@
                   </div>
                 </div>
                 <div class="text-end">
-                  <a routerLink="/content-categories" class="btn btn-warning  me-1">Cancel</a>
+                  <a routerLink="/categories" class="btn btn-warning  me-1">Cancel</a>
                   <button [disabled]="itemForm.invalid" type="submit" class="btn btn-primary">Submit</button>
                 </div>
               </form>

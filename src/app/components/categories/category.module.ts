@@ -8,7 +8,7 @@ import { IndexComponent } from './index/index.component';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { ShowComponent } from './show/show.component';
-import { MediaCategoryRoutingModule } from './media-category-routing.module';
+import { MediaCategoryRoutingModule } from './category-routing.module';
 // Add
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
@@ -36,4 +36,4 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     InfiniteScrollModule
   ]
 })
-export class MediaCategoryModule { }
+export class CategoryModule { }

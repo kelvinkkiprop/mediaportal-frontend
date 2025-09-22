@@ -1,4 +1,4 @@
-export interface ContentCategory {
+export interface Category {
   id?: number,
   name?: string,
   alias?: string,

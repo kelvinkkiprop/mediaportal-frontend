@@ -52,9 +52,9 @@ export const routes: Routes = [
           import('./components/users/user.module').then((m) => m.UserModule)
       },
       {
-        path: 'content-categories',
+        path: 'categories',
         loadChildren: () =>
-          import('./components/mediaCategories/media-category.module').then((m) => m.MediaCategoryModule)
+          import('./components/categories/category.module').then((m) => m.CategoryModule)
       },
       {
         path: 'media',
@@ -64,7 +64,7 @@ export const routes: Routes = [
       {
         path: 'live-stream',
         loadChildren: () =>
-          import('./components/liveStream/live-stream.module').then((m) => m.LiveStreamModule)
+          import('./components/live-stream/live-stream.module').then((m) => m.LiveStreamModule)
       },
       // {
       //   path: 'payments',
