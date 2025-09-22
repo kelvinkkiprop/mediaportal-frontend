@@ -44,11 +44,10 @@ export class IndexComponent {
   }
 
 
+  // index
   index(pageOrUrl?: any) {
-    // if a full URL is passed, use it; otherwise build it using currentPage
-    const url = typeof pageOrUrl === 'string'
-      ? pageOrUrl
-      : `?page=${this.currentPage}`;
+    if (this.currentPage === 1) this.mProgress = true;
+    const url = typeof pageOrUrl === 'string' ? pageOrUrl : `?page=${this.currentPage}`;
 
     this.mContentCategoryService.allItems(url).subscribe({
       next: (res: any) => {
@@ -57,11 +56,12 @@ export class IndexComponent {
         } else {
           this.mItems = [...this.mItems, ...res.data];
         }
+        this.mProgress = false
 
         this.links = res.links;
         this.mLoadingMore = false;
 
-        // ✅ Disable infinite scroll if there is no next page
+        // Disable_infinite_scroll_if_there_is_no_next_page
         const nextPage = this.links.find((l: { label: string }) => l.label === 'Next &raquo;');
         this.mHasMorePages = !!nextPage?.url;
       },
@@ -81,7 +81,7 @@ export class IndexComponent {
     if (nextPage) {
       this.mLoadingMore = true;
       this.currentPage++;
-      this.index(nextPage); // ✅ Now this works with full URL
+      this.index(nextPage);
     } else {
       this.mHasMorePages = false;
     }

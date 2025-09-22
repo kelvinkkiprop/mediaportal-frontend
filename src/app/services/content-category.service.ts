@@ -56,4 +56,11 @@ export class ContentCategoryService {
     return this.http.post<ContentCategory>(url, item, this.mAppContextService.getHttpOptions());
   }
 
+
+
+  categorizedItems(page:any, id:any):Observable<ContentCategory[]>{
+    const url = `${environment.base_url}/categorized-items-content-categories/${id}`;
+    return this.http.get<ContentCategory[]>(url+page, this.mAppContextService.getHttpOptions());
+  }
+
 }

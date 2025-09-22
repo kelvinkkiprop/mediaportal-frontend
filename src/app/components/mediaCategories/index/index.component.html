@@ -23,7 +23,7 @@
     <div class="card-body" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150" [infiniteScrollDisabled]="!mHasMorePages || mLoadingMore" (scrolled)="onLoadMore()">
       <div *ngIf="mItems && mItems.length>0; else noItemsTemplate" class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
         <div *ngFor="let item of mItems" class="col">
-            <a routerLink="/media/show/{{ item.id }}" class="row text-decoration-none text-reset">
+            <a routerLink="/content-categories/show/{{ item.id }}" class="row text-decoration-none text-reset">
               <app-media-card [data]="item"/>
               <h6 class="mb-0">{{ item.name }}</h6>
               <div class="pt-0 text-muted">{{ item.total_media }} media</div>
@@ -32,7 +32,7 @@
         </div>
       <div>
         <app-loader *ngIf="mLoadingMore"/>
-        <p class="text-center text-muted p-2" *ngIf="!mHasMorePages">No more items</p>
+        <!-- <p class="text-center text-muted p-2" *ngIf="!mHasMorePages">No more items</p> -->
       </div>
       <ng-template #noItemsTemplate>
         <p class="p-5 text-center text-muted">No items</p>
