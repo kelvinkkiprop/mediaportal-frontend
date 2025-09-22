@@ -42,9 +42,9 @@ export class HlsPlayerComponent {
       // console.log(this.item)
       if (Hls.isSupported()) {
         this.mHls = new Hls();
-        // this.mHls.loadSource(this.item.full_hls_master);
         // this.mHls.loadSource("https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8");
-        this.mHls.loadSource("https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8");
+        // this.mHls.loadSource("https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8");
+        this.mHls.loadSource(this.item.full_hls_master);
         this.mHls.attachMedia(this.media.nativeElement);
         this.mHls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
           this.mQualities = data.levels.map((level: any) => level.height + 'p');
