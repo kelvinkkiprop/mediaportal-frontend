@@ -36,7 +36,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'show',
+    path: 'show/:id',
     component: ShowComponent,
     data: {
       title: 'Show'

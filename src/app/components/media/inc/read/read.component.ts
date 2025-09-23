@@ -15,7 +15,6 @@ import { MediaService } from '../../../../services/media.service';
 })
 export class ReadComponent {
 
-
   // variables
   mCurrentUser:any
   mInitials:any

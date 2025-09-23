@@ -58,9 +58,26 @@ export class UserService {
   }
 
 
+
   filterOrganizations(id:number){
-    const url = `${environment.base_url}/filter-organizations/${id}`;
+    const url = `${environment.base_url}/filter-organizations-users/${id}`;
     return this.http.get<User[]>(url, this.mAppContextService.getHttpOptions());
   }
+
+  analyticsItem(id:any){
+    const url = `${environment.base_url}/analytics-users/${id}`;
+    return this.http.get<User[]>(url, this.mAppContextService.getHttpOptions());
+  }
+
+  mediaItems(page:any, id:any):Observable<User[]>{
+    const url = `${environment.base_url}/media-users/${id}`;
+    return this.http.get<User[]>(url+page, this.mAppContextService.getHttpOptions());
+  }
+
+  playlistItems(page:any, id:any):Observable<User[]>{
+    const url = `${environment.base_url}/playlist-users/${id}`;
+    return this.http.get<User[]>(url+page, this.mAppContextService.getHttpOptions());
+  }
+
 
 }

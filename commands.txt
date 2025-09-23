@@ -48,6 +48,9 @@ ng generate component components/users/edit
 ng generate component components/users/show
 ng generate module components/users/user
 ng generate module components/users/userRouting
+ng generate component components/users/media
+ng generate component components/users/playlist
+ng generate component components/users/analytics
 
 ng generate component components/profiles/index
 ng generate component components/profiles/create
@@ -154,6 +157,7 @@ ng generate service services/report
 ng generate service services/payment-method
 ng generate service services/institution
 ng generate service services/payment
+ng generate service services/playlist
 
 7. Interfaces
 ng generate interface interfaces/user
@@ -168,6 +172,7 @@ ng generate interface interfaces/payment-method
 ng generate interface interfaces/institution
 ng generate interface interfaces/payment
 ng generate interface interfaces/comment
+ng generate interface interfaces/playlist
 
 8. Guards
 ng generate guard guards/auth

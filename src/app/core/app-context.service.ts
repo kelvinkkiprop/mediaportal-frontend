@@ -127,4 +127,11 @@ export class AppContextService {
   }
 
 
+  // isInList
+  isInList(id: any, list:any): any {
+    // return " "+id+" "+list
+    // console.log(" "+id+" "+list)
+    return list?.some((item: { playlist_id: any; }) => item.playlist_id === id) ?? false;
+  }
+
 }

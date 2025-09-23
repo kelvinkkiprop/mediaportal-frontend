@@ -191,7 +191,7 @@ export class CommentsComponent implements OnChanges {
   // onStartEdit
   onStartEdit(index: number) {
     this.mEditIndex = index;
-    console.log(this.mEditIndex)
+    // console.log(this.mEditIndex)
   }
 
   // onCancelEdit

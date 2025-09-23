@@ -9,6 +9,11 @@ import { IndexComponent } from './index/index.component';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { ShowComponent } from './show/show.component';
+import { MediaComponent } from './media/media.component';
+import { PlaylistComponent } from './playlist/playlist.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 
@@ -18,6 +23,10 @@ import { ShowComponent } from './show/show.component';
     CreateComponent,
     EditComponent,
     ShowComponent,
+
+    MediaComponent,
+    PlaylistComponent,
+    AnalyticsComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +39,10 @@ import { ShowComponent } from './show/show.component';
 
     // import
     UserRoutingModule,
+
+    // Add
+    NgApexchartsModule,
+    InfiniteScrollModule
   ]
 })
 export class UserModule { }

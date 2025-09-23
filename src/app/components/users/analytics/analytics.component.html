@@ -1,0 +1,133 @@
+<section>
+
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon text-bg-primary shadow-sm">
+          <i class="bi bi-gear-fill"></i>
+        </span>
+        <div class="info-box-content">
+          <span class="info-box-text">Memory Usage</span>
+          <span class="info-box-number">
+            {{ mAppContextService.formatMemory(item?.my_total_memory) }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon text-bg-danger shadow-sm">
+          <i class="bi bi-hand-thumbs-up-fill"></i>
+        </span>
+        <div class="info-box-content">
+          <span class="info-box-text">Likes</span>
+          <span class="info-box-number">{{ item.my_total_likes | number:'1.0-0' }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon text-bg-success shadow-sm">
+          <i class="bi bi-collection-play-fill"></i>
+        </span>
+        <div class="info-box-content">
+          <span class="info-box-text">Media</span>
+          <span class="info-box-number">{{ item.my_total_media | number:'1.0-0' }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon text-bg-warning shadow-sm">
+          <i class="bi bi-people-fill"></i>
+        </span>
+        <div class="info-box-content">
+          <span class="info-box-text">Total Views</span>
+          <span class="info-box-number">{{ item.my_total_views | number:'1.0-0' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title">Recap Report</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-8">
+              <p class="text-center">
+                <strong>Analytics: 1 Jan,{{this.mAppInfo.year}} - 31 Dec,{{this.mAppInfo.year}}</strong>
+              </p>
+              <div id="report-chart"></div>
+              <div *ngIf="chartOptions">
+                <apx-chart #chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis" [title]="chartOptions.title"></apx-chart>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <p class="text-center">
+                <strong>Overview</strong>
+              </p>
+              <div class="progress-group">
+                Memory
+                <span class="float-end"><b>{{ mAppContextService.formatMemory(item.my_total_memory) }}</b>/{{mAppContextService.formatMemory(item.total_memory)}}</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar text-bg-primary" [style.width.%]="item.total_memory_percentage"></div>
+                </div>
+              </div>
+              <div class="progress-group">
+                Likes
+                <span class="float-end"><b>{{ item.my_total_likes }}</b>/{{item.total_likes}}</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar text-bg-success" [style.width.%]="item.total_likes_percentage"></div>
+                </div>
+              </div>
+              <div class="progress-group">
+                Media
+                <span class="float-end"><b>{{ item.my_total_media }}</b>/{{item.total_media}}</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar text-bg-danger" [style.width.%]="item.total_media_percentage"></div>
+                </div>
+              </div>
+              <div class="progress-group">
+                Views
+                <span class="float-end"><b>{{ item.my_total_views }}</b>/{{item.total_views}}</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar text-bg-warning" [style.width.%]="item.total_views_percentage"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-md-4 col-6">
+              <div class="text-center border-end">
+                <span class="text-success"><i class="bi bi-caret-right-fill"></i> {{ item.total_comments_percentage }}%</span>
+                <h5 class="fw-bold mb-0">{{ item.my_total_comments | number:'1.0-0' }}</h5>
+                <span class="text-uppercase">TOTAL COMMENTS</span>
+              </div>
+            </div>
+            <div class="col-md-4 col-6">
+              <div class="text-center border-end">
+                <span class="text-info"><i class="bi bi-caret-right-fill"></i> {{ item.total_views_percentage }}%</span>
+                <h5 class="fw-bold mb-0">{{ item.my_total_views | number:'1.0-0' }}</h5>
+                <span class="text-uppercase">TOTAL VIEWS</span>
+              </div>
+            </div>
+            <div class="col-md-4 col-6">
+              <div class="text-center">
+                <span class="text-danger"><i class="bi bi-caret-right-fill"></i>  {{ item.total_media_percentage }}%</span>
+                <h5 class="fw-bold mb-0">{{ item.my_total_media | number:'1.0-0' }}</h5>
+                <span class="text-uppercase">TOTAL MEDIA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -1,1 +1,120 @@
-<p>show works!</p>
+<app-progress *ngIf="mProgress"/>
+
+<section>
+  <div class="app-content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <h3 class="mb-0">Users</h3>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item" aria-current="page">Users</li>
+            <li class="breadcrumb-item active" aria-current="page">Show</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-content">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-12 col-12">
+
+          <div class="card">
+            <div class="card-header">
+
+              <div class="card-title">
+                <div class="d-flex align-items-center mb-3">
+                  <span class="user-image rounded-circle bg-primary text-white fw-bold d-inline-flex justify-content-center align-items-center me-3" style="width: 64px; height: 64px; font-size: 1rem;">
+                    {{ this.mAppContextService.getInitials(item?.name) }}
+                  </span>
+                  <div>
+                    <p class="mb-0 fw-semibold">{{ item?.name }}</p>
+                    <small class="text-muted">{{ item?.role?.name }}</small>
+                  </div>
+                </div>
+                <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active border-0 text-uppercase text-sm" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
+                      About
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link border-0 text-uppercase text-sm" id="media-tab" data-bs-toggle="tab" data-bs-target="#media" type="button" role="tab" aria-controls="media" aria-selected="false">
+                      Media
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link border-0 text-uppercase text-sm" id="playlist-tab" data-bs-toggle="tab" data-bs-target="#playlist" type="button" role="tab" aria-controls="playlist" aria-selected="false">
+                      Playlist
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button *ngIf="item?.id==mCurrentUser?.id" class="nav-link border-0 text-uppercase text-sm" id="analytics-tab" data-bs-toggle="tab" data-bs-target="#analytics" type="button" role="tab" aria-controls="analytics" aria-selected="false">
+                      Analytics
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-tools">
+                <a *ngIf="item?.id==mCurrentUser?.id" routerLink="/profile/edit/{{item.id}}" class="btn btn-warning  btn-sm">
+                  <i class="bi bi-pencil-fill"></i> Edit Profile
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+            <div>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                  <div class="my-2">
+                     <div class="mb-3">
+                      <label for="bio" class="form-label">Biography:</label>
+                      <div class="text-muted">{{ item?.bio }}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="media" role="tabpanel" aria-labelledby="media-tab">
+                  <div class="my-2">
+                     <div class="mb-3">
+                      <label for="analytics" class="form-label">Uploads:</label>
+                      <app-media *ngIf="item" [data]="item"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="playlist" role="tabpanel" aria-labelledby="media-tab">
+                  <div class="my-2">
+                     <div class="mb-3">
+                      <label for="analytics" class="form-label">Playlist:</label>
+                      <app-playlist *ngIf="item" [data]="item"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="analytics" role="tabpanel" aria-labelledby="media-tab">
+                  <div class="my-2">
+                     <div class="mb-3">
+                      <label for="analytics" class="form-label">Analytics:</label>
+                      <app-analytics *ngIf="item" [data]="item"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
