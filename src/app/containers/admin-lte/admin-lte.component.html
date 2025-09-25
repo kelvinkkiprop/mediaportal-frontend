@@ -132,6 +132,7 @@
               <p>Users</p>
             </a>
           </li>
+          <hr>
           <li *ngIf="mAppContextService.hasRoles([1,2,3])" class="nav-item">
             <a routerLink="/media/create" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
               <i class="nav-icon bi bi-camera-video-fill"></i>
@@ -143,7 +144,6 @@
               <i class="nav-icon bi bi-collection-play-fill"></i>
               <p>Media</p>
             </a>
-            <hr>
           </li>
           <!-- <li *ngIf="!mAppContextService.hasRoles([5])" class="nav-item">
             <a routerLink="/media/my-media" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
