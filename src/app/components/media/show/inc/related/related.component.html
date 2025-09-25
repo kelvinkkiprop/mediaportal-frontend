@@ -13,7 +13,7 @@
   </form>
   <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150" [infiniteScrollDisabled]="!mHasMorePages || mLoadingMore" (scrolled)="onLoadMore()">
     <div *ngFor="let item of mItems" class="mb-3">
-      <a routerLink="/media/show/{{ item.id }}" class="text-decoration-none text-reset">
+      <a [routerLink]="['/media/watch']" [queryParams]="{ video: item.id }" class="text-decoration-none text-reset">
         <app-media-card [data]="item"/>
       </a>
     </div>
