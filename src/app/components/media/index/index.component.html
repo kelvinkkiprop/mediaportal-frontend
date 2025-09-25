@@ -67,18 +67,18 @@
                     <tr *ngFor="let item of mItems; index as i">
                       <td>{{ i+1 }}.</td>
                       <td>{{ item.title }}</td>
-                        <td><a routerLink="/media/show/{{item.id}}" target="_blank" rel="noopener" class="text-decoration-none1"><i class="bi bi-eye-fill"></i></a></td>
+                        <td><a [routerLink]="['/media/watch']" [queryParams]="{ video: item.id }" target="_blank" rel="noopener" class="text-decoration-none1"><i class="bi bi-eye-fill"></i></a></td>
                       <td>{{ item.user?.name }}</td>
                       <td><span class="alert py-0 m-0 text-center rounded-5" [ngClass]="{'alert-warning':item.media_status_id == 1, 'alert-primary':item.media_status_id==2, 'alert-danger':item.media_status_id==3}">{{ item.media_status?.name }}</span></td>
                       <td>{{ item.date_produced | date }}</td>
-                      <td><a [routerLink]="['/media/watch']" [queryParams]="{ video: item.id }" target="_blank" rel="noopener" class="text-decoration-none badge rounded-pill" [ngClass]="{'bg-warning text-dark': item.status_id == 1, 'bg-primary': item.status_id == 2,'bg-danger': item.status_id == 3}"> {{ item.status?.name }}</a></td>
+                      <td><a routerLink="/media/process/{{item.id}}" target="_blank" rel="noopener" class="text-decoration-none badge rounded-pill" [ngClass]="{'bg-warning text-dark': item.status_id == 1, 'bg-primary': item.status_id == 2,'bg-danger': item.status_id == 3}"> {{ item.status?.name }}</a></td>
                       <td>{{ item.created_at | date }}</td>
                       <td>
                         <div class="text-nowrap">
                           <button class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" [attr.data-bs-target]="'#modal1'+item.id"><i class="bi bi-eye-fill"></i></button>
                           <a class="btn btn-dark btn-sm me-1" routerLink="/media/edit/{{item.id}}"><i class="bi bi-pencil-fill"></i></a>
                           <button (click)="onDelete(item)" class="btn btn-danger btn-sm"><i class="bi bi-trash2-fill"></i></button>
-                        </div>
+                      </div>
                         <div class="modal fade" [attr.id]="'modal1'+item.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
