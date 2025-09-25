@@ -1,6 +1,6 @@
-<!-- <app-progress *ngIf="mProgress"/> -->
+<app-progress *ngIf="mProgress"/>
 
-<!-- <section>
+<section>
   <div class="app-content-header">
     <div class="container-fluid">
       <div class="row">
@@ -21,12 +21,12 @@
     <div class="container-fluid">
 
       <div class="row">
-        <div class="col-lg-12 col-12"> -->
+        <div class="col-lg-12 col-12">
 
-          <!-- <div class="card">
+          <div class="card">
             <div class="card-header">
               <div class="card-title">
-                <a routerLink="/users/create" class="btn btn-warning btn-sm">
+                <a routerLink="/media/create" class="btn btn-warning btn-sm">
                   <i class="bi bi-plus-circle-fill"></i> Create
                 </a>
               </div>
@@ -48,14 +48,90 @@
             </div>
             <div class="card-body">
 
+              <div *ngIf="mItems && mItems.length>0; else noItemsTemplate" class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Watch</th>
+                        <th>User</th>
+                        <th>Media Status</th>
+                        <th>Produced On</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                        <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of mItems; index as i">
+                      <td>{{ i+1 }}.</td>
+                      <td>{{ item.title }}</td>
+                        <td><a routerLink="/media/show/{{item.id}}" target="_blank" rel="noopener" class="text-decoration-none1"><i class="bi bi-eye-fill"></i></a></td>
+                      <td>{{ item.user?.name }}</td>
+                      <td><span class="alert py-0 m-0 text-center rounded-5" [ngClass]="{'alert-warning':item.media_status_id == 1, 'alert-primary':item.media_status_id==2, 'alert-danger':item.media_status_id==3}">{{ item.media_status?.name }}</span></td>
+                      <td>{{ item.date_produced | date }}</td>
+                      <td><a [routerLink]="['/media/watch']" [queryParams]="{ video: item.id }" target="_blank" rel="noopener" class="text-decoration-none badge rounded-pill" [ngClass]="{'bg-warning text-dark': item.status_id == 1, 'bg-primary': item.status_id == 2,'bg-danger': item.status_id == 3}"> {{ item.status?.name }}</a></td>
+                      <td>{{ item.created_at | date }}</td>
+                      <td>
+                        <div class="text-nowrap">
+                          <button class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" [attr.data-bs-target]="'#modal1'+item.id"><i class="bi bi-eye-fill"></i></button>
+                          <a class="btn btn-dark btn-sm me-1" routerLink="/media/edit/{{item.id}}"><i class="bi bi-pencil-fill"></i></a>
+                          <button (click)="onDelete(item)" class="btn btn-danger btn-sm"><i class="bi bi-trash2-fill"></i></button>
+                        </div>
+                        <div class="modal fade" [attr.id]="'modal1'+item.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                              <div class="modal-header bg-primary text-white">
+                                <h5 class="modal-title" id="staticBackdropLabel">{{ item.title }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <ol class="list-group">
+                                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto"><div class="fw-bold">Description: </div></div>
+                                    <span class="text-muted" [innerHTML]="item.description"></span>
+                                  </li>
+                                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto"><div class="fw-bold">Categories: </div></div>
+                                     <a class="text-muted" *ngFor="let cat of item.media_categories; let last = last" routerLink="/categories/show/{{cat.category_id}}" class="text-decoration-none" data-bs-dismiss="modal">
+                                      {{ cat.name }}<span *ngIf="!last">,</span>
+                                    </a>
+                                  </li>
+                                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto"><div class="fw-bold">Updated At: </div></div>
+                                    <span class="text-muted">{{ item.updated_at | date }}</span>
+                                  </li>
+                                </ol>
+                              </div>
+                              <div class="modal-footer bg-dark">
+                                <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div *ngIf="links">
+                <ul class="pagination">
+                  <li *ngFor="let item of links" [ngClass]="{'active': item.active, 'disabled': !item.url}" class="page-item">
+                    <a class="page-link" (click)="onChangePage(item.url)" [innerHTML]="item.label"></a>
+                  </li>
+                </ul>
+              </div>
+              <ng-template #noItemsTemplate>
+                <p class="p-5 text-center text-muted">No items</p>
+              </ng-template>
+
             </div>
-          </div> -->
+          </div>
 
-          <app-read/>
-
-        <!-- </div>
+        </div>
       </div>
 
     </div>
   </div>
-</section> -->
+</section>

@@ -11,16 +11,17 @@ import { MediaRoutingModule } from './media-routing.module';
 import { EditComponent } from './edit/edit.component';
 import { ShowComponent } from './show/show.component';
 import { ReadComponent } from './inc/read/read.component';
-import { LikedComponent } from './inc/liked/liked.component';
-import { HistoryComponent } from './inc/history/history.component';
+import { LikedComponent } from './liked/liked.component';
+import { HistoryComponent } from './history/history.component';
 import { LiveStreamsComponent } from './inc/live-streams/live-streams.component';
 import { AnalyticsComponent } from './inc/analytics/analytics.component';
 
 import { NgApexchartsModule } from "ng-apexcharts";
-import { ProcessComponent } from './inc/process/process.component';
+import { ProcessComponent } from './process/process.component';
 import { RelatedComponent } from './show/inc/related/related.component';
 import { CommentsComponent } from './show/inc/comments/comments.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { WatchComponent } from './watch/watch.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +30,9 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     CreateComponent,
     EditComponent,
     ShowComponent,
-    ReadComponent,
 
+    WatchComponent,
+    ReadComponent,
     LikedComponent,
     HistoryComponent,
     LiveStreamsComponent,

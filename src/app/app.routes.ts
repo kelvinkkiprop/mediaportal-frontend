@@ -47,6 +47,7 @@ export const routes: Routes = [
           import('./components/dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
       {
+        canActivate: [VerificationGuard],
         path: 'users',
         loadChildren: () =>
           import('./components/users/user.module').then((m) => m.UserModule)
@@ -61,17 +62,18 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./components/media/media.module').then((m) => m.MediaModule)
       },
-      {
-        path: 'live-stream',
-        loadChildren: () =>
-          import('./components/live-stream/live-stream.module').then((m) => m.LiveStreamModule)
-      },
+      // {
+      //   path: 'live-stream',
+      //   loadChildren: () =>
+      //     import('./components/live-stream/live-stream.module').then((m) => m.LiveStreamModule)
+      // },
       // {
       //   path: 'payments',
       //   loadChildren: () =>
       //     import('./components/payments/payment.module').then((m) => m.PaymentModule)
       // },
       {
+        canActivate: [VerificationGuard],
         path: 'profile',
         loadChildren: () =>
           import('./components/profiles/profile.module').then((m) => m.ProfileModule)

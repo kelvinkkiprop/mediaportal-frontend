@@ -4,25 +4,26 @@
   <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150" [infiniteScrollDisabled]="!mHasMorePages || mLoadingMore" (scrolled)="onLoadMore()">
     <div *ngIf="mItems && mItems.length>0; else noItemsTemplate" class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
       <div *ngFor="let item of mItems" class="col">
-          <a routerLink="/media/show/{{ item.id }}" class="row text-decoration-none text-reset">
+          <!-- <a routerLink="/media/show/{{ item.id }}" class="row text-decoration-none text-reset"> -->
+          <a [routerLink]="['/media/watch']" [queryParams]="{ playlist: item.id }" class="text-decoration-none text-reset">
             <app-media-card [data]="item"/>
-          </a>
           <div class="d-flex align-items-start mb-3">
             <div class="ms-2 flex-grow-1">
               <h6 class="mb-0">{{ item.name }}</h6>
               <div class="pt-0 text-muted">{{ item.total_media }} media</div>
             </div>
-            <div class="ms-auto d-flex align-items-start">
+
+            <div (click)="$event.preventDefault(); $event.stopPropagation()" class="ms-auto d-flex align-items-start">
               <div *ngIf="mCurrentUser.id==item.user_id" class="dropdown">
                 <span class="p-0 border-0 bg-transparent" data-bs-toggle="dropdown" type="button">
                   <i class="bi bi-three-dots-vertical"></i>
                 </span>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" data-bs-toggle="modal" [attr.data-bs-target]="'#modal1'+item.id"><i class="bi bi-pencil"></i> Edit</a></li>
+                  <li><a (click)="onEdit(item)" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal"><i class="bi bi-pencil"></i> Edit</a></li>
                   <li><a (click)="onDelete(item)" class="dropdown-item"><i class="bi bi-trash2"></i> Delete</a></li>
                 </ul>
-                <section>
-                <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value, item.id)">
+                <!-- <section>
+                  <form form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value, item.id)">
                   <div class="modal fade" [attr.id]="'modal1'+item.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                       <div class="modal-content">
@@ -69,10 +70,12 @@
                     </div>
                   </div>
                   </form>
-                </section>
+                </section> -->
               </div>
             </div>
+
           </div>
+          </a>
         </div>
       </div>
     <div>
@@ -83,4 +86,55 @@
       <p class="p-5 text-center text-muted">No items</p>
     </ng-template>
   </div>
+</section>
+
+
+ <section>
+  <form form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
+  <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Edit Playlist</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="name" class="form-label required">Name</label>
+                <input [(ngModel)]="mItemToEdit.name" formControlName="name" class="form-control form-control-sm" [ngClass]="{'is-invalid': itemForm.get('name')?.invalid && (itemForm.get('name')?.dirty || itemForm.get('name')?.touched) }"/>
+                <div *ngIf="itemForm.get('name')?.invalid && (itemForm.get('name')?.dirty || itemForm.get('name')?.touched)" class="invalid-feedback d-block" role="alert">
+                  <div *ngIf="itemForm.get('name')?.errors?.['required']">This field is required.</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="type_id" class="form-label required">Type:</label>
+                <select [(ngModel)]="mItemToEdit.type_id" class="form-select" formControlName="type_id"
+                  [ngClass]="{ 'is-invalid': itemForm.get('type_id')?.invalid && (itemForm.get('type_id')?.dirty || itemForm.get('type_id')?.touched) }">
+                  <option value="" disabled selected>--- Select type ---</option>
+                  <option *ngFor="let mType of mTypes" value="{{mType.id}}">{{ mType.name }}</option>
+                </select>
+                <div *ngIf="itemForm.get('type_id')?.invalid && (itemForm.get('type_id')?.dirty || itemForm.get('type_id')?.touched)" class="invalid-feedback d-block1" role="alert">
+                  <div *ngIf="itemForm.get('type_id')?.errors?.['required']">This field is required.</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label required1">Description</label>
+                <textarea [(ngModel)]="mItemToEdit.description" formControlName="description" class="form-control form-control-sm" [ngClass]="{'is-invalid': itemForm.get('description')?.invalid && (itemForm.get('description')?.dirty || itemForm.get('description')?.touched) }"></textarea>
+                <div *ngIf="itemForm.get('description')?.invalid && (itemForm.get('description')?.dirty || itemForm.get('description')?.touched)" class="invalid-feedback d-block" role="alert">
+                  <div *ngIf="itemForm.get('description')?.errors?.['required']">This field is required.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light btn-sm me-1" data-bs-dismiss="modal">Cancel</button>
+          <button [disabled]="itemForm.invalid" type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
 </section>

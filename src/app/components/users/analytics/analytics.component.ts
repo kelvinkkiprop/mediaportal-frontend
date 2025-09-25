@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle, ChartComponent} from "ng-apexcharts";
 import { AppContextService } from '../../../core/app-context.service';
@@ -48,7 +48,14 @@ export class AnalyticsComponent {
     if (this.data) {
       // Set
       this.item = this.data
-      // console.log(this.item)
+      // call
+      this.index();
+    }
+  }
+
+  ngAfterViewInit(): void {
+    // Incase_chartOptions_arrives_late_force_reRender
+    if (this.chartOptions && this.chart) {
       // call
       this.index();
     }
@@ -67,6 +74,7 @@ export class AnalyticsComponent {
           this.mCommentsPerMonth = Object.values(this.item.comments_per_month)
           // call
           this.analytics()
+          this.mProgress = false
         }
       },
       error: (error ) => {

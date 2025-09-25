@@ -20,6 +20,7 @@ export class CreateComponent {
   mProgress: boolean = false;
 
   mRoles:any
+  mAccountTypes:any
   mOrganizationCategories:any
   mOrganizations:any
 
@@ -36,8 +37,9 @@ export class CreateComponent {
       last_name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       role_id: ['', Validators.required],
-      organization_category_id: ['', Validators.nullValidator],
-      organization_id: ['', Validators.nullValidator],
+      account_type_id: ['', Validators.required],
+      // organization_category_id: ['', Validators.nullValidator],
+      // organization_id: ['', Validators.nullValidator],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -81,6 +83,7 @@ export class CreateComponent {
       next: (response) => {
         if(response){
           this.mRoles = (response as any).data.roles
+          this.mAccountTypes = (response as any).data.account_types
           this.mOrganizationCategories = (response as any).data.organization_categories
           this.mOrganizations = (response as any).data.organizations
           this.mProgress = false

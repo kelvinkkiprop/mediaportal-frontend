@@ -91,7 +91,6 @@
           </ul>
         </li>
 
-
       </ul>
     </div>
   </nav>
@@ -101,10 +100,9 @@
   <!--===================================Sidebar===================================-->
   <aside class="app-sidebar bg-body-secondary1 shadow" data-bs-theme="light">
     <div class="sidebar-brand bg-primary navbar-dark border-bottom border-3 border-warning">
-      <a routerLink="/" class="brand-link">
-        <!-- <span class="brand-image opacity-75 rounded bg-light text-primary p-2">AP</span>
-        <span class="brand-text fw-light">AdminLTE 4</span> -->
-        <img src="images/logo_wide.png" alt="Logo" height="32">
+      <a routerLink="/" class="brand-link logo-switch">
+        <img src="images/logo.png" alt="Logo Small" class="brand-image-xl logo-xs opacity-751"/>
+        <img src="images/logo_wide.png" alt="Logo Large" class="brand-image-xs logo-xl opacity-751"/>
       </a>
     </div>
 
@@ -134,7 +132,6 @@
               <p>Users</p>
             </a>
           </li>
-          <hr>
           <li *ngIf="mAppContextService.hasRoles([1,2,3])" class="nav-item">
             <a routerLink="/media/create" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
               <i class="nav-icon bi bi-camera-video-fill"></i>
@@ -144,6 +141,13 @@
           <li *ngIf="!mAppContextService.hasRoles([5])" class="nav-item">
             <a routerLink="/media" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
               <i class="nav-icon bi bi-collection-play-fill"></i>
+              <p>Media</p>
+            </a>
+            <hr>
+          </li>
+          <!-- <li *ngIf="!mAppContextService.hasRoles([5])" class="nav-item">
+            <a routerLink="/media/my-media" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
+              <i class="nav-icon bi bi-collection-play-fill"></i>
               <p>My media</p>
             </a>
           </li>
@@ -152,7 +156,7 @@
               <i class="nav-icon bi bi-play-btn-fill"></i>
               <p>My playlists</p>
             </a>
-          </li>
+          </li> -->
           <!-- <hr>
           <li class="nav-item" [class.menu-open]="usersMenuOpen">
             <a href="#" class="nav-link" (click)="toggleUsersMenu($event)">

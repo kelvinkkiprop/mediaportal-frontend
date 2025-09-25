@@ -27,7 +27,8 @@
             <div class="mb-2 h6"><span class="fw-bold">Latest</span><a routerLink="/media" class="ms-2 text-muted text-decoration-none">VIEW ALL</a></div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
               <div *ngFor="let item of mLatestMedia" class="col">
-                <a routerLink="/media/show/{{ item.id }}" class="row text-decoration-none text-reset me-1">
+                <!-- <a routerLink="/media/show/{{ item.id }}" class="row text-decoration-none text-reset me-1"> -->
+                <a [routerLink]="['/media/watch']" [queryParams]="{ video: item.id }" class="text-decoration-none text-reset">
                   <app-media-card [data]="item"/>
                 </a>
               </div>
@@ -40,7 +41,8 @@
             <div class="mb-2 h6"><span class="fw-bold">Featured</span><a routerLink="/media" class="ms-2 text-muted text-decoration-none">VIEW ALL</a></div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
               <div *ngFor="let item of mFeaturedMedia" class="col">
-                <a routerLink="/media/show/{{ item.id }}" class="text-decoration-none text-reset">
+                <!-- <a routerLink="/media/show/{{ item.id }}" class="text-decoration-none text-reset"> -->
+                <a [routerLink]="['/media/watch']" [queryParams]="{ video: item.id }" class="text-decoration-none text-reset">
                   <app-media-card [data]="item"/>
                 </a>
               </div>

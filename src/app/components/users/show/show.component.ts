@@ -21,6 +21,8 @@ export class ShowComponent {
   item:any
   mProgress: boolean = false
 
+  showPlaylist = false;
+
   constructor(
     public mAuthService: AuthService,
     public mAppContextService: AppContextService,
@@ -42,6 +44,7 @@ export class ShowComponent {
       next: (response) => {
         if(response){
           this.item = response as any
+          setTimeout(() => this.showPlaylist = true);
           // console.log(response)
           this.mProgress = false
         }

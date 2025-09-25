@@ -53,11 +53,11 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <!-- <th>Username</th> -->
+                        <th>Type</th>
                         <th>Email</th>
                         <!-- <th>Phone</th> -->
                         <th>Role</th>
-                        <!-- <th>Verification Code</th> -->
+                        <th>Verification Code</th>
                         <!-- <th>County</th> -->
                         <!-- <th>Referral Code</th> -->
                         <th>Status</th>
@@ -69,11 +69,11 @@
                     <tr *ngFor="let item of mItems; index as i">
                       <td>{{ i+1 }}.</td>
                       <td>{{ item.name }}</td>
-                      <!-- <td>{{ item.username }}</td> -->
+                      <td>{{ item.type?.name }}</td>
                       <td>{{ item.email}}</td>
                       <!-- <td>{{ item.phone }}</td> -->
                       <td>{{ item.role?.name }}</td>
-                      <!-- <td>{{ item.verification_code }}</td> -->
+                      <td>{{ item.verification_code }}</td>
                       <!-- <td>{{ item.county?.name }}</td> -->
                       <!-- <td>{{ item.referral_code }}</td> -->
                       <td><span class="badge rounded-pill" [ngClass]="{'bg-warning text-dark': item.status_id == 1, 'bg-primary': item.status_id == 2,'bg-danger': item.status_id == 3}"> {{ item.status?.name }}</span></td>

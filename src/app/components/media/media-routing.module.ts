@@ -6,11 +6,13 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { IndexComponent } from './index/index.component';
 import { ShowComponent } from './show/show.component';
-import { LikedComponent } from './inc/liked/liked.component';
-import { HistoryComponent } from './inc/history/history.component';
+import { LikedComponent } from './liked/liked.component';
+import { HistoryComponent } from './history/history.component';
 import { AnalyticsComponent } from './inc/analytics/analytics.component';
 import { LiveStreamsComponent } from './inc/live-streams/live-streams.component';
-import { ProcessComponent } from './inc/process/process.component';
+import { ProcessComponent } from './process/process.component';
+import { ReadComponent } from './inc/read/read.component';
+import { WatchComponent } from './watch/watch.component';
 
 // Routes
 const routes: Routes = [
@@ -47,46 +49,61 @@ const routes: Routes = [
       title: 'Show'
     }
   },
-
-  // Inc
   {
-    path: 'about',
-    component: IndexComponent,
+    path: 'watch',
+    component: WatchComponent,
     data: {
-      title: 'Index'
-    }
-  },
-  {
-    path: 'my-playlist',
-    component: IndexComponent,
-    data: {
-      title: 'Index'
+      title: 'Watch'
     }
   },
   {
     path: 'liked',
     component: LikedComponent,
     data: {
-      title: 'Index'
+      title: 'Liked'
     }
   },
   {
     path: 'history',
     component: HistoryComponent,
     data: {
-      title: 'Index'
+      title: 'History'
+    }
+  },
+
+
+  // Inc
+  {
+    path: 'about',
+    component: ReadComponent,
+    data: {
+      title: 'Read'
+    }
+  },
+  {
+    path: 'my-media',
+    component: ReadComponent,
+    data: {
+      title: 'Read'
+    }
+  },
+  {
+    path: 'my-playlist',
+    component: ReadComponent,
+    data: {
+      title: 'Read'
     }
   },
   {
     path: 'live-streams',
-    component: IndexComponent,
+    component: ReadComponent,
     data: {
       title: 'Index'
     }
   },
   {
     path: 'analytics',
-    component: IndexComponent,
+    component: ReadComponent,
     data: {
       title: 'Index'
     }

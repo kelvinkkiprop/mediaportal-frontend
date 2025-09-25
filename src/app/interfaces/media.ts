@@ -46,4 +46,7 @@ export interface Media {
   type?: any,
   status?: any,
   visibility?: any,
+
+  media_playlists?: any,
+  media_categories?: any,
 }

@@ -23,12 +23,15 @@ export class NavbarSearchComponent {
     private router: Router
   ) {}
 
+
+  // onSearch
   onSearch(query: string) {
     this.query = query;
     if (query.trim()) {
       this.mDashboardService.getSuggestions(query).subscribe((results) => {
         this.suggestions = results;
-        this.showSuggestions = true; // 👈 show dropdown
+        // show_dropdown
+        this.showSuggestions = true;
       });
     } else {
       this.suggestions = [];
@@ -36,12 +39,18 @@ export class NavbarSearchComponent {
     }
   }
 
-  onSelect(suggestion: any) {
+  // onSelect
+  onSelect(mSuggestion: any) {
     // this.router.navigate(['/media/show', suggestion.id]);
-    this.router.navigate(['/media/show/'+suggestion.id]);
+    this.router.navigate(['/media/watch'], {
+      queryParams: {
+        video: mSuggestion.id,
+      }
+    });
     this.query = '';
     this.suggestions = [];
-    this.showSuggestions = false; // 👈 hide dropdown
+    // hide_dropdown
+    this.showSuggestions = false;
   }
 
 }

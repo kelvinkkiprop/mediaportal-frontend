@@ -27,7 +27,7 @@ export class MediaService {
     return this.http.post<Media>(url, item, this.mAppContextService.getHttpOptions());
   }
 
-  getOneItem(id:number){
+  getOneItem(id:any){
     const url =  `${environment.base_url}/media/${id}`;
     return this.http.get<Media[]>(url, this.mAppContextService.getHttpOptions());
   }
@@ -92,6 +92,18 @@ export class MediaService {
     const url =  `${environment.base_url}/media/${item.id}/process`;
     return this.http.post<Media>(url, item, this.mAppContextService.getHttpOptions());
   }
+
+
+
+  playlistMediaItem(id: any):Observable<Media[]>{
+    const url =  `${environment.base_url}/media/${id}/playlist`;
+    return this.http.get<Media[]>(url, this.mAppContextService.getHttpOptions());
+  }
+  categoryMediaItem(id: any):Observable<Media[]>{
+    const url =  `${environment.base_url}/media/${id}/category`;
+    return this.http.get<Media[]>(url, this.mAppContextService.getHttpOptions());
+  }
+
 
 
 

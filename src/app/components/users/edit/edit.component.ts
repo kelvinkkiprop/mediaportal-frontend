@@ -21,6 +21,7 @@ export class EditComponent {
   mProgress:boolean = false;
 
   mRoles:any
+  mAccountTypes:any
   mStatuses:any
   mOrganizationCategories:any
   mOrganizations:any
@@ -42,9 +43,10 @@ export class EditComponent {
       last_name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       role_id: ['', Validators.required],
+      account_type_id: ['', Validators.required],
       status_id: ['', Validators.required],
-      organization_category_id: ['', Validators.nullValidator],
-      organization_id: ['', Validators.nullValidator],
+      // organization_category_id: ['', Validators.nullValidator],
+      // organization_id: ['', Validators.nullValidator],
       password: ['', [Validators.nullValidator, Validators.minLength(6)]],
       reset_password: [false, Validators.nullValidator],
     });
@@ -133,9 +135,10 @@ export class EditComponent {
       last_name: formValues.last_name,
       email: formValues.email,
       role_id: formValues.role_id,
+      account_type_id: formValues.account_type_id,
       status_id: formValues.status_id,
-      organization_category_id: formValues.organization_category_id,
-      organization_id: formValues.organization_id,
+      // organization_category_id: formValues.organization_category_id,
+      // organization_id: formValues.organization_id,
       password: formValues.password,
       reset_password: formValues.reset_password,
     }

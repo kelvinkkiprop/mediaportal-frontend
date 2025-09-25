@@ -86,6 +86,7 @@ export class ShowComponent {
       next: (response) => {
         if(response){
           this.mTypes = (response as any).data.types
+          // this.myMediaPlaylists = (response as any).data.media_playlists
           this.mProgress = false
         }
       },
@@ -145,8 +146,6 @@ export class ShowComponent {
   }
 
 
-
-
   // onSubmit
   onSubmit(formValues: any){
     const item: any = {
@@ -185,6 +184,7 @@ export class ShowComponent {
     this.mCreateIndex = 0
   }
 
+
   // myPlaylists
   myPlaylists() {
     this.mProgress = true
@@ -203,6 +203,14 @@ export class ShowComponent {
         this.mProgress = false
       }
     });
+  }
+
+
+  // isInList
+  isInList(id: any, list:any): any {
+    // return " "+id+" "+list
+    // console.log(" "+id+" "+list)
+    return list?.some((item: { playlist_id: any; }) => item.playlist_id === id) ?? false;
   }
 
   // onSave

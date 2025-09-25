@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 // import
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../../services/user.service';
@@ -32,7 +32,14 @@ export class PlaylistComponent {
 
   mCurrentUser:any
   mItems: any[] = []
+
   mTypes:any = []
+  mItemToEdit: any = {
+    id: '',
+    name: '',
+    type_id: '',
+    description: ''
+  };
 
   constructor(
     private mUserService: UserService,
@@ -60,14 +67,13 @@ export class PlaylistComponent {
     }
     this.mCurrentUser = this.mAuthService?.currentUser;
     // call
-    this.unpaginated()
+    this.unpaginatedItems()
   }
 
   // index
   index(pageOrUrl?: any) {
     if (this.mCurrentPage === 1) this.mProgress = true;
     const url = typeof pageOrUrl === 'string' ? pageOrUrl : `?page=${this.mCurrentPage}`;
-
     this.mUserService.playlistItems(url, this.item.id).subscribe({
       next: (response: any) => {
         // console.log(response)
@@ -76,6 +82,7 @@ export class PlaylistComponent {
         } else {
           this.mItems = [...this.mItems, ...response.data];
         }
+
         this.mProgress = false
 
         this.mLinks = response.links;
@@ -95,7 +102,6 @@ export class PlaylistComponent {
   // onLoadMore
   onLoadMore() {
     if (!this.mHasMorePages || this.mLoadingMore) return;
-
     const nextPage = this.mLinks.find((l: { label: string }) => l.label === 'Next &raquo;');
     if (nextPage) {
       this.mLoadingMore = true;
@@ -106,6 +112,24 @@ export class PlaylistComponent {
     }
   }
 
+  // unpaginatedItems
+  unpaginatedItems(){
+    this.mProgress = true
+    this.mPlaylistService.unpaginatedItems().subscribe({
+      next: (response) => {
+        if(response){
+          this.mTypes = (response as any).data.types
+          this.mProgress = false
+        }
+      },
+      error: (error ) => {
+        if(error.error.message){
+          this.mToastrService.error(error.error.message)
+        }
+        this.mProgress = false
+      }
+    });
+  }
 
   // onDelete
   onDelete(item:any){
@@ -155,10 +179,20 @@ export class PlaylistComponent {
       })
   }
 
+
+  // onEdit
+  onEdit(item:any){
+    // console.log(item)
+    // create_shallow_copy
+    this.mItemToEdit = { ...item };
+    //  update_form_values
+     this.itemForm.patchValue(this.mItemToEdit);
+  }
+
   // onSubmit
-  onSubmit(formValues: any, id:any){
+  onSubmit(formValues: any){
     const item: any = {
-      id: id,
+      id: this.mItemToEdit.id,
       name: formValues.name,
       type_id: formValues.type_id,
       description: formValues.description,
@@ -192,25 +226,6 @@ export class PlaylistComponent {
         // this.mProgress = false
       }
     })
-  }
-
-  // unpaginated
-  unpaginated(){
-    this.mProgress = true
-    this.mPlaylistService.unpaginatedItems().subscribe({
-      next: (response) => {
-        if(response){
-          this.mTypes = (response as any).data.types
-          this.mProgress = false
-        }
-      },
-      error: (error ) => {
-        if(error.error.message){
-          this.mToastrService.error(error.error.message)
-        }
-        this.mProgress = false
-      }
-    });
   }
 
 }

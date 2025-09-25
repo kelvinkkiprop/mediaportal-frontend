@@ -43,8 +43,8 @@
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <button class="nav-link border-0 text-uppercase text-sm" routerLink="/media/index" routerLinkActive="active" id="media-tab" data-bs-toggle="tab" data-bs-target="#media" type="button" role="tab" aria-controls="media">
-                      Media
+                    <button class="nav-link border-0 text-uppercase text-sm" routerLink="/media/my-media" routerLinkActive="active" id="media-tab" data-bs-toggle="tab" data-bs-target="#media" type="button" role="tab" aria-controls="media">
+                      My Media
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
@@ -79,7 +79,7 @@
                     <div class="text-muted">{{ mCurrentUser.bio }}</div>
                   </div>
                 </div>
-                <div *ngIf="router.url === '/media/index'" class="tab-pane fade show active">
+                <div *ngIf="router.url === '/media/my-media'" class="tab-pane fade show active">
                   <div class="mb-3">
                     <label for="uploads" class="form-label">Uploads:</label>
                     <div *ngIf="myMedia && myMedia.length>0; else noItemsTemplate" class="row row-cols-1 row-cols-md-3 g-4">

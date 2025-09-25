@@ -56,7 +56,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="mb-3">
                       <label for="email" class="form-label required">Email:</label>
                       <input type="email" formControlName="email" class="form-control"
@@ -80,7 +80,20 @@
                       </div>
                     </div>
                   </div>
-                  <div *ngIf="itemForm.get('role_id').value!=1" class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="account_type_id" class="form-label required">Account Type:</label>
+                      <select class="form-select" formControlName="account_type_id"
+                        [ngClass]="{ 'is-invalid': itemForm.get('account_type_id')?.invalid && (itemForm.get('account_type_id')?.dirty || itemForm.get('account_type_id')?.touched) }">
+                        <option value="" disabled selected>--- Select account type ---</option>
+                        <option *ngFor="let mType of mAccountTypes" value="{{mType.id}}">{{ mType.name }}</option>
+                      </select>
+                      <div *ngIf="itemForm.get('account_type_id')?.invalid && (itemForm.get('account_type_id')?.dirty || itemForm.get('account_type_id')?.touched)" class="invalid-feedback d-block1" role="alert">
+                        <div *ngIf="itemForm.get('account_type_id')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div *ngIf="itemForm.get('role_id').value!=1" class="row">
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="organization_category_id" class="form-label required">Organization category:</label>
@@ -107,7 +120,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="col-md-12">
                     <div class="mb-3">
                       <label for="password" class="form-label required">Password:</label>

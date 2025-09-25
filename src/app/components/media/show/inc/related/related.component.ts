@@ -74,6 +74,7 @@ export class RelatedComponent implements OnChanges {
       next: (res: any) => {
         if (this.mCurrentPage === 1) {
           this.mItems = res.data;
+          // console.log(this.mItems)
         } else {
           this.mItems = [...this.mItems, ...res.data];
         }
@@ -141,7 +142,11 @@ export class RelatedComponent implements OnChanges {
       if (!nextItem) return;
       // console.log('Next video ID:', nextItem.id);
       // Navigate
-      this.router.navigate(['/media/show', nextItem.id]);
+      this.router.navigate(['/media/watch'], {
+        queryParams: {
+          video: nextItem.id,
+        }
+      });
     } else {
       // Show modal if autoplay is off
       const swalWithBootstrapButtons = swal.mixin({

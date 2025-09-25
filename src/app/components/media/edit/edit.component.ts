@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Media } from '../../../interfaces/media';
 import { MediaService } from '../../../services/media.service';
+import { AppContextService } from '../../../core/app-context.service';
 
 @Component({
   selector: 'app-edit',
@@ -17,7 +18,7 @@ export class EditComponent {
   // variables
   mContentCategories: any
   mMediaTypes: any
-  mOrganizations: any
+  mUsers: any
 
   mSelectedCategories: any[] = [];
 
@@ -43,7 +44,7 @@ export class EditComponent {
       category_id: ['', Validators.nullValidator],
       tags: ['', Validators.nullValidator],
       type_id: ['', Validators.required],
-      organization_id: ['', Validators.required],
+      user_id: ['', Validators.required],
       allow_comments: [false, Validators.nullValidator],
     });
   }
@@ -56,7 +57,11 @@ export class EditComponent {
       next: (response) => {
         if(response){
           this.item = response as any
-          // console.log(response)
+          // set
+          if (this.item.media_categories && Array.isArray(this.item.media_categories)) {
+            this.mSelectedCategories.push(...this.item.media_categories.map(cat => cat.category_id));
+            // console.log('Selected Category IDs:', this.mSelectedCategories);
+          }
           this.mProgress = false
         }
       },
@@ -81,7 +86,7 @@ export class EditComponent {
         if(response){
           this.mContentCategories = (response as any).data.content_categories
           this.mMediaTypes = (response as any).data.media_types
-          this.mOrganizations = (response as any).data.organizations
+          this.mUsers = (response as any).data.users
           this.mProgress = false
         }
       },
@@ -107,7 +112,7 @@ export class EditComponent {
       category_id: this.mSelectedCategories,
       tags: formValues.tags,
       type_id: formValues.type_id,
-      organization_id: formValues.organization_id,
+      user_id: formValues.user_id,
       allow_comments: formValues.allow_comments,
     }
 
@@ -144,5 +149,11 @@ export class EditComponent {
     }
   }
 
+  // isInList
+  isInList(id: any, list:any): any {
+    // return " "+id+" "+list
+    // console.log(" "+id+" "+list)
+    return list?.some((item: { category_id: any; }) => item.category_id === id) ?? false;
+  }
 
 }

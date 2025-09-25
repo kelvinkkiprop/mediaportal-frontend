@@ -92,8 +92,8 @@
                         <div>
                           <label for="categories" class="text-muted me-2">Categories:</label>
                           <a *ngFor="let cat of item.media_categories; let last = last" routerLink="/categories/show/{{cat.category_id}}" class="text-decoration-none">
-                              {{ cat.name }}<span *ngIf="!last">,</span>
-                            </a>
+                            {{ cat.name }}<span *ngIf="!last">,</span>
+                          </a>
                         </div>
                         <div>
                           <label for="tags" class="text-muted me-2">Tags:</label>
@@ -171,7 +171,7 @@
         <div class="modal-body">
           <div *ngIf="mPlaylists && mPlaylists.length>0"  class="mb-3">
             <div *ngFor="let mList of mPlaylists" class="form-check">
-              <input (change)="onSave(mList, $event)" type="checkbox" class="form-check-input" [checked]="mAppContextService.isInList(mList.id, item?.media_playlists)"/>
+              <input (change)="onSave(mList, $event)" type="checkbox" class="form-check-input" [checked]="isInList(mList.id, item?.media_playlists)"/>
               <label class="me-1">{{ mList.name }}</label>
             </div>
           </div>
@@ -181,7 +181,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="mb-3">
-                  <label for="name" class="form-label required">Name</label>
+                  <label for="name" class="form-label required">Name:</label>
                   <input formControlName="name" class="form-control form-control-sm" [ngClass]="{'is-invalid': itemForm.get('name')?.invalid && (itemForm.get('name')?.dirty || itemForm.get('name')?.touched) }"/>
                   <div *ngIf="itemForm.get('name')?.invalid && (itemForm.get('name')?.dirty || itemForm.get('name')?.touched)" class="invalid-feedback d-block" role="alert">
                     <div *ngIf="itemForm.get('name')?.errors?.['required']">This field is required.</div>
@@ -199,7 +199,7 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <label for="description" class="form-label required1">Description</label>
+                  <label for="description" class="form-label required1">Description:</label>
                   <textarea formControlName="description" class="form-control form-control-sm" [ngClass]="{'is-invalid': itemForm.get('description')?.invalid && (itemForm.get('description')?.dirty || itemForm.get('description')?.touched) }"></textarea>
                   <div *ngIf="itemForm.get('description')?.invalid && (itemForm.get('description')?.dirty || itemForm.get('description')?.touched)" class="invalid-feedback d-block" role="alert">
                     <div *ngIf="itemForm.get('description')?.errors?.['required']">This field is required.</div>

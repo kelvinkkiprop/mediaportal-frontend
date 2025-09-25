@@ -57,9 +57,7 @@ import { AuthService } from '../services/auth.service';
 export class VerificationGuard implements CanActivate, CanActivateChild {
   constructor(private mAuthService: AuthService, private router: Router) {}
 
-
   private check(url: string): boolean | UrlTree {
-
     const mCurrentUser = this.mAuthService.currentUser;
     // console.log(mCurrentUser);
     // if (!this.auth.isLoggedIn()) {

@@ -3,14 +3,14 @@
   <div class="col-md-12">
     <!-- <img [src]="item.thumbnail_url" width="100%" height="auto" alt="Thumbnail" class="img-fluid rounded ratio ratio-16x9"/> -->
      <div class="position-relative d-inline-block">
-      <!-- <img [src]="'/images/placeholder_600_by_400.png'" width="100%" height="auto" alt="Thumbnail" class="img-fluid rounded ratio ratio-16x9"/> -->
-      <img [src]="item?.thumbnail_url ? item?.thumbnail_url : '/images/placeholder_600_by_400.png'" width="100%" height="auto" alt="Thumbnail" class="img-fluid rounded ratio ratio-16x9"/>
-      <span *ngIf="this.item?.type_id==2" class="btn btn-outline-light btn-sm position-absolute bottom-0 end-0"><small>{{ item?.live_stream_status?.name }}</small></span>
+      <!-- <img [src]="'/images/placeholder.png'" width="100%" height="auto" alt="Thumbnail" class="img-fluid rounded ratio ratio-16x9"/> -->
+      <img [src]="item?.thumbnail_url ? item?.thumbnail_url : '/images/placeholder.png'" width="100%" height="auto" alt="Thumbnail" class="img-fluid rounded ratio ratio-16x9"/>
+      <!-- <span *ngIf="this.item?.type_id==2" class="btn btn-outline-light btn-sm position-absolute bottom-0 end-0"><small>{{ item?.live_stream_status?.name }}</small></span> -->
     </div>
   </div>
   <div class="col-md-12">
     <div class="position-relative">
-      {{ item?.title }} <span *ngIf="this.item?.type_id==2" class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">LIVE</span>
+      {{ item?.title }} <span *ngIf="this.item?.type_id==2 && this.item?.live_stream_status_id===3" class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger text-xs">LIVE</span>
     </div>
   </div>
   <div class="col-md-6">
