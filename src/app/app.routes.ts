@@ -62,11 +62,12 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./components/media/media.module').then((m) => m.MediaModule)
       },
-      // {
-      //   path: 'live-stream',
-      //   loadChildren: () =>
-      //     import('./components/live-stream/live-stream.module').then((m) => m.LiveStreamModule)
-      // },
+      {
+        canActivate: [VerificationGuard],
+        path: 'live-stream',
+        loadChildren: () =>
+          import('./components/live-stream/live-stream.module').then((m) => m.LiveStreamModule)
+      },
       // {
       //   path: 'payments',
       //   loadChildren: () =>

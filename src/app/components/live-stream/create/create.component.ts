@@ -59,8 +59,8 @@ let formData:any = new FormData()
         // console.log(response.status);
         if(response.status === 'success'){
           this.mToastrService.success((response as any).message);
-          // this.router.navigateByUrl('/live-stream');
-          this.router.navigateByUrl('/media/live-streams');
+          // this.router.navigateByUrl('/media/live-streams');
+          this.router.navigateByUrl('/media');
           this.mProgress = false;
         }else{
           this.mToastrService.error((response as any).message);
