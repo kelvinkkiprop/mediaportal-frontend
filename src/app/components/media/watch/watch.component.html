@@ -122,7 +122,15 @@
                     <div class="accordion-item">
                       <h2 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                          {{ mPlaylist?.name }} ({{ mPlaylist?.total_media}})
+                          <!-- {{ mPlaylist?.name }} -->
+                          <div class="align-items-start">
+                            <span class="fw-semibold text-truncate">
+                              {{ mPlaylist?.name }}
+                            </span> <br>
+                            <small class="text-muted text-xs">
+                              {{ mPlaylist?.user?.name }} - {{ mCurrentMediaPlaylistIndex+1}}/{{ mPlaylist?.total_media }}
+                            </small>
+                          </div>
                         </button>
                       </h2>
                       <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
@@ -141,12 +149,20 @@
                       </div>
                     </div>
                   </div>
-                  <!-- Playlist -->
+                  <!-- Category -->
                   <div *ngIf="mCategorylist && mCategory" class="accordion mb-3" id="accordionPanelsStayOpenExample">
                     <div class="accordion-item">
                       <h2 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                          {{ mCategory?.name }} ({{ mCategory?.total_media}})
+                          <div class="align-items-start">
+                            <span class="fw-semibold text-truncate">
+                              {{ mCategory?.name }}
+                            </span> <br>
+                            <small class="text-muted text-xs">
+                              {{ mCurrentCategorylistIndex+1}}/{{ mCategory?.total_media }}
+                            </small>
+                          </div>
+
                         </button>
                       </h2>
                       <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
