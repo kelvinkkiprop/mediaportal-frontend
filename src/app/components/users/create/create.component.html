@@ -27,7 +27,7 @@
           <div class="card">
             <div class="card-header">
               <div class="card-title">
-                  Create User
+                Create User
               </div>
               <div class="card-tools">
               </div>
@@ -36,26 +36,6 @@
 
               <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
                 <div class="row mb-3">
-                  <div class="col-md-6">
-                    <div class="mb-3">
-                      <label for="first_name" class="form-label required">First Name:</label>
-                      <input type="text" formControlName="first_name" class="form-control"
-                      [ngClass]="{ 'is-invalid': itemForm.get('first_name')?.invalid && (itemForm.get('first_name')?.dirty || itemForm.get('first_name')?.touched) }"/>
-                      <div *ngIf="itemForm.get('first_name')?.invalid && (itemForm.get('first_name')?.dirty || itemForm.get('first_name')?.touched)" class="invalid-feedback d-block" role="alert">
-                        <div *ngIf="itemForm.get('first_name')?.errors?.['required']">This field is required.</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="mb-3">
-                      <label for="last_name" class="form-label required">Last Name:</label>
-                      <input type="text" formControlName="last_name" class="form-control"
-                      [ngClass]="{ 'is-invalid': itemForm.get('last_name')?.invalid && (itemForm.get('last_name')?.dirty || itemForm.get('last_name')?.touched) }"/>
-                      <div *ngIf="itemForm.get('last_name')?.invalid && (itemForm.get('last_name')?.dirty || itemForm.get('last_name')?.touched)" class="invalid-feedback d-block" role="alert">
-                        <div *ngIf="itemForm.get('last_name')?.errors?.['required']">This field is required.</div>
-                      </div>
-                    </div>
-                  </div>
                   <div class="col-md-12">
                     <div class="mb-3">
                       <label for="email" class="form-label required">Email:</label>
@@ -67,20 +47,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="mb-3">
-                      <label for="role_id" class="form-label required">Role:</label>
-                      <select class="form-select" formControlName="role_id"
-                        [ngClass]="{ 'is-invalid': itemForm.get('role_id')?.invalid && (itemForm.get('role_id')?.dirty || itemForm.get('role_id')?.touched) }">
-                        <option value="" disabled selected>--- Select role ---</option>
-                        <option *ngFor="let mRole of mRoles" value="{{mRole.id}}">{{ mRole.name }}</option>
-                      </select>
-                      <div *ngIf="itemForm.get('role_id')?.invalid && (itemForm.get('role_id')?.dirty || itemForm.get('role_id')?.touched)" class="invalid-feedback d-block1" role="alert">
-                        <div *ngIf="itemForm.get('role_id')?.errors?.['required']">This field is required.</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="mb-3">
                       <label for="account_type_id" class="form-label required">Account Type:</label>
                       <select class="form-select" formControlName="account_type_id"
@@ -93,34 +60,85 @@
                       </div>
                     </div>
                   </div>
-                  <!-- <div *ngIf="itemForm.get('role_id').value!=1" class="row">
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <label for="organization_category_id" class="form-label required">Organization category:</label>
-                        <select (change)="onOrganizationChange($event.target)" class="form-select" formControlName="organization_category_id"
-                          [ngClass]="{ 'is-invalid': itemForm.get('organization_category_id')?.invalid && (itemForm.get('organization_category_id')?.dirty || itemForm.get('organization_category_id')?.touched) }">
-                          <option value="" disabled selected>--- Select category ---</option>
-                          <option *ngFor="let mCategory of mOrganizationCategories" value="{{mCategory.id}}">{{ mCategory.name }}</option>
-                        </select>
-                        <div *ngIf="itemForm.get('organization_category_id')?.invalid && (itemForm.get('organization_category_id')?.dirty || itemForm.get('organization_category_id')?.touched)" class="invalid-feedback d-block1" role="alert">
-                          <div *ngIf="itemForm.get('organization_category_id')?.errors?.['required']">This field is required.</div>
-                        </div>
+                  <div *ngIf="itemForm.get('account_type_id').value==1" class="col-md-6">
+                    <div class="mb-3">
+                      <label for="first_name" class="form-label required">First Name:</label>
+                      <input type="text" formControlName="first_name" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('first_name')?.invalid && (itemForm.get('first_name')?.dirty || itemForm.get('first_name')?.touched) }"/>
+                      <div *ngIf="itemForm.get('first_name')?.invalid && (itemForm.get('first_name')?.dirty || itemForm.get('first_name')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('first_name')?.errors?.['required']">This field is required.</div>
                       </div>
                     </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <label for="organization_id" class="form-label required">Organization:</label>
-                        <select class="form-select" formControlName="organization_id"
-                          [ngClass]="{ 'is-invalid': itemForm.get('organization_id')?.invalid && (itemForm.get('organization_id')?.dirty || itemForm.get('organization_id')?.touched) }">
-                          <option value="" disabled selected>--- Select organization ---</option>
-                          <option *ngFor="let mOrganization of mOrganizations" value="{{mOrganization.id}}">{{ mOrganization.name }}</option>
-                        </select>
-                        <div *ngIf="itemForm.get('organization_id')?.invalid && (itemForm.get('organization_id')?.dirty || itemForm.get('organization_id')?.touched)" class="invalid-feedback d-block1" role="alert">
-                          <div *ngIf="itemForm.get('organization_id')?.errors?.['required']">This field is required.</div>
-                        </div>
+                  </div>
+                  <div *ngIf="itemForm.get('account_type_id').value==1" class="col-md-6">
+                    <div class="mb-3">
+                      <label for="last_name" class="form-label required">Last Name:</label>
+                      <input type="text" formControlName="last_name" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('last_name')?.invalid && (itemForm.get('last_name')?.dirty || itemForm.get('last_name')?.touched) }"/>
+                      <div *ngIf="itemForm.get('last_name')?.invalid && (itemForm.get('last_name')?.dirty || itemForm.get('last_name')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('last_name')?.errors?.['required']">This field is required.</div>
                       </div>
                     </div>
-                  </div> -->
+                  </div>
+                  <div *ngIf="itemForm.get('account_type_id').value==2" class="col-md-6">
+                    <div class="mb-3">
+                      <label for="name" class="form-label required">Name:</label>
+                      <input type="text" formControlName="name" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('name')?.invalid && (itemForm.get('name')?.dirty || itemForm.get('name')?.touched) }"/>
+                      <div *ngIf="itemForm.get('name')?.invalid && (itemForm.get('name')?.dirty || itemForm.get('name')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('name')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="itemForm.get('account_type_id').value==2" class="col-md-6">
+                    <div class="mb-3">
+                      <label for="alias" class="form-label required1">Alias:</label>
+                      <input placeholder="e.g., KRA" type="text" formControlName="alias" class="form-control"
+                      [ngClass]="{ 'is-invalid': itemForm.get('alias')?.invalid && (itemForm.get('alias')?.dirty || itemForm.get('alias')?.touched) }"/>
+                      <div *ngIf="itemForm.get('alias')?.invalid && (itemForm.get('alias')?.dirty || itemForm.get('alias')?.touched)" class="invalid-feedback d-block" role="alert">
+                        <div *ngIf="itemForm.get('alias')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="itemForm.get('account_type_id').value==2" class="col-md-12">
+                    <div class="mb-3">
+                      <label for="institution_category_id" class="form-label required">Institution category:</label>
+                      <select class="form-select" formControlName="institution_category_id"
+                        [ngClass]="{ 'is-invalid': itemForm.get('institution_category_id')?.invalid && (itemForm.get('institution_category_id')?.dirty || itemForm.get('institution_category_id')?.touched) }">
+                        <option value="" disabled selected>--- Select category ---</option>
+                        <option *ngFor="let mCategory of mInstitutionCategories" value="{{mCategory.id}}">{{ mCategory.name }}</option>
+                      </select>
+                      <div *ngIf="itemForm.get('institution_category_id')?.invalid && (itemForm.get('institution_category_id')?.dirty || itemForm.get('institution_category_id')?.touched)" class="invalid-feedback d-block1" role="alert">
+                        <div *ngIf="itemForm.get('institution_category_id')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="itemForm.get('account_type_id').value==1" class="col-md-12">
+                    <div class="mb-3">
+                      <label for="institution_id" class="form-label required">Institution:</label>
+                      <select class="form-select" formControlName="institution_id"
+                        [ngClass]="{ 'is-invalid': itemForm.get('institution_id')?.invalid && (itemForm.get('institution_id')?.dirty || itemForm.get('institution_id')?.touched) }">
+                        <option value="" disabled selected>--- Select institution ---</option>
+                        <option *ngFor="let mInstitution of mInstitutions" value="{{mInstitution.id}}">{{ mInstitution.name }}</option>
+                      </select>
+                      <div *ngIf="itemForm.get('institution_id')?.invalid && (itemForm.get('institution_id')?.dirty || itemForm.get('institution_id')?.touched)" class="invalid-feedback d-block1" role="alert">
+                        <div *ngIf="itemForm.get('institution_id')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="role_id" class="form-label required">Role:</label>
+                      <select class="form-select" formControlName="role_id"
+                        [ngClass]="{ 'is-invalid': itemForm.get('role_id')?.invalid && (itemForm.get('role_id')?.dirty || itemForm.get('role_id')?.touched) }">
+                        <option value="" disabled selected>--- Select role ---</option>
+                        <option *ngFor="let mRole of mRoles" value="{{mRole.id}}">{{ mRole.name }}</option>
+                      </select>
+                      <div *ngIf="itemForm.get('role_id')?.invalid && (itemForm.get('role_id')?.dirty || itemForm.get('role_id')?.touched)" class="invalid-feedback d-block1" role="alert">
+                        <div *ngIf="itemForm.get('role_id')?.errors?.['required']">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
                   <div class="col-md-12">
                     <div class="mb-3">
                       <label for="password" class="form-label required">Password:</label>

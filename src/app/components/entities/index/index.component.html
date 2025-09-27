@@ -1,0 +1,47 @@
+<app-progress *ngIf="mProgress"/>
+
+<section>
+  <div class="app-content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <h3 class="mb-0">Entities</h3>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Entities</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-content">
+    <div class="container-fluid">
+
+    <div class="card-body" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150" [infiniteScrollDisabled]="!mHasMorePages || mLoadingMore" (scrolled)="onLoadMore()">
+      <div *ngIf="mItems && mItems.length>0; else noItemsTemplate" class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+        <div *ngFor="let item of mItems" class="col">
+            <!-- <a routerLink="/categories/show/{{ item.id }}" class="row text-decoration-none text-reset"> -->
+            <a [routerLink]="['/media/watch']" [queryParams]="{ entity: item.id }" class="row text-decoration-none text-reset">
+              <app-media-card [data]="item"/>
+              <h6 class="mb-0">{{ item.name }}</h6>
+              <div class="pt-0 text-muted">{{ item.total_media }} media</div>
+            </a>
+          </div>
+        </div>
+      <div>
+        <app-loader *ngIf="mLoadingMore"/>
+        <!-- <p class="text-center text-muted p-2" *ngIf="!mHasMorePages">No more items</p> -->
+      </div>
+      <ng-template #noItemsTemplate>
+        <p class="p-5 text-center text-muted">No items</p>
+      </ng-template>
+    </div>
+
+
+    </div>
+  </div>
+
+</section>

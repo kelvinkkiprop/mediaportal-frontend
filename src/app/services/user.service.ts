@@ -79,5 +79,9 @@ export class UserService {
     return this.http.get<User[]>(url+page, this.mAppContextService.getHttpOptions());
   }
 
+  entityItems(page:any):Observable<User[]>{
+    const url = `${environment.base_url}/entity-users`;
+    return this.http.get<User[]>(url+page, this.mAppContextService.getHttpOptions());
+  }
 
 }

@@ -30,10 +30,10 @@
               <div class="card-title">
                 <div class="d-flex align-items-center mb-3">
                   <span class="user-image rounded-circle bg-primary text-white fw-bold d-inline-flex justify-content-center align-items-center me-3" style="width: 64px; height: 64px; font-size: 1rem;">
-                    {{ this.mAppContextService.getInitials(item?.name) }}
+                    {{ this.mAppContextService.getInitials(item?.full_name) }}
                   </span>
                   <div>
-                    <p class="mb-0 fw-semibold">{{ item?.name }}</p>
+                    <p class="mb-0 fw-semibold">{{ item?.full_name }}</p>
                     <small class="text-muted">{{ item?.role?.name }}</small>
                   </div>
                 </div>

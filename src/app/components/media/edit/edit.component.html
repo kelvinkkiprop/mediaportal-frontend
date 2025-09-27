@@ -16,11 +16,15 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="app-content">
+    <div class="container-fluid">
 
       <div class="row">
         <div class="col-lg-12 col-12">
 
-          <div class="card">
+        <div class="card">
             <div class="card-header">
               <div class="card-title">
                 Create Media
@@ -114,11 +118,11 @@
                   </div>
                   <div class="col-md-6">
                     <div class="mb-3">
-                      <label for="user_id" class="form-label required">User:</label>
+                      <label for="user_id" class="form-label required">Institution:</label>
                       <select [(ngModel)]="item.user_id" class="form-select" formControlName="user_id"
                         [ngClass]="{ 'is-invalid': itemForm.get('user_id')?.invalid && (itemForm.get('user_id')?.dirty || itemForm.get('user_id')?.touched) }">
-                        <option value="" disabled selected>--- Select user ---</option>
-                        <option *ngFor="let mOrganization of mUsers" value="{{mOrganization.id}}">{{ mOrganization.name }}</option>
+                        <option value="" disabled selected>--- Select organization ---</option>
+                        <option *ngFor="let mOrganization of mUsers" value="{{mOrganization.id}}">{{ mOrganization.full_name }}</option>
                       </select>
                       <div *ngIf="itemForm.get('user_id')?.invalid && (itemForm.get('user_id')?.dirty || itemForm.get('user_id')?.touched)" class="invalid-feedback d-block1" role="alert">
                         <div *ngIf="itemForm.get('user_id')?.errors?.['required']">This field is required.</div>
@@ -148,9 +152,9 @@
           </div>
         </div>
 
+        </div>
       </div>
+
     </div>
-
-
   </div>
 </section>

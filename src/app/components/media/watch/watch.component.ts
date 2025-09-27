@@ -50,6 +50,12 @@ export class WatchComponent {
   mCategorylist: any = []
   mCurrentCategorylistIndex: number = 0
 
+  // Playlist
+  mEntityId!: string | null
+  mEntity: any
+  mEntitylist: any = []
+  mCurrentEntitylistIndex: number = 0
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -78,6 +84,7 @@ export class WatchComponent {
       this.mVideoId = params.get('video')!;
       this.mPlaylistId = params.get('playlist');
       this.mCategoryId = params.get('category');
+      this.mEntityId = params.get('entity');
 
       if (this.mPlaylistId) {
         // Load_playlist_first_video_when_playlist_is_ready
@@ -89,6 +96,13 @@ export class WatchComponent {
       }else if (this.mCategoryId) {
         // Load_categoryMedia_first_video_when_categoryMedia_is_ready
         this.loadCategoryMediaAndIndex(() => {
+          if (this.mVideoId) {
+            this.loadVideo(this.mVideoId);
+          }
+        });
+      }else if (this.mEntityId) {
+        // Load_entityMedia_first_video_when_categoryMedia_is_ready
+        this.loadEntityMediaAndIndex(() => {
           if (this.mVideoId) {
             this.loadVideo(this.mVideoId);
           }
@@ -198,10 +212,10 @@ export class WatchComponent {
     this.mProgress = true
     this.mMediaService.unpaginatedItems().subscribe({
       next: (response) => {
-        console.log(response)
+        // console.log(response)
         if(response){
           this.mTypes = (response as any).data.media_types
-          this.mMyMediaPlaylists = (response as any).data.media_playlists
+          this.mMyMediaPlaylists = (response as any).data.media_playlists,
           this.mProgress = false
         }
       },
@@ -412,6 +426,42 @@ export class WatchComponent {
     });
   }
   // ===============================================./CATEGORY_MEDIA===============================================
+
+
+
+  // ===============================================ENTITY_MEDIA===============================================
+  // loadEntityMediaAndIndex
+  loadEntityMediaAndIndex(callback?: () => void) {
+    this.mProgress = true;
+    this.mMediaService.entityMediaItem(this.mEntityId!).subscribe({
+      next: (response) => {
+        // set
+        this.mEntity = response
+        this.mEntitylist = (response as any).media
+        console.log(this.mEntitylist)
+
+        this.mCurrentEntitylistIndex = this.mEntitylist.findIndex(
+          (item: any) => item.id === this.mVideoId
+        );
+
+        if (this.mCurrentEntitylistIndex === -1 && this.mEntitylist.length > 0) {
+          this.mCurrentEntitylistIndex = 0;
+          this.mVideoId = this.mEntitylist[0].id;
+        }
+
+        this.mProgress = false;
+        // Load_video_after_playlist_is_ready
+        if (callback) callback();
+      },
+      error: (error) => {
+        if (error.error?.message) {
+          this.mToastrService.error(error.error.message);
+        }
+        this.mProgress = false;
+      }
+    });
+  }
+  // ===============================================./ENTITY_MEDIA===============================================
 
 
 }

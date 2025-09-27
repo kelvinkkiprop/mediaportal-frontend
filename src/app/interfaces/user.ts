@@ -13,10 +13,14 @@ export interface User {
   token?: any,
   password?: any,
 
+  account_type_id?: any,
+  name?: any,
+  alias?: any,
+
   // profile
   bio?: any,
-  organization_category_id?: any,
-  organization_id?: any,
+  institution_category_id?: any,
+  institution_id?: any,
 
   county_id?: any,
   constituency_id?: any,
@@ -26,6 +30,9 @@ export interface User {
   autoplay?: any,
   receive_notifications?: any,
 
-  name?: any,
+  full_name?: any,
   role?: any,
+
+
+  reset_password?: any,
 }

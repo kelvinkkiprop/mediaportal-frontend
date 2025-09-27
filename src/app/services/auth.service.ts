@@ -96,6 +96,7 @@ export class AuthService {
           created_at: response.data.user.created_at,
           token: response.data.token,
           name: response.data.user.name,
+          full_name: response.data.user.full_name,
           email_verified_at: response.data.user.email_verified_at,
 
           role: response.data.user.role,

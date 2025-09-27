@@ -103,6 +103,10 @@ export class MediaService {
     const url =  `${environment.base_url}/media/${id}/category`;
     return this.http.get<Media[]>(url, this.mAppContextService.getHttpOptions());
   }
+  entityMediaItem(id: any):Observable<Media[]>{
+    const url =  `${environment.base_url}/media/${id}/entity`;
+    return this.http.get<Media[]>(url, this.mAppContextService.getHttpOptions());
+  }
 
 
 

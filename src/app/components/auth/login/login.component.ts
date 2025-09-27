@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { AppContextService } from '../../../core/app-context.service';
 
 @Component({
   standalone: false,
@@ -22,7 +23,8 @@ export class LoginComponent {
     public mToastrService: ToastrService,
     public mAuthService: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private mAppContextService: AppContextService,
   ) {
     // validation
     this.itemForm = this.fb.group({
@@ -32,10 +34,18 @@ export class LoginComponent {
   }
 
   // onSubmit
-  onSubmit(formValues: any){
-    // // console.log(formValues);
+  async onSubmit(formValues: any){
+    // const item: User = {
+    const item: any = {
+      email: formValues.email,
+      password: formValues.password,
+      device_type_id: this.mAppContextService.getDeviceType(),
+      ip_address: await this.mAppContextService.getPublicIpAddress(),
+    }
+
+
     this.mProgress = true
-    this.mAuthService.login(formValues).subscribe({
+    this.mAuthService.login(item).subscribe({
       next: (response) => {
         // console.log(response.status);
         if(response.status === 'success'){

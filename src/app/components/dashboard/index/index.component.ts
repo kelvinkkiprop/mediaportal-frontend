@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppContextService } from '../../../core/app-context.service';
 
 @Component({
   selector: 'app-index',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './index.component.scss'
 })
 export class IndexComponent {
+
+  constructor(
+    public mAppContextService: AppContextService,
+  ) {}
+
 
 }

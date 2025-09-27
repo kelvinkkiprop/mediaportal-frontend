@@ -1,10 +1,10 @@
 // src/app/core/app-context.service.ts
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { catchError, debounceTime, first, map, Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,8 @@ export class AppContextService {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private injector: Injector
+    private injector: Injector,
+    private http: HttpClient
   ) {}
 
   // sanitizeVideoUrl
@@ -124,6 +125,37 @@ export class AppContextService {
       return (bytes / 1_000).toFixed(2) + ' KB';
     }
     return bytes + ' B';
+  }
+
+  // getDeviceType
+  getDeviceType(): any {
+    const ua = navigator.userAgent;
+    if (/Laptop|Macintosh|Windows|Linux/i.test(ua)) {
+      return 1;
+    } else if (/Mobi|Android.*Mobile|iPhone|iPod|Windows Phone/i.test(ua)) {
+      return 2;
+    } else if (/SmartTV|TV|BRAVIA|AppleTV|GoogleTV|HbbTV/i.test(ua)) {
+      return 4;
+    } else if (/PlayStation|Xbox|Nintendo/i.test(ua)) {
+      return 5;
+    } else if (/iPad|Tablet|Nexus 7|Android(?!.*Mobile)/i.test(ua)) {
+      return 3;
+    } else {
+      return 6; // 'Other'
+    }
+  }
+
+  // getPublicIpAddress
+  async getPublicIpAddress(): Promise<string> {
+    try {
+      const response: any = await firstValueFrom(
+        this.http.get('https://api.ipify.org?format=json')
+      );
+      return response.ip;
+    } catch (error) {
+      console.error('Failed to fetch IP address', error);
+      return '';
+    }
   }
 
 }

@@ -84,10 +84,10 @@
                     <div class="col-md-12">
                       <a routerLink="/users/show/{{item.user?.id}}" class="text-decoration-none text-reset1 d-flex align-items-center">
                         <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center fw-bold" style="width:40px; height:40px;">
-                          {{ mAppContextService.getInitials(item.user?.name) }}
+                          {{ mAppContextService.getInitials(item.user?.full_name) }}
                         </div>
                         <div class="ms-2">
-                          <h6 class="fw-semibold1 mb-0">{{ item.user?.name }}</h6>
+                          <h6 class="fw-semibold1 mb-0">{{ item.user?.full_name }}</h6>
                           <div class="text-xs text-muted mt-0">Published {{ item.readable_date}}</div>
                         </div>
                       </a>
@@ -128,7 +128,7 @@
                               {{ mPlaylist?.name }}
                             </span> <br>
                             <small class="text-muted text-xs">
-                              {{ mPlaylist?.user?.name }} - {{ mCurrentMediaPlaylistIndex+1}}/{{ mPlaylist?.total_media }}
+                              {{ mPlaylist?.user?.full_name }} - {{ mCurrentMediaPlaylistIndex+1}}/{{ mPlaylist?.total_media }}
                             </small>
                           </div>
                         </button>
@@ -150,7 +150,7 @@
                     </div>
                   </div>
                   <!-- Category -->
-                  <div *ngIf="mCategorylist && mCategory" class="accordion mb-3" id="accordionPanelsStayOpenExample">
+                  <div *ngIf="mCategorylist && mCategory;" class="accordion mb-3" id="accordionPanelsStayOpenExample">
                     <div class="accordion-item">
                       <h2 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
@@ -174,6 +174,38 @@
                               <div class="text-wrap" style="word-break: break-word; white-space: normal;">
                               </div>
                                 <app-media-card [data]="mItem.media"/>
+                              </div>
+                            </a>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Entity -->
+                  <div *ngIf="mEntitylist && mEntity;" class="accordion mb-3" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                          <div class="align-items-start">
+                            <span class="fw-semibold text-truncate">
+                              {{ mEntity?.name }}
+                            </span> <br>
+                            <small class="text-muted text-xs">
+                              {{ mCurrentEntitylistIndex+1}}/{{ mEntity?.total_media }}
+                            </small>
+                          </div>
+
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                        <div class="accordion-body p-0">
+                          <div class="list-group list-group-numbered">
+                            <a *ngFor="let mItem of mEntitylist; index as i" class="list-group-item border-0 d-flex justify-content-between align-items-start text-decoration-none text-reset" [ngClass]="{'active bg-warning bg-opacity-10': mItem.id === mVideoId }" [routerLink]="['/media/watch']" [queryParams]="{ video: mItem.id, entity: mEntityId }" queryParamsHandling="merge">
+                              <div class="ms-2 me-auto flex-grow-1">
+                              <div class="text-wrap" style="word-break: break-word; white-space: normal;">
+                              </div>
+                                <app-media-card [data]="mItem"/>
                               </div>
                             </a>
                           </div>

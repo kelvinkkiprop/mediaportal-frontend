@@ -21,8 +21,11 @@ import { MediaCardComponent } from "../shared/media-card/media-card.component";
   imports: [
     CommonModule,
     RouterModule,
+
     // import
     DashboardRoutingModule,
+
+    // Add
     SharedModule,
     MediaCardComponent
 ]

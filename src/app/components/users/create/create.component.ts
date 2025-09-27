@@ -19,10 +19,10 @@ export class CreateComponent {
   itemForm: any;
   mProgress: boolean = false;
 
-  mRoles:any
   mAccountTypes:any
-  mOrganizationCategories:any
-  mOrganizations:any
+  mInstitutionCategories:any
+  mInstitutions:any
+  mRoles:any
 
   constructor(
     public mToastrService: ToastrService,
@@ -33,13 +33,15 @@ export class CreateComponent {
   ) {
     // validation
     this.itemForm = this.fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      role_id: ['', Validators.required],
       account_type_id: ['', Validators.required],
-      // organization_category_id: ['', Validators.nullValidator],
-      // organization_id: ['', Validators.nullValidator],
+      first_name: ['', Validators.nullValidator],
+      last_name: ['', Validators.nullValidator],
+      name: ['', Validators.nullValidator],
+      alias: ['', Validators.nullValidator],
+      institution_category_id: ['', Validators.nullValidator],
+      institution_id: ['', Validators.nullValidator],
+      role_id: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -82,10 +84,10 @@ export class CreateComponent {
     this.mUserService.unpaginatedItems().subscribe({
       next: (response) => {
         if(response){
-          this.mRoles = (response as any).data.roles
           this.mAccountTypes = (response as any).data.account_types
-          this.mOrganizationCategories = (response as any).data.organization_categories
-          this.mOrganizations = (response as any).data.organizations
+          this.mInstitutionCategories = (response as any).data.institution_categories
+          this.mInstitutions = (response as any).data.institutions
+          this.mRoles = (response as any).data.roles
           this.mProgress = false
         }
       },
@@ -97,32 +99,6 @@ export class CreateComponent {
         this.mProgress = false
       }
     });
-  }
-
-  // onOrganizationChange
-  onOrganizationChange($event: any){
-    let id = $event.value
-    this.filterConstituencies(id)
-    this.mOrganizations = []//Reset
-  }
-  // filterConstituencies
-  filterConstituencies(id:any){
-    this.mProgress = true
-    this.mUserService.filterOrganizations(id).subscribe({
-      next: (response) => {
-        if(response){
-          // console.log(response)
-          //set
-          this.mOrganizations = response
-          this.mProgress = false
-        }
-      },
-      error: (error ) => {
-        // console.log(error.error)
-        this.mToastrService.error(error.error.message)
-        this.mProgress = false
-      }
-    })
   }
 
 }

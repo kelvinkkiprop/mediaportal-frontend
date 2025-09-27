@@ -1,8 +1,7 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
+import { ApexAxisChartSeries, ApexChart, ApexTitleSubtitle, ApexXAxis, ChartComponent } from "ng-apexcharts";
 import { ToastrService } from 'ngx-toastr';
-import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle, ChartComponent} from "ng-apexcharts";
 import { AppContextService } from '../../../core/app-context.service';
-import { ReportService } from '../../../services/report.service';
 import { AppInfoService } from '../../../core/app-info.service';
 import { UserService } from '../../../services/user.service';
 // Set

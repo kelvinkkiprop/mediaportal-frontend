@@ -103,6 +103,10 @@ ng generate component components/payments/show
 ng generate module components/payments/payment
 ng generate module components/payments/paymentRouting
 
+ng generate component components/reports/index
+ng generate module components/reports/report
+ng generate module components/reports/reportRouting
+
 ng generate component components/terms/index
 ng generate module components/terms/terms
 ng generate module components/terms/termsRouting
@@ -110,6 +114,10 @@ ng generate module components/terms/termsRouting
 ng generate component components/about/index
 ng generate module components/about/about
 ng generate module components/about/aboutRouting
+
+ng generate component components/entities/index
+ng generate module components/entities/entity
+ng generate module components/entities/entityRouting
 
 ng generate component components/shared/progress
 ng generate component components/shared/loader

@@ -78,10 +78,10 @@
                     <div class="col-md-12">
                       <a routerLink="/users/show/{{item.user?.id}}" class="text-decoration-none text-reset1 d-flex align-items-center">
                         <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center fw-bold" style="width:40px; height:40px;">
-                          {{ mAppContextService.getInitials(item.user?.name) }}
+                          {{ mAppContextService.getInitials(item.user?.full_name) }}
                         </div>
                         <div class="ms-2">
-                          <h6 class="fw-semibold1 mb-0">{{ item.user?.name }}</h6>
+                          <h6 class="fw-semibold1 mb-0">{{ item.user?.full_name }}</h6>
                           <div class="text-xs text-muted mt-0">Published {{ item.readable_date}}</div>
                         </div>
                       </a>

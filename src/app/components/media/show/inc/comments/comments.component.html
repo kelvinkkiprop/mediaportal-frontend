@@ -2,10 +2,10 @@
   <div *ngIf="mComments && mComments.length>0">
     <div *ngFor="let mComment of mComments; index as i" class="d-flex align-items-center mb-3">
       <div class="rounded-circle bg-secondary text-muted d-flex justify-content-center align-items-center fw-bold1" style="width:32px; height:32px;">
-        {{ mContext.getInitials(mComment.user?.name) }}
+        {{ mContext.getInitials(mComment.user?.full_name) }}
       </div>
       <div class="ms-2">
-        <h6 class="fw-semibold1 mb-0">{{ mComment.user?.name }} <span class="text-xs text-muted">{{ mComment.readable_date}}</span></h6>
+        <h6 class="fw-semibold1 mb-0">{{ mComment.user?.full_name }} <span class="text-xs text-muted">{{ mComment.readable_date}}</span></h6>
         <div class="mt-0 text-muted justify-text">{{ mComment.text}}</div>
       </div>
     </div>
@@ -20,7 +20,7 @@
         <label for="text" class="form-label required1">{{ item.total_comments }}</label>
         <div class="col-auto">
           <div class="rounded-circle bg-warning text-white d-flex justify-content-center align-items-center fw-bold" style="width:40px; height:40px;">
-            {{ mAppContextService.getInitials(mCurrentUser?.name) }}
+            {{ mAppContextService.getInitials(mCurrentUser?.full_name) }}
           </div>
         </div>
         <div class="col">
@@ -40,7 +40,7 @@
       <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150" [infiniteScrollDisabled]="!mHasMorePages || mLoadingMore" (scrolled)="onLoadMore()">
         <div *ngFor="let item of mItems; let i = index" class="d-flex align-items-start mb-3">
           <div class="rounded-circle bg-secondary text-light d-flex justify-content-center align-items-center fw-medium" style="width:32px; height:32px;">
-            {{ mAppContextService.getInitials(item.user?.name) }}
+            {{ mAppContextService.getInitials(item.user?.full_name) }}
           </div>
           <div class="ms-2 flex-grow-1">
             <div *ngIf="mEditIndex !== null;">
@@ -65,7 +65,7 @@
               </div>
             </div>
             <div *ngIf="mEditIndex !== i;">
-              <h6 class="fw-semibold1 mb-0">{{ item?.user?.name }} <span class="text-xs text-muted">{{ item.readable_date}}</span></h6>
+              <h6 class="fw-semibold1 mb-0">{{ item?.user?.full_name }} <span class="text-xs text-muted">{{ item.readable_date}}</span></h6>
               <div class="mt-0 text-muted justify-text">{{ item.text}}</div>
             </div>
           </div>

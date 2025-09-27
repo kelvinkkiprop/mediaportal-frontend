@@ -36,6 +36,7 @@ export class ProcessComponent {
     this.itemForm = this.fb.group({
       title: ['', Validators.required],
       status_id: ['', Validators.required],
+      reject_comments: ['', Validators.nullValidator],
     });
   }
 
@@ -90,6 +91,7 @@ export class ProcessComponent {
       id: this.id,
       title: formValues.title,
       status_id: formValues.status_id,
+      reject_comments: formValues.reject_comments,
     }
 
     this.mProgress = true

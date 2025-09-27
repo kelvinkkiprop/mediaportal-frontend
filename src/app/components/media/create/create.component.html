@@ -16,6 +16,10 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="app-content">
+    <div class="container-fluid">
 
       <div class="row">
         <div class="col-lg-12 col-12">
@@ -29,22 +33,6 @@
               </div>
             </div>
             <div class="card-body">
-
-              <!-- <div class="mb-3">
-                <div class="dropzone" [class.dragging]="isDragging">
-                  <p *ngIf="!selectedFile">Drag & drop a video here, or click to select</p>
-                  <p *ngIf="selectedFile">Selected: {{ selectedFile.title }}</p>
-                  <input type="file" hidden (change)="onFileSelected($event)" accept="video/*" #fileInput>
-                  <button (click)="fileInput.click()" class="btn btn-light btn-sm">Choose File</button>
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <input type="text" [(ngModel)]="title" placeholder="Title" class="form-control">
-              </div> -->
-              <!-- <div class="mb-3">
-                <textarea [(ngModel)]="description" placeholder="Description" class="form-control"></textarea>
-              </div> -->
 
               <form [formGroup]="itemForm" (ngSubmit)="onSubmit(itemForm.value)">
                 <div class="row mb-3">
@@ -85,12 +73,12 @@
                 </div>
               </form>
 
+            </div>
           </div>
+
         </div>
-
       </div>
+
     </div>
-
-
   </div>
 </section>

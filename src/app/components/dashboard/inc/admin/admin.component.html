@@ -1,1 +1,177 @@
-<p>admin works!</p>
+<app-progress *ngIf="mProgress"/>
+
+<section>
+  <div class="app-content-header">
+    <div class="container-fluid">
+      <!-- <div class="row">
+        <div class="col-sm-6">
+          <h3 class="mb-0">Dashboard</h3>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+          </ol>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="app-content">
+    <div class="container-fluid">
+
+      <div class="row mb-4">
+        <div class="col-lg-3 col-6">
+          <div class="small-box text-bg-primary">
+            <div class="inner">
+              <h3>{{ mTotalUsers }}</h3>
+              <p>Users</p>
+            </div>
+            <div class="small-box-icon">
+              <i class="bi bi-people-fill fs-1"></i>
+            </div>
+            <a routerLink="/users" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+              More info <i class="bi bi-link-45deg"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6">
+          <div class="small-box text-bg-success">
+            <div class="inner">
+              <h3>{{ mTotalMedia }}</h3>
+              <p>Media</p>
+            </div>
+            <div class="small-box-icon">
+              <i class="bi bi-collection-fill fs-1"></i>
+            </div>
+            <a routerLink="/media" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+              More info <i class="bi bi-link-45deg"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6">
+          <div class="small-box text-bg-warning">
+            <div class="inner">
+              <h3>{{ mTotalViews }}</h3>
+              <p>Views</p>
+            </div>
+            <div class="small-box-icon">
+              <i class="bi bi-eye-fill fs-1"></i>
+            </div>
+            <a routerLink="/media" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+              More info <i class="bi bi-link-45deg"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6">
+          <div class="small-box text-bg-danger">
+            <div class="inner">
+              <h3>{{ mTotalInstitutions }}</h3>
+              <p>Institutions</p>
+            </div>
+            <div class="small-box-icon">
+              <i class="bi bi-building-fill fs-1"></i>
+            </div>
+            <a routerLink="/organizations" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+              More info <i class="bi bi-link-45deg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-lg-7">
+          <div class="card mb-4 h-100">
+            <div class="card-header">
+              <h3 class="card-title">Top Uploaders</h3>
+            </div>
+            <div class="card-body">
+              <div *ngIf="mTopUploaders && mTopUploaders.length>0; else noItemsTemplate" class="table-responsive">
+                <table class="table table-bordered1 table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Institution</th>
+                      <th>Joined</th>
+                      <th>Uploads</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of mTopUploaders; let i = index">
+                      <td>{{ i + 1 }}.</td>
+                      <td>{{ item.full_name }}</td>
+                      <td>{{ item.institution?.name }}</td>
+                      <td>{{ item.created_at | date }}</td>
+                      <td><span class="badge text-bg-info">{{ item.uploaded_media_count }}</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <ng-template #noItemsTemplate>
+                <p class="text-center text-muted p-5">No items</p>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card mb-4 h-100">
+            <div class="card-header border-01">
+              <h3 class="card-title">System Information</h3>
+              <div class="card-tools">
+              </div>
+            </div>
+            <div class="card-body">
+              <h6 class="text-primary1">Resource Usage</h6>
+              <div *ngIf="(mDisk && mMemory && mSwap); else noItemsTemplate" class="table-responsive">
+                <table class="table table-bordered table-striped1">
+                  <!-- <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Course</th>
+                      <th>Views</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead> -->
+                  <tbody>
+                    <tr>
+                      <th>Disk Usage</th>
+                      <td>
+                        <div>{{mDisk.used_gb}} of {{ mDisk.total_gb }}GB</div>
+                        <div class="progress progress-xs progress-striped active">
+                          <div class="progress-bar bg-primary" [style.width.%]="mDisk.usage_percent"></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Memory Usage</th>
+                      <td>
+                        <div>{{mMemory.used_gb}} of {{ mMemory.total_gb }}GB</div>
+                        <div class="progress progress-xs progress-striped active">
+                          <div class="progress-bar bg-primary" [style.width.%]="mMemory.usage_percent"></div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Swap Usage</th>
+                      <td>
+                        <div>{{mSwap.used_gb}} of {{ mSwap.total_gb }}GB</div>
+                        <div class="progress progress-xs progress-striped active">
+                          <div class="progress-bar bg-primary" [style.width.%]="mSwap.usage_percent"></div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <ng-template #noItemsTemplate>
+                <p class="text-center text-muted p-5">No items</p>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -20,11 +20,11 @@ export class EditComponent {
   itemForm:any;
   mProgress:boolean = false;
 
-  mRoles:any
   mAccountTypes:any
+  mInstitutionCategories:any
+  mInstitutions:any
+  mRoles:any
   mStatuses:any
-  mOrganizationCategories:any
-  mOrganizations:any
 
   id:any
   item:User = {}
@@ -39,14 +39,16 @@ export class EditComponent {
   ) {
     // validation
     this.itemForm = this.fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      role_id: ['', Validators.required],
       account_type_id: ['', Validators.required],
+      first_name: ['', Validators.nullValidator],
+      last_name: ['', Validators.nullValidator],
+      name: ['', Validators.nullValidator],
+      alias: ['', Validators.nullValidator],
+      institution_category_id: ['', Validators.nullValidator],
+      institution_id: ['', Validators.nullValidator],
+      role_id: ['', Validators.required],
       status_id: ['', Validators.required],
-      // organization_category_id: ['', Validators.nullValidator],
-      // organization_id: ['', Validators.nullValidator],
       password: ['', [Validators.nullValidator, Validators.minLength(6)]],
       reset_password: [false, Validators.nullValidator],
     });
@@ -83,10 +85,11 @@ export class EditComponent {
     this.mUserService.unpaginatedItems().subscribe({
       next: (response) => {
         if(response){
+          this.mAccountTypes = (response as any).data.account_types
+          this.mInstitutionCategories = (response as any).data.institution_categories
+          this.mInstitutions = (response as any).data.institutions
           this.mRoles = (response as any).data.roles
           this.mStatuses = (response as any).data.statuses
-          this.mOrganizationCategories = (response as any).data.organization_categories
-          this.mOrganizations = (response as any).data.organizations
           this.mProgress = false
         }
       },
@@ -100,45 +103,20 @@ export class EditComponent {
     });
   }
 
-  // onOrganizationChange
-  onOrganizationChange($event: any){
-    let id = $event.value
-    this.filterConstituencies(id)
-    this.mOrganizations = []//Reset
-  }
-  // filterConstituencies
-  filterConstituencies(id:any){
-    this.mProgress = true
-    this.mUserService.filterOrganizations(id).subscribe({
-      next: (response) => {
-        if(response){
-          // console.log(response)
-          //set
-          this.mOrganizations = response
-          this.mProgress = false
-        }
-      },
-      error: (error ) => {
-        // console.log(error.error)
-        this.mToastrService.error(error.error.message)
-        this.mProgress = false
-      }
-    })
-  }
-
   // onSubmit
   onSubmit(formValues: any){
-    // const item: User = {
-    const item: any = {
+    const item: User = {
       id: this.id,
+      email: formValues.email,
+      account_type_id: formValues.account_type_id,
       first_name: formValues.first_name,
       last_name: formValues.last_name,
-      email: formValues.email,
+      name: formValues.name,
+      alias: formValues.alias,
+      institution_category_id: formValues.institution_category_id,
+      institution_id: formValues.institution_id,
       role_id: formValues.role_id,
-      account_type_id: formValues.account_type_id,
       status_id: formValues.status_id,
-      // organization_category_id: formValues.organization_category_id,
-      // organization_id: formValues.organization_id,
       password: formValues.password,
       reset_password: formValues.reset_password,
     }

@@ -1,0 +1,51 @@
+<app-progress *ngIf="mProgress"/>
+
+<section>
+  <div class="app-content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <h3 class="mb-0">Reports</h3>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Reports</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-7 col-12 mb-4">
+          <div class="card p-4 mb-3 h-100 shadow-none border-0">
+            <apx-chart [series]="mChartViewsByUser.series" [chart]="mChartViewsByUser.chart" [xaxis]="mChartViewsByUser.xaxis"
+            [title]="mChartViewsByUser.title" [dataLabels]="mChartViewsByUser.dataLabels" [plotOptions]="mChartViewsByUser.plotOptions"></apx-chart>
+          </div>
+        </div>
+        <div class="col-md-5 col-12 mb-4">
+          <div class="card p-4 mb-3 h-100 shadow-none border-0">
+            <apx-chart [series]="mChartViewsByDeviceType.series" [chart]="mChartViewsByDeviceType.chart" [labels]="mChartViewsByDeviceType.labels"
+            [title]="mChartViewsByDeviceType.title"></apx-chart>
+          </div>
+        </div>
+        <div class="col-md-5 col-12 mb-4">
+          <div class="card p-4 mb-3 h-100 shadow-none border-0">
+            <apx-chart [series]="mChartUsersByStatus.series" [chart]="mChartUsersByStatus.chart" [labels]="mChartUsersByStatus.labels"
+            [title]="mChartUsersByStatus.title"></apx-chart>
+          </div>
+        </div>
+        <div class="col-md-7 col-12 mb-4">
+          <div class="card p-4 mb-3 h-100 shadow-none border-0">
+            <apx-chart [series]="mChartMediaByStatus.series" [chart]="mChartMediaByStatus.chart" [xaxis]="mChartMediaByStatus.xaxis"
+            [title]="mChartMediaByStatus.title" [dataLabels]="mChartMediaByStatus.dataLabels" [plotOptions]="mChartMediaByStatus.plotOptions"></apx-chart>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

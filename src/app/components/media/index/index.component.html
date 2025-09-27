@@ -55,7 +55,7 @@
                         <th>#</th>
                         <th>Title</th>
                         <th>Type</th>
-                        <th>Watch</th>
+                        <th>Preview</th>
                         <th>User</th>
                         <th>Media Status</th>
                         <th>Produced On</th>
@@ -69,11 +69,11 @@
                       <td>{{ i+1 }}.</td>
                       <td>{{ item.title }}</td>
                       <td>{{ item.media_type?.name }}</td>
-                        <td><a [routerLink]="['/media/watch']" [queryParams]="{ video: item.id }" target="_blank" rel="noopener" class="text-decoration-none1"><i class="bi bi-eye-fill"></i></a></td>
-                      <td>{{ item.user?.name }}</td>
-                      <td><span class="alert py-0 m-0 text-center rounded-5" [ngClass]="{'alert-warning':item.media_status_id == 1, 'alert-primary':item.media_status_id==2, 'alert-danger':item.media_status_id==3}">{{ item.media_status?.name }}</span></td>
+                      <td><a [routerLink]="['/media/watch']" [queryParams]="{ video: item.id }" target="_parent" rel="noopener" class="text-decoration-none1"><i class="bi bi-eye-fill"></i></a></td>
+                      <td>{{ item.user?.full_name }}</td>
+                      <td><span class="badge rounded-pill" [ngClass]="{'bg-warning text-dark': item.media_status_id == 1, 'bg-primary': item.media_status_id == 2,'bg-danger': item.media_status_id == 3}"> {{ item.media_status?.name }}</span></td>
                       <td>{{ item.date_produced | date }}</td>
-                      <td><a routerLink="/media/process/{{item.id}}" target="_blank" rel="noopener" class="text-decoration-none badge rounded-pill" [ngClass]="{'bg-warning text-dark': item.status_id == 1, 'bg-primary': item.status_id == 2,'bg-danger': item.status_id == 3}"> {{ item.status?.name }}</a></td>
+                      <td><a routerLink="/media/process/{{item.id}}" target="_parent" rel="noopener" class="text-decoration-none text-nowrap py-0 m-0 rounded-5 alert" [ngClass]="{'alert-info':item.status_id==1, 'alert-success':item.status_id==2, 'alert-warning':item.status_id==3, 'alert-danger':item.status_id==4}"><small>{{ item.status?.name }}</small></a></td>
                       <td>{{ item.created_at | date }}</td>
                       <td>
                         <div class="text-nowrap">
@@ -111,6 +111,10 @@
                                   <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="ms-2 me-auto"><div class="fw-bold">Stream Key:</div></div>
                                     <span class="text-muted">{{ item.stream_key }}</span>
+                                  </li>
+                                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto"><div class="fw-bold">Reject Comments:</div></div>
+                                    <span class="text-muted">{{ item.reject_comments }}</span>
                                   </li>
                                 </ol>
                               </div>

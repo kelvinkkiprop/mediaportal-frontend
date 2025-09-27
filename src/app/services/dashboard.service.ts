@@ -40,4 +40,11 @@ export class DashboardService {
     return this.http.get<any[]>(url, this.mAppContextService.getHttpOptions());
   }
 
+
+  // systemStats
+  systemStats(){
+    const url =  `${environment.base_url}/system-stats`;
+    return this.http.get<any[]>(url, this.mAppContextService.getHttpOptions());
+  }
+
 }

@@ -12,6 +12,7 @@ export interface Media {
   user_id?: any,
   media_status_id?: any,
   status_id?: any,
+  reject_comments?: any,
   views?: any,
 
   type_id?: any,
@@ -38,7 +39,7 @@ export interface Media {
 
 
   tags?: any,
-  organization_id?: any,
+  institution_id?: any,
   date_produced?: any,
   enable_comments?: any,
 
