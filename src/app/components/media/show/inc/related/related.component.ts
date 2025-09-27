@@ -158,8 +158,8 @@ export class RelatedComponent implements OnChanges {
       });
 
       swalWithBootstrapButtons.fire({
-        title: 'Video Finished!',
-        text: `${this.item.title} ended!`,
+        title: 'Video Ended!',
+        text: `${this.item.title}`,
         icon: 'warning',
         showCancelButton: true,
         reverseButtons: true,
