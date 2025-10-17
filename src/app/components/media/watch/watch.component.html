@@ -82,7 +82,7 @@
                       <hr>
                     </div>
                     <div class="col-md-12">
-                      <a routerLink="/users/show/{{item.user?.id}}" class="text-decoration-none text-reset1 d-flex align-items-center">
+                      <a routerLink="/users/show/{{item.user?.id}}" class="text-decoration-none text-reset1 d-flex align-items-center text-success">
                         <div class="rounded-circle bg-success text-white d-flex justify-content-center align-items-center fw-bold" style="width:40px; height:40px;">
                           {{ mAppContextService.getInitials(item.user?.full_name) }}
                         </div>
@@ -98,13 +98,13 @@
                         <div>
                           <label for="categories" class="text-muted me-2">Categories:</label>
                           <!-- <a *ngFor="let cat of item.media_categories; let last = last" routerLink="/categories/show/{{cat.category_id}}" class="text-decoration-none"> -->
-                          <a *ngFor="let cat of item.media_categories; let last = last" [routerLink]="['/media/watch']" [queryParams]="{ category: cat.category_id }" class="text-decoration-none">
+                          <a *ngFor="let cat of item.media_categories; let last = last" [routerLink]="['/media/watch']" [queryParams]="{ category: cat.category_id }" class="text-decoration-none text-success">
                             {{ cat.name }}<span *ngIf="!last">,</span>
                           </a>
                         </div>
                         <div>
                           <label for="tags" class="text-muted me-2">Tags:</label>
-                          <a href="#" (click)="$event.preventDefault()"  class="text-decoration-none">{{ item.tags }}</a>
+                          <a href="#" (click)="$event.preventDefault()" class="text-decoration-none text-success">{{ item.tags }}</a>
                         </div>
                       </div>
                     </div>
