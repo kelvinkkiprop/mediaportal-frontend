@@ -298,7 +298,7 @@ https://certbot.eff.org/instructions?ws=nginx&os=snap
 =====================================================================================
 N. Deploy Angular App to Nginx Server
 1. Create Nginx configuration file for angular app:
-$ sudo vim /etc/nginx/sites-available/angular_mediaportal
+$ sudo vim /etc/nginx/sites-available/angular_mediaportal_uat
 
 server {
   listen 80;
@@ -310,9 +310,9 @@ server {
 }
 
 2. Create a symbolic link in sites-enabled to enable the new virtual host config file:
-$ sudo ln -s /etc/nginx/sites-available/angular_mediaportal /etc/nginx/sites-enabled/
+$ sudo ln -s /etc/nginx/sites-available/angular_mediaportal_uat /etc/nginx/sites-enabled/
 OR (force)
-$ sudo ln -sf /etc/nginx/sites-available/angular_mediaportal /etc/nginx/sites-enabled/
+$ sudo ln -sf /etc/nginx/sites-available/angular_mediaportal_uat /etc/nginx/sites-enabled/
 
 3. Ensure that there are no syntax problems in the configuration, use:
 $ sudo nginx -t
@@ -321,8 +321,8 @@ $ sudo nginx -t
 $ sudo systemctl reload nginx
 
 5. Permissions
-sudo chmod -R 755 /var/www/html/mediaportal-frontend
-sudo chown -R www-data:www-data /var/www/html/mediaportal-frontend
+sudo chmod -R 755 /var/www/html/mediaportal-frontend-uat
+sudo chown -R www-data:www-data /var/www/html/mediaportal-frontend-uat
 
 6. Reference
 https://www.devdungeon.com/content/deploy-angular-apps-nginx
