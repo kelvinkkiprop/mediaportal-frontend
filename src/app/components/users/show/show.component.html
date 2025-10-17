@@ -29,7 +29,7 @@
 
               <div class="card-title">
                 <div class="d-flex align-items-center mb-3">
-                  <span class="user-image rounded-circle bg-primary text-white fw-bold d-inline-flex justify-content-center align-items-center me-3" style="width: 64px; height: 64px; font-size: 1rem;">
+                  <span class="user-image rounded-circle bg-success text-white fw-bold d-inline-flex justify-content-center align-items-center me-3" style="width: 64px; height: 64px; font-size: 1rem;">
                     {{ this.mAppContextService.getInitials(item?.full_name) }}
                   </span>
                   <div>
@@ -61,7 +61,7 @@
                 </ul>
               </div>
               <div class="card-tools">
-                <a *ngIf="item?.id==mCurrentUser?.id" routerLink="/profile/edit/{{item.id}}" class="btn btn-warning  btn-sm">
+                <a *ngIf="item?.id==mCurrentUser?.id" routerLink="/profile/edit/{{item.id}}" class="btn btn-danger  btn-sm">
                   <i class="bi bi-pencil-fill"></i> Edit Profile
                 </a>
               </div>

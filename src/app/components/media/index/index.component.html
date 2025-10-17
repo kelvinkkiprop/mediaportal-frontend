@@ -26,7 +26,7 @@
           <div class="card">
             <div class="card-header">
               <div class="card-title">
-                <a routerLink="/media/create" class="btn btn-warning btn-sm">
+                <a routerLink="/media/create" class="btn btn-danger btn-sm">
                   <i class="bi bi-plus-circle-fill"></i> Create
                 </a>
               </div>
@@ -35,7 +35,7 @@
                   <div class="input-group input-group-sm"  style="width: 150px;">
                     <input type="text" formControlName="search_term" [ngClass]="{'is-invalid': search_term.invalid && (search_term.dirty || search_term.touched)}" class="form-control float-right" placeholder="Search">
                     <div class="input-group-append">
-                      <button type="submit" class="btn btn-primary">
+                      <button type="submit" class="btn btn-success">
                         <i class="bi bi-search"></i>
                       </button>
                     </div>
@@ -71,7 +71,7 @@
                       <td>{{ item.media_type?.name }}</td>
                       <td><a [routerLink]="['/media/watch']" [queryParams]="{ video: item.id }" target="_parent" rel="noopener" class="text-decoration-none1"><i class="bi bi-eye-fill"></i></a></td>
                       <td>{{ item.user?.full_name }}</td>
-                      <td><span class="badge rounded-pill" [ngClass]="{'bg-warning text-dark': item.media_status_id == 1, 'bg-primary': item.media_status_id == 2,'bg-danger': item.media_status_id == 3}"> {{ item.media_status?.name }}</span></td>
+                      <td><span class="badge rounded-pill" [ngClass]="{'bg-warning text-dark': item.media_status_id == 1, 'bg-success': item.media_status_id == 2,'bg-danger': item.media_status_id == 3}"> {{ item.media_status?.name }}</span></td>
                       <td>{{ item.date_produced | date }}</td>
                       <td><a routerLink="/media/process/{{item.id}}" target="_parent" rel="noopener" class="text-decoration-none text-nowrap py-0 m-0 rounded-5 alert" [ngClass]="{'alert-info':item.status_id==1, 'alert-success':item.status_id==2, 'alert-warning':item.status_id==3, 'alert-danger':item.status_id==4}"><small>{{ item.status?.name }}</small></a></td>
                       <td>{{ item.created_at | date }}</td>
@@ -84,7 +84,7 @@
                         <div class="modal fade" [attr.id]="'modal1'+item.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
-                              <div class="modal-header bg-primary text-white">
+                              <div class="modal-header bg-success text-white">
                                 <h5 class="modal-title" id="staticBackdropLabel">{{ item.title }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>

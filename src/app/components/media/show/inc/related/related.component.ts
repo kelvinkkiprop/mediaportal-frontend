@@ -152,7 +152,7 @@ export class RelatedComponent implements OnChanges {
       const swalWithBootstrapButtons = swal.mixin({
         customClass: {
           cancelButton: 'btn btn-dark me-2',
-          confirmButton: 'btn btn-primary',
+          confirmButton: 'btn btn-success',
         },
         buttonsStyling: false,
       });

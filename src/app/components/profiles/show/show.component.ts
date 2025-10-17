@@ -35,7 +35,7 @@ export class ShowComponent {
 
   ngOnInit(): void {
     this.mCurrentUser = this.mAuthService.currentUser;
-    this.mInitials = this.mCurrentUser.name.match(/(\b\S)?/g).join("").match(/(^\S|\S$)?/g).join("").toUpperCase()
+    this.mInitials = this.mCurrentUser.full_name.match(/(\b\S)?/g).join("").match(/(^\S|\S$)?/g).join("").toUpperCase()
   }
 
   // onSubmit

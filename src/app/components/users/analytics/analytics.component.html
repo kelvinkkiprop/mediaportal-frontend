@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon text-bg-primary shadow-sm">
+        <span class="info-box-icon text-bg-success shadow-sm">
           <i class="bi bi-gear-fill"></i>
         </span>
         <div class="info-box-content">
@@ -74,7 +74,7 @@
                 Memory
                 <span class="float-end"><b>{{ mAppContextService.formatMemory(item.my_total_memory) }}</b>/{{mAppContextService.formatMemory(item.total_memory)}}</span>
                 <div class="progress progress-sm">
-                  <div class="progress-bar text-bg-primary" [style.width.%]="item.total_memory_percentage"></div>
+                  <div class="progress-bar text-bg-success" [style.width.%]="item.total_memory_percentage"></div>
                 </div>
               </div>
               <div class="progress-group">

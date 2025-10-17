@@ -26,7 +26,7 @@
           <div class="card">
             <div class="card-header">
               <div class="card-title">
-                <a routerLink="/live-stream/create" class="btn btn-warning btn-sm">
+                <a routerLink="/live-stream/create" class="btn btn-danger btn-sm">
                   <i class="bi bi-plus-circle-fill"></i> Create
                 </a>
               </div>
@@ -35,7 +35,7 @@
                   <div class="input-group input-group-sm"  style="width: 150px;">
                     <input type="text" formControlName="search_term" [ngClass]="{'is-invalid': search_term.invalid && (search_term.dirty || search_term.touched)}" class="form-control float-right" placeholder="Search">
                     <div class="input-group-append">
-                      <button type="submit" class="btn btn-primary">
+                      <button type="submit" class="btn btn-success">
                         <i class="bi bi-search"></i>
                       </button>
                     </div>
@@ -68,7 +68,7 @@
                       <td>{{ item.scheduled_at | date }}</td>
                       <td>{{ item.started_at | date }}</td>
                       <td>{{ item.ended_at | date }}</td>
-                      <td><span class="badge rounded-pill" [ngClass]="{'bg-warning text-dark': item.live_stream_status_id == 1, 'bg-primary': item.live_stream_status_id == 2, 'bg-danger': item.live_stream_status_id==4, 'bg-secondary': item.live_stream_status_id==5}"> {{ item.live_stream_status?.name }}</span></td>
+                      <td><span class="badge rounded-pill" [ngClass]="{'bg-warning text-dark': item.live_stream_status_id == 1, 'bg-success': item.live_stream_status_id == 2, 'bg-danger': item.live_stream_status_id==4, 'bg-secondary': item.live_stream_status_id==5}"> {{ item.live_stream_status?.name }}</span></td>
                       <td>{{ item.created_at | date }}</td>
                       <td class="text-nowrap">
                         <button class="btn btn-outline-dark btn-sm me-1" data-bs-toggle="modal" [attr.data-bs-target]="'#modal1'+item.id"><i class="bi bi-eye-fill"></i></button>
@@ -78,7 +78,7 @@
                         <div class="modal fade" [attr.id]="'modal1'+item.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
-                              <div class="modal-header bg-primary text-white">
+                              <div class="modal-header bg-success text-white">
                                 <h5 class="modal-title" id="staticBackdropLabel">{{item.name}}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>

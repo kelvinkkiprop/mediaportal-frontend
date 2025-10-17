@@ -302,7 +302,7 @@ $ sudo vim /etc/nginx/sites-available/angular_mediaportal
 
 server {
   listen 80;
-  server_name cms.konza.go.ke;
+  server_name govstream.go.ke;
  root /var/www/html/mediaportal-frontend/dist/mediaportal-frontend/browser;
   location / {
     try_files $uri $uri/ /index.html;

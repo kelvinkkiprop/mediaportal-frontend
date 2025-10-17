@@ -68,8 +68,8 @@
                 </div>
 
                 <div class="text-end">
-                  <a *ngIf="progress > 0" routerLink="/my-media" class="btn btn-warning  me-1">Run in Background</a>
-                  <button [disabled]="!selectedFile || itemForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+                  <a *ngIf="progress > 0" routerLink="/my-media" class="btn btn-danger  me-1">Run in Background</a>
+                  <button [disabled]="!selectedFile || itemForm.invalid" type="submit" class="btn btn-success">Submit</button>
                 </div>
               </form>
 
