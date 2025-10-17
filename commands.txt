@@ -303,7 +303,7 @@ $ sudo vim /etc/nginx/sites-available/angular_mediaportal_uat
 server {
   listen 80;
   server_name cms.konza.go.ke;
- root /var/www/html/mediaportal-frontend/dist/mediaportal-frontend/browser;
+ root /var/www/html/mediaportal-frontend-uat/dist/mediaportal-frontend/browser;
   location / {
     try_files $uri $uri/ /index.html;
   }
